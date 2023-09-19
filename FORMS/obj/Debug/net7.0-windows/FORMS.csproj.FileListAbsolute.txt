@@ -42,3 +42,4 @@ C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\ref\FORMS.dll
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Controls.RJTextBox.resources
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Controls.RJComboBox.resources
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.Movimientos.resources

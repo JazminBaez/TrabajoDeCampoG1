@@ -34,21 +34,33 @@
             btnCerrarSesion = new FontAwesome.Sharp.IconButton();
             btnMovimientos = new FontAwesome.Sharp.IconButton();
             btnGestionUsuarios = new FontAwesome.Sharp.IconButton();
-            logo = new Panel();
             panelTitlleBar = new Panel();
+            btnMinimize = new FontAwesome.Sharp.IconButton();
+            btnMaximize = new FontAwesome.Sharp.IconButton();
+            btnExit = new FontAwesome.Sharp.IconButton();
+            lbNombreUsuario = new Label();
+            lbBienvenido = new Label();
             lblTitleChildForm = new Label();
             iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             notifyIcon1 = new NotifyIcon(components);
             panelShadow = new Panel();
             panelDesktop = new Panel();
+            panel2 = new Panel();
+            iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
+            logo = new Panel();
+            panel1 = new Panel();
+            panel3 = new Panel();
             panelMenu.SuspendLayout();
             panelTitlleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).BeginInit();
+            panelDesktop.SuspendLayout();
+            logo.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.FromArgb(33, 30, 68);
+            panelMenu.BackColor = Color.FromArgb(26, 25, 70);
             panelMenu.Controls.Add(btnCerrarSesion);
             panelMenu.Controls.Add(btnMovimientos);
             panelMenu.Controls.Add(btnGestionUsuarios);
@@ -56,8 +68,7 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Padding = new Padding(0, 10, 0, 0);
-            panelMenu.Size = new Size(220, 605);
+            panelMenu.Size = new Size(216, 605);
             panelMenu.TabIndex = 0;
             // 
             // btnCerrarSesion
@@ -72,9 +83,9 @@
             btnCerrarSesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCerrarSesion.IconSize = 40;
             btnCerrarSesion.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCerrarSesion.Location = new Point(0, 243);
+            btnCerrarSesion.Location = new Point(0, 269);
             btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(220, 58);
+            btnCerrarSesion.Size = new Size(216, 58);
             btnCerrarSesion.TabIndex = 3;
             btnCerrarSesion.Text = "Cerrar sesion";
             btnCerrarSesion.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -93,9 +104,9 @@
             btnMovimientos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnMovimientos.IconSize = 40;
             btnMovimientos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMovimientos.Location = new Point(0, 185);
+            btnMovimientos.Location = new Point(0, 211);
             btnMovimientos.Name = "btnMovimientos";
-            btnMovimientos.Size = new Size(220, 58);
+            btnMovimientos.Size = new Size(216, 58);
             btnMovimientos.TabIndex = 2;
             btnMovimientos.Text = "Movimeintos";
             btnMovimientos.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -114,45 +125,121 @@
             btnGestionUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGestionUsuarios.IconSize = 40;
             btnGestionUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGestionUsuarios.Location = new Point(0, 127);
+            btnGestionUsuarios.Location = new Point(0, 153);
+            btnGestionUsuarios.Margin = new Padding(3, 10, 3, 3);
             btnGestionUsuarios.Name = "btnGestionUsuarios";
-            btnGestionUsuarios.Padding = new Padding(0, 10, 0, 0);
-            btnGestionUsuarios.Size = new Size(220, 58);
+            btnGestionUsuarios.Size = new Size(216, 58);
             btnGestionUsuarios.TabIndex = 1;
             btnGestionUsuarios.Text = "Gestionar usuarios";
             btnGestionUsuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGestionUsuarios.UseVisualStyleBackColor = true;
             btnGestionUsuarios.Click += btnGestionUsuarios_Click;
             // 
-            // logo
-            // 
-            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
-            logo.BackgroundImageLayout = ImageLayout.Zoom;
-            logo.Dock = DockStyle.Top;
-            logo.Location = new Point(0, 10);
-            logo.Margin = new Padding(0, 10, 0, 20);
-            logo.Name = "logo";
-            logo.Padding = new Padding(0, 0, 0, 20);
-            logo.Size = new Size(220, 117);
-            logo.TabIndex = 0;
-            // 
             // panelTitlleBar
             // 
             panelTitlleBar.BackColor = Color.FromArgb(26, 25, 62);
+            panelTitlleBar.Controls.Add(btnMinimize);
+            panelTitlleBar.Controls.Add(btnMaximize);
+            panelTitlleBar.Controls.Add(btnExit);
+            panelTitlleBar.Controls.Add(lbNombreUsuario);
+            panelTitlleBar.Controls.Add(lbBienvenido);
             panelTitlleBar.Controls.Add(lblTitleChildForm);
             panelTitlleBar.Controls.Add(iconCurrentChildForm);
             panelTitlleBar.Dock = DockStyle.Top;
-            panelTitlleBar.Location = new Point(220, 0);
+            panelTitlleBar.Location = new Point(216, 0);
             panelTitlleBar.Name = "panelTitlleBar";
-            panelTitlleBar.Size = new Size(859, 75);
+            panelTitlleBar.Size = new Size(878, 50);
             panelTitlleBar.TabIndex = 1;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMinimize.ForeColor = SystemColors.ButtonHighlight;
+            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            btnMinimize.IconColor = Color.White;
+            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMinimize.IconSize = 20;
+            btnMinimize.Location = new Point(764, 0);
+            btnMinimize.Margin = new Padding(3, 10, 3, 3);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(34, 24);
+            btnMinimize.TabIndex = 6;
+            btnMinimize.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMinimize.UseVisualStyleBackColor = true;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMaximize.ForeColor = SystemColors.ButtonHighlight;
+            btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            btnMaximize.IconColor = Color.White;
+            btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMaximize.IconSize = 20;
+            btnMaximize.Location = new Point(804, 0);
+            btnMaximize.Margin = new Padding(3, 10, 3, 3);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(34, 24);
+            btnMaximize.TabIndex = 5;
+            btnMaximize.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMaximize.UseVisualStyleBackColor = true;
+            // 
+            // btnExit
+            // 
+            btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExit.ForeColor = SystemColors.ButtonHighlight;
+            btnExit.IconChar = FontAwesome.Sharp.IconChar.X;
+            btnExit.IconColor = Color.White;
+            btnExit.IconFont = FontAwesome.Sharp.IconFont.Brands;
+            btnExit.IconSize = 20;
+            btnExit.Location = new Point(844, 0);
+            btnExit.Margin = new Padding(3, 10, 3, 3);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(34, 24);
+            btnExit.TabIndex = 4;
+            btnExit.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
+            // lbNombreUsuario
+            // 
+            lbNombreUsuario.AutoSize = true;
+            lbNombreUsuario.BackColor = Color.Transparent;
+            lbNombreUsuario.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbNombreUsuario.ForeColor = SystemColors.ButtonFace;
+            lbNombreUsuario.Location = new Point(455, 20);
+            lbNombreUsuario.Name = "lbNombreUsuario";
+            lbNombreUsuario.Size = new Size(13, 19);
+            lbNombreUsuario.TabIndex = 3;
+            lbNombreUsuario.Text = "!";
+            // 
+            // lbBienvenido
+            // 
+            lbBienvenido.AutoSize = true;
+            lbBienvenido.BackColor = Color.Transparent;
+            lbBienvenido.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbBienvenido.ForeColor = SystemColors.ButtonFace;
+            lbBienvenido.Location = new Point(349, 20);
+            lbBienvenido.Name = "lbBienvenido";
+            lbBienvenido.Size = new Size(100, 19);
+            lbBienvenido.TabIndex = 2;
+            lbBienvenido.Text = "Bienvenido ";
             // 
             // lblTitleChildForm
             // 
             lblTitleChildForm.AutoSize = true;
             lblTitleChildForm.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitleChildForm.ForeColor = SystemColors.ButtonFace;
-            lblTitleChildForm.Location = new Point(69, 37);
+            lblTitleChildForm.Location = new Point(69, 20);
             lblTitleChildForm.Name = "lblTitleChildForm";
             lblTitleChildForm.Size = new Size(44, 16);
             lblTitleChildForm.TabIndex = 1;
@@ -167,11 +254,12 @@
             iconCurrentChildForm.IconColor = SystemColors.Control;
             iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconCurrentChildForm.IconSize = 43;
-            iconCurrentChildForm.Location = new Point(20, 21);
+            iconCurrentChildForm.Location = new Point(20, 5);
             iconCurrentChildForm.Name = "iconCurrentChildForm";
             iconCurrentChildForm.Size = new Size(43, 48);
             iconCurrentChildForm.TabIndex = 0;
             iconCurrentChildForm.TabStop = false;
+            iconCurrentChildForm.Click += iconCurrentChildForm_Click;
             // 
             // notifyIcon1
             // 
@@ -182,42 +270,108 @@
             // 
             panelShadow.BackColor = Color.FromArgb(26, 24, 58);
             panelShadow.Dock = DockStyle.Top;
-            panelShadow.Location = new Point(220, 75);
+            panelShadow.Location = new Point(216, 50);
             panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(859, 9);
+            panelShadow.Size = new Size(878, 9);
             panelShadow.TabIndex = 2;
             // 
             // panelDesktop
             // 
             panelDesktop.BackColor = Color.FromArgb(34, 33, 64);
+            panelDesktop.Controls.Add(panel2);
             panelDesktop.Dock = DockStyle.Fill;
-            panelDesktop.Location = new Point(220, 84);
+            panelDesktop.Location = new Point(216, 59);
             panelDesktop.Name = "panelDesktop";
-            panelDesktop.Size = new Size(859, 521);
+            panelDesktop.Size = new Size(878, 546);
             panelDesktop.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.None;
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.BackgroundImageLayout = ImageLayout.Zoom;
+            panel2.ImeMode = ImeMode.Off;
+            panel2.Location = new Point(331, 150);
+            panel2.Margin = new Padding(0, 0, 0, 10);
+            panel2.Name = "panel2";
+            panel2.Padding = new Padding(0, 0, 0, 20);
+            panel2.Size = new Size(274, 207);
+            panel2.TabIndex = 2;
+            // 
+            // iconSplitButton1
+            // 
+            iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            iconSplitButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconSplitButton1.IconColor = Color.Black;
+            iconSplitButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconSplitButton1.IconSize = 48;
+            iconSplitButton1.Name = "iconSplitButton1";
+            iconSplitButton1.Rotation = 0D;
+            iconSplitButton1.Size = new Size(23, 23);
+            iconSplitButton1.Text = "iconSplitButton1";
+            // 
+            // logo
+            // 
+            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
+            logo.BackgroundImageLayout = ImageLayout.Zoom;
+            logo.Controls.Add(panel1);
+            logo.Dock = DockStyle.Top;
+            logo.ImeMode = ImeMode.Off;
+            logo.Location = new Point(0, 0);
+            logo.Margin = new Padding(0, 0, 0, 10);
+            logo.Name = "logo";
+            logo.Padding = new Padding(0, 0, 0, 20);
+            logo.Size = new Size(216, 153);
+            logo.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            panel1.Controls.Add(panel3);
+            panel1.Dock = DockStyle.Top;
+            panel1.ImeMode = ImeMode.Off;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(0, 0, 0, 20);
+            panel1.Size = new Size(216, 153);
+            panel1.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.None;
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.BackgroundImageLayout = ImageLayout.Zoom;
+            panel3.Location = new Point(26, 20);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(168, 110);
+            panel3.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1079, 605);
+            ClientSize = new Size(1094, 605);
             Controls.Add(panelDesktop);
             Controls.Add(panelShadow);
             Controls.Add(panelTitlleBar);
             Controls.Add(panelMenu);
+            MinimumSize = new Size(1110, 637);
             Name = "Form1";
             Text = "Form1";
             panelMenu.ResumeLayout(false);
             panelTitlleBar.ResumeLayout(false);
             panelTitlleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).EndInit();
+            panelDesktop.ResumeLayout(false);
+            logo.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelMenu;
-        private Panel logo;
         private FontAwesome.Sharp.IconButton btnGestionUsuarios;
         private FontAwesome.Sharp.IconButton btnCerrarSesion;
         private FontAwesome.Sharp.IconButton btnMovimientos;
@@ -227,5 +381,15 @@
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private Panel panelShadow;
         private Panel panelDesktop;
+        private Label lbNombreUsuario;
+        private Label lbBienvenido;
+        private FontAwesome.Sharp.IconButton btnMinimize;
+        private FontAwesome.Sharp.IconButton btnMaximize;
+        private FontAwesome.Sharp.IconButton btnExit;
+        private FontAwesome.Sharp.IconSplitButton iconSplitButton1;
+        private Panel panel2;
+        private Panel logo;
+        private Panel panel1;
+        private Panel panel3;
     }
 }

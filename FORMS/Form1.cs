@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+
 using System.Runtime.InteropServices;
 using FontAwesome.Sharp;
 
 using System.Xml;
 using FORMS.Forms;
+using System.Windows.Forms;
+
 namespace FORMS
 {
     public partial class Form1 : Form
@@ -115,6 +118,7 @@ namespace FORMS
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new FormGestionarUsuarios());
 
         }
 
@@ -160,14 +164,14 @@ namespace FORMS
         private void btnMovimientos_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new FormGestionarUsuarios());
+            OpenChildForm(new Movimientos());
 
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new FormGestionarUsuarios());
+
 
         }
 
@@ -175,5 +179,24 @@ namespace FORMS
         {
 
         }
+
+        private void iconCurrentChildForm_Click(object sender, EventArgs e)
+        {
+
+            currentChildForm.Close();
+            Reset();
+        }
+
+
+
+
+        private void btnMaximize_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+
+
     }
 }

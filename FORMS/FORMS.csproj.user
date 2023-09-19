@@ -16,5 +16,8 @@
     <Compile Update="Forms\FormGestionarUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
