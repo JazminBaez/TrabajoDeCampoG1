@@ -29,8 +29,8 @@ namespace FORMS.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             LRegistrarUsuario = new Label();
             btRegistrar = new RJButton();
@@ -45,6 +45,7 @@ namespace FORMS.Forms
             iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
             panel2 = new Panel();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            btnBuscar = new FontAwesome.Sharp.IconPictureBox();
             tbBuscarUsuario = new RJTextBox();
             cbFiltrarUsuarios = new ComboBox();
             lbFiltrarUsuarios = new Label();
@@ -60,15 +61,14 @@ namespace FORMS.Forms
             btnEliminar = new RJButton();
             panel4 = new Panel();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            btnBuscar = new FontAwesome.Sharp.IconPictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -306,7 +306,7 @@ namespace FORMS.Forms
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(306, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(552, 102);
+            panel2.Size = new Size(552, 75);
             panel2.TabIndex = 1;
             // 
             // iconPictureBox1
@@ -317,11 +317,26 @@ namespace FORMS.Forms
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Rotate;
             iconPictureBox1.IconColor = SystemColors.Control;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox1.Location = new Point(444, 43);
+            iconPictureBox1.Location = new Point(498, 29);
             iconPictureBox1.Name = "iconPictureBox1";
             iconPictureBox1.Size = new Size(32, 32);
             iconPictureBox1.TabIndex = 15;
             iconPictureBox1.TabStop = false;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Anchor = AnchorStyles.None;
+            btnBuscar.BackColor = SystemColors.Desktop;
+            btnBuscar.ForeColor = SystemColors.Control;
+            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            btnBuscar.IconColor = SystemColors.Control;
+            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnBuscar.Location = new Point(200, 29);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(32, 32);
+            btnBuscar.TabIndex = 14;
+            btnBuscar.TabStop = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // tbBuscarUsuario
             // 
@@ -333,7 +348,7 @@ namespace FORMS.Forms
             tbBuscarUsuario.BorderSize = 2;
             tbBuscarUsuario.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             tbBuscarUsuario.ForeColor = Color.FromArgb(64, 64, 64);
-            tbBuscarUsuario.Location = new Point(22, 43);
+            tbBuscarUsuario.Location = new Point(22, 29);
             tbBuscarUsuario.Margin = new Padding(4);
             tbBuscarUsuario.Multiline = false;
             tbBuscarUsuario.Name = "tbBuscarUsuario";
@@ -352,7 +367,7 @@ namespace FORMS.Forms
             cbFiltrarUsuarios.AutoCompleteCustomSource.AddRange(new string[] { "Administrador", "Propietario", "Guardia" });
             cbFiltrarUsuarios.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             cbFiltrarUsuarios.Items.AddRange(new object[] { "Administradores", "Guardias", "Propietarios" });
-            cbFiltrarUsuarios.Location = new Point(321, 48);
+            cbFiltrarUsuarios.Location = new Point(321, 34);
             cbFiltrarUsuarios.Name = "cbFiltrarUsuarios";
             cbFiltrarUsuarios.Size = new Size(117, 25);
             cbFiltrarUsuarios.TabIndex = 13;
@@ -364,7 +379,7 @@ namespace FORMS.Forms
             lbFiltrarUsuarios.AutoSize = true;
             lbFiltrarUsuarios.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbFiltrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
-            lbFiltrarUsuarios.Location = new Point(321, 28);
+            lbFiltrarUsuarios.Location = new Point(321, 14);
             lbFiltrarUsuarios.Name = "lbFiltrarUsuarios";
             lbFiltrarUsuarios.Size = new Size(68, 17);
             lbFiltrarUsuarios.TabIndex = 12;
@@ -376,7 +391,7 @@ namespace FORMS.Forms
             panel3.BackColor = SystemColors.Desktop;
             panel3.Controls.Add(dgUsuarios);
             panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(306, 102);
+            panel3.Location = new Point(306, 75);
             panel3.Name = "panel3";
             panel3.Size = new Size(552, 289);
             panel3.TabIndex = 2;
@@ -388,14 +403,14 @@ namespace FORMS.Forms
             dgUsuarios.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgUsuarios.BorderStyle = BorderStyle.None;
             dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewButtonColumn1 });
             dgUsuarios.Dock = DockStyle.Fill;
@@ -405,12 +420,12 @@ namespace FORMS.Forms
             dgUsuarios.Margin = new Padding(3, 15, 3, 3);
             dgUsuarios.Name = "dgUsuarios";
             dgUsuarios.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgUsuarios.RowTemplate.Height = 25;
             dgUsuarios.Size = new Size(552, 289);
             dgUsuarios.TabIndex = 11;
@@ -469,7 +484,7 @@ namespace FORMS.Forms
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Black;
-            btnEliminar.Location = new Point(423, 28);
+            btnEliminar.Location = new Point(423, 42);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(107, 40);
             btnEliminar.TabIndex = 10;
@@ -483,9 +498,9 @@ namespace FORMS.Forms
             panel4.Controls.Add(iconPictureBox2);
             panel4.Controls.Add(btnEliminar);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(306, 391);
+            panel4.Location = new Point(306, 364);
             panel4.Name = "panel4";
-            panel4.Size = new Size(552, 91);
+            panel4.Size = new Size(552, 118);
             panel4.TabIndex = 11;
             // 
             // iconPictureBox2
@@ -496,26 +511,11 @@ namespace FORMS.Forms
             iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Rotate;
             iconPictureBox2.IconColor = SystemColors.Control;
             iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox2.Location = new Point(620, 38);
+            iconPictureBox2.Location = new Point(620, 52);
             iconPictureBox2.Name = "iconPictureBox2";
             iconPictureBox2.Size = new Size(32, 32);
             iconPictureBox2.TabIndex = 15;
             iconPictureBox2.TabStop = false;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Anchor = AnchorStyles.None;
-            btnBuscar.BackColor = SystemColors.Desktop;
-            btnBuscar.ForeColor = SystemColors.Control;
-            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            btnBuscar.IconColor = SystemColors.Control;
-            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.Location = new Point(200, 43);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(32, 32);
-            btnBuscar.TabIndex = 14;
-            btnBuscar.TabStop = false;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // FormGestionarUsuarios
             // 
@@ -534,11 +534,11 @@ namespace FORMS.Forms
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ResumeLayout(false);
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace FORMS.Forms
 {
-    partial class Movimientos
+    partial class FormInformeMovimientos
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            lbFiltrarMoviminetos = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             lbFiltrarMovimientos = new Label();
             dtFechaMovimeintos = new DateTimePicker();
@@ -38,14 +39,14 @@
             panel2 = new Panel();
             panel3 = new Panel();
             dgUsuarios = new DataGridView();
-            panelShadow = new Panel();
-            lbFiltrarMoviminetos = new Label();
             CIDmovimientp = new DataGridViewTextBoxColumn();
             Ctipo = new DataGridViewTextBoxColumn();
             CResponsable = new DataGridViewTextBoxColumn();
             CVisitante = new DataGridViewTextBoxColumn();
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
+            panelShadow = new Panel();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -64,8 +65,20 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1094, 114);
+            panel1.Size = new Size(858, 76);
             panel1.TabIndex = 0;
+            // 
+            // lbFiltrarMoviminetos
+            // 
+            lbFiltrarMoviminetos.Anchor = AnchorStyles.None;
+            lbFiltrarMoviminetos.AutoSize = true;
+            lbFiltrarMoviminetos.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbFiltrarMoviminetos.ForeColor = SystemColors.ButtonHighlight;
+            lbFiltrarMoviminetos.Location = new Point(40, 12);
+            lbFiltrarMoviminetos.Name = "lbFiltrarMoviminetos";
+            lbFiltrarMoviminetos.Size = new Size(68, 17);
+            lbFiltrarMoviminetos.TabIndex = 15;
+            lbFiltrarMoviminetos.Text = "Filtrar por";
             // 
             // iconPictureBox1
             // 
@@ -76,9 +89,9 @@
             iconPictureBox1.IconColor = SystemColors.ButtonHighlight;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox1.IconSize = 40;
-            iconPictureBox1.Location = new Point(988, 65);
+            iconPictureBox1.Location = new Point(806, 32);
             iconPictureBox1.Name = "iconPictureBox1";
-            iconPictureBox1.Size = new Size(40, 47);
+            iconPictureBox1.Size = new Size(40, 44);
             iconPictureBox1.TabIndex = 14;
             iconPictureBox1.TabStop = false;
             iconPictureBox1.Click += iconPictureBox1_Click;
@@ -89,7 +102,7 @@
             lbFiltrarMovimientos.AutoSize = true;
             lbFiltrarMovimientos.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbFiltrarMovimientos.ForeColor = SystemColors.ButtonHighlight;
-            lbFiltrarMovimientos.Location = new Point(782, 50);
+            lbFiltrarMovimientos.Location = new Point(493, 14);
             lbFiltrarMovimientos.Name = "lbFiltrarMovimientos";
             lbFiltrarMovimientos.Size = new Size(147, 17);
             lbFiltrarMovimientos.TabIndex = 13;
@@ -100,7 +113,7 @@
             dtFechaMovimeintos.Anchor = AnchorStyles.None;
             dtFechaMovimeintos.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             dtFechaMovimeintos.Format = DateTimePickerFormat.Custom;
-            dtFechaMovimeintos.Location = new Point(782, 70);
+            dtFechaMovimeintos.Location = new Point(493, 34);
             dtFechaMovimeintos.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
             dtFechaMovimeintos.Name = "dtFechaMovimeintos";
             dtFechaMovimeintos.Size = new Size(200, 26);
@@ -113,7 +126,7 @@
             cbFiltrarMovimientos.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbFiltrarMovimientos.FormattingEnabled = true;
             cbFiltrarMovimientos.Items.AddRange(new object[] { "Ingresos", "Egresos" });
-            cbFiltrarMovimientos.Location = new Point(55, 72);
+            cbFiltrarMovimientos.Location = new Point(40, 32);
             cbFiltrarMovimientos.Name = "cbFiltrarMovimientos";
             cbFiltrarMovimientos.Size = new Size(176, 28);
             cbFiltrarMovimientos.TabIndex = 0;
@@ -122,21 +135,22 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.Desktop;
+            panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(panelShadow);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 114);
+            panel2.Location = new Point(0, 76);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1094, 484);
+            panel2.Size = new Size(858, 406);
             panel2.TabIndex = 1;
             // 
             // panel3
             // 
-            panel3.Anchor = AnchorStyles.None;
             panel3.Controls.Add(dgUsuarios);
-            panel3.Location = new Point(55, 44);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 9);
             panel3.Name = "panel3";
-            panel3.Size = new Size(969, 347);
+            panel3.Size = new Size(858, 305);
             panel3.TabIndex = 4;
             // 
             // dgUsuarios
@@ -159,7 +173,7 @@
             dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
             dgUsuarios.EnableHeadersVisualStyles = false;
             dgUsuarios.GridColor = Color.MediumAquamarine;
-            dgUsuarios.Location = new Point(0, 0);
+            dgUsuarios.Location = new Point(34, 8);
             dgUsuarios.Margin = new Padding(3, 15, 3, 3);
             dgUsuarios.Name = "dgUsuarios";
             dgUsuarios.RowHeadersVisible = false;
@@ -170,29 +184,8 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgUsuarios.RowTemplate.Height = 25;
-            dgUsuarios.Size = new Size(969, 347);
+            dgUsuarios.Size = new Size(794, 291);
             dgUsuarios.TabIndex = 12;
-            // 
-            // panelShadow
-            // 
-            panelShadow.BackColor = Color.FromArgb(0, 20, 50);
-            panelShadow.Dock = DockStyle.Top;
-            panelShadow.Location = new Point(0, 0);
-            panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(1094, 9);
-            panelShadow.TabIndex = 3;
-            // 
-            // lbFiltrarMoviminetos
-            // 
-            lbFiltrarMoviminetos.Anchor = AnchorStyles.None;
-            lbFiltrarMoviminetos.AutoSize = true;
-            lbFiltrarMoviminetos.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbFiltrarMoviminetos.ForeColor = SystemColors.ButtonHighlight;
-            lbFiltrarMoviminetos.Location = new Point(55, 52);
-            lbFiltrarMoviminetos.Name = "lbFiltrarMoviminetos";
-            lbFiltrarMoviminetos.Size = new Size(68, 17);
-            lbFiltrarMoviminetos.TabIndex = 15;
-            lbFiltrarMoviminetos.Text = "Filtrar por";
             // 
             // CIDmovimientp
             // 
@@ -229,15 +222,32 @@
             Cfecha.Name = "Cfecha";
             Cfecha.ReadOnly = true;
             // 
+            // panelShadow
+            // 
+            panelShadow.BackColor = Color.FromArgb(0, 20, 50);
+            panelShadow.Dock = DockStyle.Top;
+            panelShadow.Location = new Point(0, 0);
+            panelShadow.Name = "panelShadow";
+            panelShadow.Size = new Size(858, 9);
+            panelShadow.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(0, 314);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(858, 92);
+            panel4.TabIndex = 5;
+            // 
             // Movimientos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1094, 598);
+            ClientSize = new Size(858, 482);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Movimientos";
-            Text = "FormMovimientos";
+            Text = "FormInformeMovimientos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
@@ -265,5 +275,6 @@
         private DataGridViewTextBoxColumn CVisitante;
         private DataGridViewTextBoxColumn CDNIvisitante;
         private DataGridViewTextBoxColumn Cfecha;
+        private Panel panel4;
     }
 }

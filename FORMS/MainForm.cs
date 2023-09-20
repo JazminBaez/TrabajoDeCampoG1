@@ -13,22 +13,22 @@ using System.Windows.Forms;
 
 namespace FORMS
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
             panelMenu.Controls.Add(leftBorderBtn);
 
-            this.Text = string.Empty;
-            this.ControlBox = false;
-            this.DoubleBuffered = true;
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            Text = string.Empty;
+            ControlBox = false;
+            DoubleBuffered = true;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
 
         }
 
@@ -130,11 +130,11 @@ namespace FORMS
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(nint hWnd, int wMsg, int wParam, int lParam);
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
         //Close-Maximize-Minimize
         private void btnExit_Click(object sender, EventArgs e)
@@ -164,7 +164,7 @@ namespace FORMS
         private void btnMovimientos_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Movimientos());
+            OpenChildForm(new FormInformeMovimientos());
 
         }
 
@@ -193,7 +193,7 @@ namespace FORMS
         private void btnMaximize_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
 

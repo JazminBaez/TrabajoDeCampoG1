@@ -1,0 +1,210 @@
+﻿using FORMS.Controls;
+namespace FORMS.Forms
+{
+    partial class Login
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            panel1 = new Panel();
+            btnMinimize = new FontAwesome.Sharp.IconButton();
+            btnExit = new FontAwesome.Sharp.IconButton();
+            panel4 = new Panel();
+            panel3 = new Panel();
+            tbPassword = new RJTextBox();
+            btIniciarSesion = new RJButton();
+            tbCorreo = new RJTextBox();
+            panel1.SuspendLayout();
+            panel3.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnMinimize);
+            panel1.Controls.Add(btnExit);
+            panel1.Controls.Add(panel4);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(305, 250);
+            panel1.TabIndex = 0;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMinimize.ForeColor = SystemColors.ButtonHighlight;
+            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            btnMinimize.IconColor = Color.White;
+            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMinimize.IconSize = 20;
+            btnMinimize.Location = new Point(231, 0);
+            btnMinimize.Margin = new Padding(3, 10, 3, 3);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(34, 24);
+            btnMinimize.TabIndex = 9;
+            btnMinimize.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMinimize.UseVisualStyleBackColor = true;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExit.ForeColor = SystemColors.ButtonHighlight;
+            btnExit.IconChar = FontAwesome.Sharp.IconChar.X;
+            btnExit.IconColor = Color.White;
+            btnExit.IconFont = FontAwesome.Sharp.IconFont.Brands;
+            btnExit.IconSize = 20;
+            btnExit.Location = new Point(271, 0);
+            btnExit.Margin = new Padding(3, 10, 3, 3);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(34, 24);
+            btnExit.TabIndex = 7;
+            btnExit.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
+            // panel4
+            // 
+            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.BackgroundImageLayout = ImageLayout.Stretch;
+            panel4.Location = new Point(94, 62);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(115, 117);
+            panel4.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(31, 34, 50);
+            panel3.Controls.Add(tbPassword);
+            panel3.Controls.Add(btIniciarSesion);
+            panel3.Controls.Add(tbCorreo);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 250);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(305, 255);
+            panel3.TabIndex = 2;
+            // 
+            // tbPassword
+            // 
+            tbPassword.BackColor = SystemColors.InactiveCaption;
+            tbPassword.BorderColor = Color.Transparent;
+            tbPassword.BorderFocusColor = Color.MidnightBlue;
+            tbPassword.BorderRadius = 11;
+            tbPassword.BorderSize = 2;
+            tbPassword.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            tbPassword.ForeColor = Color.FromArgb(64, 64, 64);
+            tbPassword.Location = new Point(48, 53);
+            tbPassword.Margin = new Padding(4);
+            tbPassword.Multiline = false;
+            tbPassword.Name = "tbPassword";
+            tbPassword.Padding = new Padding(10, 7, 10, 7);
+            tbPassword.PasswordChar = true;
+            tbPassword.PlaceholderColor = Color.Gray;
+            tbPassword.PlaceholderText = "Contraseña";
+            tbPassword.Size = new Size(206, 31);
+            tbPassword.TabIndex = 21;
+            tbPassword.Texts = "";
+            tbPassword.UnderlinedStyle = false;
+            // 
+            // btIniciarSesion
+            // 
+            btIniciarSesion.BackColor = SystemColors.GradientInactiveCaption;
+            btIniciarSesion.BackgroundColor = SystemColors.GradientInactiveCaption;
+            btIniciarSesion.BorderColor = SystemColors.InactiveCaption;
+            btIniciarSesion.BorderRadius = 20;
+            btIniciarSesion.BorderSize = 0;
+            btIniciarSesion.FlatAppearance.BorderSize = 0;
+            btIniciarSesion.FlatStyle = FlatStyle.Flat;
+            btIniciarSesion.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btIniciarSesion.ForeColor = Color.Black;
+            btIniciarSesion.Location = new Point(95, 103);
+            btIniciarSesion.Name = "btIniciarSesion";
+            btIniciarSesion.Size = new Size(114, 40);
+            btIniciarSesion.TabIndex = 20;
+            btIniciarSesion.Text = "INICIAR SESION";
+            btIniciarSesion.TextColor = Color.Black;
+            btIniciarSesion.UseVisualStyleBackColor = false;
+            btIniciarSesion.Click += btIniciarSesion_Click;
+            // 
+            // tbCorreo
+            // 
+            tbCorreo.BackColor = SystemColors.InactiveCaption;
+            tbCorreo.BorderColor = Color.Transparent;
+            tbCorreo.BorderFocusColor = Color.MidnightBlue;
+            tbCorreo.BorderRadius = 11;
+            tbCorreo.BorderSize = 2;
+            tbCorreo.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            tbCorreo.ForeColor = Color.FromArgb(64, 64, 64);
+            tbCorreo.Location = new Point(48, 4);
+            tbCorreo.Margin = new Padding(4);
+            tbCorreo.Multiline = false;
+            tbCorreo.Name = "tbCorreo";
+            tbCorreo.Padding = new Padding(10, 7, 10, 7);
+            tbCorreo.PasswordChar = false;
+            tbCorreo.PlaceholderColor = Color.Gray;
+            tbCorreo.PlaceholderText = "Correo";
+            tbCorreo.Size = new Size(206, 31);
+            tbCorreo.TabIndex = 15;
+            tbCorreo.Texts = "";
+            tbCorreo.UnderlinedStyle = false;
+            // 
+            // Login
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 34, 50);
+            ClientSize = new Size(305, 505);
+            Controls.Add(panel3);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Login";
+            panel1.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private Panel panel4;
+        private Panel panel3;
+        private Controls.RJTextBox tbApellido;
+        private Controls.RJTextBox TBDireccion;
+        private Controls.RJTextBox tbCorreo;
+        private Controls.RJButton btIniciarSesion;
+        private RJTextBox tbPassword;
+        private FontAwesome.Sharp.IconButton btnMinimize;
+        private FontAwesome.Sharp.IconButton btnExit;
+    }
+}

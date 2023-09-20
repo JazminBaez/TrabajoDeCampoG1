@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FORMS.Forms
 {
-    public partial class Movimientos : Form
+    public partial class FormInformeMovimientos : Form
     {
-        public Movimientos()
+        public FormInformeMovimientos()
         {
             InitializeComponent();
 

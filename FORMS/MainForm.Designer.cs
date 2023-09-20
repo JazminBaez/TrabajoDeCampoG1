@@ -1,6 +1,6 @@
 ﻿namespace FORMS
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelMenu = new Panel();
             btnCerrarSesion = new FontAwesome.Sharp.IconButton();
             btnMovimientos = new FontAwesome.Sharp.IconButton();
             btnGestionUsuarios = new FontAwesome.Sharp.IconButton();
+            logo = new Panel();
+            panel1 = new Panel();
+            panel3 = new Panel();
             panelTitlleBar = new Panel();
             btnMinimize = new FontAwesome.Sharp.IconButton();
             btnMaximize = new FontAwesome.Sharp.IconButton();
@@ -45,17 +48,14 @@
             notifyIcon1 = new NotifyIcon(components);
             panelShadow = new Panel();
             panelDesktop = new Panel();
-            panel2 = new Panel();
             iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            logo = new Panel();
-            panel1 = new Panel();
-            panel3 = new Panel();
+            panel2 = new Panel();
             panelMenu.SuspendLayout();
+            logo.SuspendLayout();
+            panel1.SuspendLayout();
             panelTitlleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).BeginInit();
             panelDesktop.SuspendLayout();
-            logo.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -134,6 +134,43 @@
             btnGestionUsuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGestionUsuarios.UseVisualStyleBackColor = true;
             btnGestionUsuarios.Click += btnGestionUsuarios_Click;
+            // 
+            // logo
+            // 
+            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
+            logo.BackgroundImageLayout = ImageLayout.Zoom;
+            logo.Controls.Add(panel1);
+            logo.Dock = DockStyle.Top;
+            logo.ImeMode = ImeMode.Off;
+            logo.Location = new Point(0, 0);
+            logo.Margin = new Padding(0, 0, 0, 10);
+            logo.Name = "logo";
+            logo.Padding = new Padding(0, 0, 0, 20);
+            logo.Size = new Size(216, 153);
+            logo.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            panel1.Controls.Add(panel3);
+            panel1.Dock = DockStyle.Top;
+            panel1.ImeMode = ImeMode.Off;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(0, 0, 0, 20);
+            panel1.Size = new Size(216, 153);
+            panel1.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.None;
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.BackgroundImageLayout = ImageLayout.Zoom;
+            panel3.Location = new Point(26, 20);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(168, 110);
+            panel3.TabIndex = 0;
             // 
             // panelTitlleBar
             // 
@@ -285,19 +322,6 @@
             panelDesktop.Size = new Size(878, 546);
             panelDesktop.TabIndex = 3;
             // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.None;
-            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
-            panel2.BackgroundImageLayout = ImageLayout.Zoom;
-            panel2.ImeMode = ImeMode.Off;
-            panel2.Location = new Point(331, 150);
-            panel2.Margin = new Padding(0, 0, 0, 10);
-            panel2.Name = "panel2";
-            panel2.Padding = new Padding(0, 0, 0, 20);
-            panel2.Size = new Size(274, 207);
-            panel2.TabIndex = 2;
-            // 
             // iconSplitButton1
             // 
             iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -310,44 +334,17 @@
             iconSplitButton1.Size = new Size(23, 23);
             iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // logo
+            // panel2
             // 
-            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
-            logo.BackgroundImageLayout = ImageLayout.Zoom;
-            logo.Controls.Add(panel1);
-            logo.Dock = DockStyle.Top;
-            logo.ImeMode = ImeMode.Off;
-            logo.Location = new Point(0, 0);
-            logo.Margin = new Padding(0, 0, 0, 10);
-            logo.Name = "logo";
-            logo.Padding = new Padding(0, 0, 0, 20);
-            logo.Size = new Size(216, 153);
-            logo.TabIndex = 0;
+            panel2.Anchor = AnchorStyles.None;
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.BackgroundImageLayout = ImageLayout.Zoom;
+            panel2.Location = new Point(304, 142);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(219, 186);
+            panel2.TabIndex = 1;
             // 
-            // panel1
-            // 
-            panel1.BackgroundImageLayout = ImageLayout.Zoom;
-            panel1.Controls.Add(panel3);
-            panel1.Dock = DockStyle.Top;
-            panel1.ImeMode = ImeMode.Off;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(0);
-            panel1.Name = "panel1";
-            panel1.Padding = new Padding(0, 0, 0, 20);
-            panel1.Size = new Size(216, 153);
-            panel1.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.None;
-            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.BackgroundImageLayout = ImageLayout.Zoom;
-            panel3.Location = new Point(26, 20);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(168, 110);
-            panel3.TabIndex = 0;
-            // 
-            // Form1
+            // FormMainAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -357,15 +354,15 @@
             Controls.Add(panelTitlleBar);
             Controls.Add(panelMenu);
             MinimumSize = new Size(1110, 637);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "FormMainAdmin";
+            Text = "FormMainAdmin";
             panelMenu.ResumeLayout(false);
+            logo.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             panelTitlleBar.ResumeLayout(false);
             panelTitlleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).EndInit();
             panelDesktop.ResumeLayout(false);
-            logo.ResumeLayout(false);
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -387,9 +384,9 @@
         private FontAwesome.Sharp.IconButton btnMaximize;
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconSplitButton iconSplitButton1;
-        private Panel panel2;
         private Panel logo;
         private Panel panel1;
         private Panel panel3;
+        private Panel panel2;
     }
 }

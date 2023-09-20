@@ -26,7 +26,6 @@ C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\bin\Debug\
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\bin\Debug\net7.0-windows\FORMS.pdb
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\bin\Debug\net7.0-windows\FontAwesome.Sharp.dll
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.csproj.AssemblyReference.cache
-C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Form1.resources
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.formGestionarUsuarios.resources
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Properties.Resources.resources
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.csproj.GenerateResource.cache
@@ -42,4 +41,7 @@ C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\ref\FORMS.dll
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Controls.RJTextBox.resources
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Controls.RJComboBox.resources
-C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.Movimientos.resources
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.FormInformeMovimientos.resources
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.FormSolicitudes.resources
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.Forms.Login.resources
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\FORMS\FORMS\obj\Debug\net7.0-windows\FORMS.MainForm.resources
