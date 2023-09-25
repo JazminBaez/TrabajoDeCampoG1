@@ -1,5 +1,4 @@
-using FORMS.Forms;
-namespace FORMS.Forms
+namespace seguridad_barrios_privados.Presentacion
 {
     internal static class Program
     {

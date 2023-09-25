@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
-namespace FORMS.Controls
+namespace seguridad_barrios_privados.Controls
 {
     [DefaultEvent("_TextChanged")]
     public partial class RJTextBox : UserControl

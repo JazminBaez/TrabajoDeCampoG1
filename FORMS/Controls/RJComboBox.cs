@@ -10,8 +10,8 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace FORMS.Controls
-{ 
+namespace seguridad_barrios_privados.Controls
+{
     [DefaultEvent("OnSelectedIndexChanged")]
     class RJComboBox : UserControl
     {
@@ -39,11 +39,11 @@ namespace FORMS.Controls
             cmbList = new ComboBox();
             lblText = new Label();
             btnIcon = new Button();
-            this.SuspendLayout();
+            SuspendLayout();
 
             //ComboBox: Dropdown list
             cmbList.BackColor = listBackColor;
-            cmbList.Font = new Font(this.Font.Name, 10F);
+            cmbList.Font = new Font(Font.Name, 10F);
             cmbList.ForeColor = listTextColor;
             cmbList.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);//Default event
             cmbList.TextChanged += new EventHandler(ComboBox_TextChanged);//Refresh text
@@ -64,24 +64,24 @@ namespace FORMS.Controls
             lblText.BackColor = backColor;
             lblText.TextAlign = ContentAlignment.MiddleLeft;
             lblText.Padding = new Padding(8, 0, 0, 0);
-            lblText.Font = new Font(this.Font.Name, 10F);
+            lblText.Font = new Font(Font.Name, 10F);
             //->Attach label events to user control event
             lblText.Click += new EventHandler(Surface_Click);//Select combo box
             lblText.MouseEnter += new EventHandler(Surface_MouseEnter);
             lblText.MouseLeave += new EventHandler(Surface_MouseLeave);
 
             //User Control
-            this.Controls.Add(lblText);//2
-            this.Controls.Add(btnIcon);//1
-            this.Controls.Add(cmbList);//0
-            this.MinimumSize = new Size(200, 30);
-            this.Size = new Size(200, 30);
-            this.ForeColor = Color.DimGray;
-            this.Padding = new Padding(borderSize);//Border Size
-            this.Font = new Font(this.Font.Name, 10F);
+            Controls.Add(lblText);//2
+            Controls.Add(btnIcon);//1
+            Controls.Add(cmbList);//0
+            MinimumSize = new Size(200, 30);
+            Size = new Size(200, 30);
+            ForeColor = Color.DimGray;
+            Padding = new Padding(borderSize);//Border Size
+            Font = new Font(Font.Name, 10F);
             base.BackColor = borderColor; //Border Color
-            this.Load += new System.EventHandler(this.RJComboBox_Load);
-            this.ResumeLayout();
+            Load += new EventHandler(RJComboBox_Load);
+            ResumeLayout();
             AdjustComboBoxDimensions();
         }
         #endregion
@@ -151,7 +151,7 @@ namespace FORMS.Controls
             set
             {
                 borderSize = value;
-                this.Padding = new Padding(borderSize);//Border Size
+                Padding = new Padding(borderSize);//Border Size
                 AdjustComboBoxDimensions();
             }
         }
@@ -297,12 +297,12 @@ namespace FORMS.Controls
             cmbList.Width = lblText.Width;
             cmbList.Location = new Point()
             {
-                X = this.Width - this.Padding.Right - cmbList.Width,
+                X = Width - Padding.Right - cmbList.Width,
                 Y = lblText.Bottom - cmbList.Height
             };
-            if (cmbList.Height >= this.Height)
+            if (cmbList.Height >= Height)
             {
-                this.Height = cmbList.Height + (this.borderSize * 2);
+                Height = cmbList.Height + borderSize * 2;
             }
         }
         #endregion
@@ -332,8 +332,8 @@ namespace FORMS.Controls
             using (Pen pen = new Pen(iconColor, 2))
             {
                 graph.SmoothingMode = SmoothingMode.AntiAlias;
-                path.AddLine(rectIcon.X, rectIcon.Y, rectIcon.X + (iconWidht / 2), rectIcon.Bottom);
-                path.AddLine(rectIcon.X + (iconWidht / 2), rectIcon.Bottom, rectIcon.Right, rectIcon.Y);
+                path.AddLine(rectIcon.X, rectIcon.Y, rectIcon.X + iconWidht / 2, rectIcon.Bottom);
+                path.AddLine(rectIcon.X + iconWidht / 2, rectIcon.Bottom, rectIcon.Right, rectIcon.Y);
                 graph.DrawPath(pen, path);
             }
         }
@@ -348,7 +348,7 @@ namespace FORMS.Controls
         private void Surface_Click(object sender, EventArgs e)
         {
             //Attach label click to user control click
-            this.OnClick(e);
+            OnClick(e);
             //Select combo box
             cmbList.Select();
             if (cmbList.DropDownStyle == ComboBoxStyle.DropDownList)
@@ -363,12 +363,12 @@ namespace FORMS.Controls
         //->Attach label events to user control event
         private void Surface_MouseLeave(object sender, EventArgs e)
         {
-            this.OnMouseLeave(e);
+            OnMouseLeave(e);
         }
 
         private void Surface_MouseEnter(object sender, EventArgs e)
         {
-            this.OnMouseEnter(e);
+            OnMouseEnter(e);
         }
         //::::+
         #endregion

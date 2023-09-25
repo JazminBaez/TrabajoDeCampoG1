@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\FORMS\\FORMS\\FORMS.csproj": {}
+    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\FORMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\FORMS\\FORMS\\FORMS.csproj": {
+    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\FORMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\FORMS\\FORMS\\FORMS.csproj",
+        "projectUniqueName": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\FORMS.csproj",
         "projectName": "FORMS",
-        "projectPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\FORMS\\FORMS\\FORMS.csproj",
+        "projectPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\FORMS.csproj",
         "packagesPath": "C:\\Users\\baezd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\FORMS\\FORMS\\obj\\",
+        "outputPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\baezd\\AppData\\Roaming\\NuGet\\NuGet.Config",

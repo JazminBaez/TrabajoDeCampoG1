@@ -1,4 +1,4 @@
-﻿namespace FORMS.Controls;
+﻿namespace seguridad_barrios_privados.Controls;
 
 partial class RJTextBox
 {
