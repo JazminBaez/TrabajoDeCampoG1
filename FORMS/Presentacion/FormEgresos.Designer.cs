@@ -34,14 +34,14 @@ namespace seguridad_barrios_privados.Presentacion
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel2 = new Panel();
-            panel3 = new Panel();
-            rjTextBox1 = new Controls.RJTextBox();
-            lbVisitantesActuales = new Label();
-            btnBuscar = new FontAwesome.Sharp.IconPictureBox();
-            tbBuscarUsuario = new Controls.RJTextBox();
-            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            btnRegistrarEgreso = new RJButton();
             lbObservaciones = new Label();
-            btnRegistrarEgreso = new Controls.RJButton();
+            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            btnBuscar = new FontAwesome.Sharp.IconPictureBox();
+            tbBuscarUsuario = new RJTextBox();
+            lbVisitantesActuales = new Label();
+            rjTextBox1 = new RJTextBox();
+            panel3 = new Panel();
             dgUsuarios = new DataGridView();
             Cselect = new DataGridViewCheckBoxColumn();
             CResponsable = new DataGridViewTextBoxColumn();
@@ -49,9 +49,9 @@ namespace seguridad_barrios_privados.Presentacion
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
             SuspendLayout();
             // 
@@ -66,7 +66,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.Desktop;
+            panel2.BackColor = Color.FromArgb(18, 38, 58);
             panel2.Controls.Add(btnRegistrarEgreso);
             panel2.Controls.Add(lbObservaciones);
             panel2.Controls.Add(iconPictureBox1);
@@ -81,52 +81,55 @@ namespace seguridad_barrios_privados.Presentacion
             panel2.Size = new Size(800, 350);
             panel2.TabIndex = 1;
             // 
-            // panel3
+            // btnRegistrarEgreso
             // 
-            panel3.Controls.Add(dgUsuarios);
-            panel3.Location = new Point(258, 66);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(493, 251);
-            panel3.TabIndex = 0;
+            btnRegistrarEgreso.BackColor = Color.White;
+            btnRegistrarEgreso.BackgroundColor = Color.White;
+            btnRegistrarEgreso.BorderColor = Color.Transparent;
+            btnRegistrarEgreso.BorderRadius = 10;
+            btnRegistrarEgreso.BorderSize = 0;
+            btnRegistrarEgreso.FlatAppearance.BorderSize = 0;
+            btnRegistrarEgreso.FlatStyle = FlatStyle.Flat;
+            btnRegistrarEgreso.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRegistrarEgreso.ForeColor = SystemColors.Desktop;
+            btnRegistrarEgreso.Location = new Point(37, 170);
+            btnRegistrarEgreso.Name = "btnRegistrarEgreso";
+            btnRegistrarEgreso.Size = new Size(151, 40);
+            btnRegistrarEgreso.TabIndex = 28;
+            btnRegistrarEgreso.Text = "REGISTRAR EGRESO";
+            btnRegistrarEgreso.TextColor = SystemColors.Desktop;
+            btnRegistrarEgreso.UseVisualStyleBackColor = false;
             // 
-            // rjTextBox1
+            // lbObservaciones
             // 
-            rjTextBox1.BackColor = SystemColors.Desktop;
-            rjTextBox1.BorderColor = Color.SteelBlue;
-            rjTextBox1.BorderFocusColor = Color.DeepSkyBlue;
-            rjTextBox1.BorderRadius = 15;
-            rjTextBox1.BorderSize = 2;
-            rjTextBox1.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            rjTextBox1.ForeColor = Color.FromArgb(64, 64, 64);
-            rjTextBox1.Location = new Point(37, 66);
-            rjTextBox1.Margin = new Padding(4);
-            rjTextBox1.Multiline = true;
-            rjTextBox1.Name = "rjTextBox1";
-            rjTextBox1.Padding = new Padding(10, 7, 10, 7);
-            rjTextBox1.PasswordChar = false;
-            rjTextBox1.PlaceholderColor = Color.DarkGray;
-            rjTextBox1.PlaceholderText = "";
-            rjTextBox1.Size = new Size(200, 122);
-            rjTextBox1.TabIndex = 1;
-            rjTextBox1.Texts = "";
-            rjTextBox1.UnderlinedStyle = false;
+            lbObservaciones.Anchor = AnchorStyles.None;
+            lbObservaciones.AutoSize = true;
+            lbObservaciones.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbObservaciones.ForeColor = SystemColors.ButtonFace;
+            lbObservaciones.Location = new Point(47, 45);
+            lbObservaciones.Name = "lbObservaciones";
+            lbObservaciones.Size = new Size(174, 17);
+            lbObservaciones.TabIndex = 27;
+            lbObservaciones.Text = "Observaciones (opcional)";
             // 
-            // lbVisitantesActuales
+            // iconPictureBox1
             // 
-            lbVisitantesActuales.Anchor = AnchorStyles.None;
-            lbVisitantesActuales.AutoSize = true;
-            lbVisitantesActuales.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            lbVisitantesActuales.ForeColor = SystemColors.ButtonFace;
-            lbVisitantesActuales.Location = new Point(258, 27);
-            lbVisitantesActuales.Name = "lbVisitantesActuales";
-            lbVisitantesActuales.Size = new Size(214, 23);
-            lbVisitantesActuales.TabIndex = 23;
-            lbVisitantesActuales.Text = "VISITANTES ACTUALES";
+            iconPictureBox1.Anchor = AnchorStyles.None;
+            iconPictureBox1.BackColor = Color.Transparent;
+            iconPictureBox1.ForeColor = SystemColors.Control;
+            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Rotate;
+            iconPictureBox1.IconColor = SystemColors.Control;
+            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox1.Location = new Point(719, 18);
+            iconPictureBox1.Name = "iconPictureBox1";
+            iconPictureBox1.Size = new Size(32, 32);
+            iconPictureBox1.TabIndex = 26;
+            iconPictureBox1.TabStop = false;
             // 
             // btnBuscar
             // 
             btnBuscar.Anchor = AnchorStyles.None;
-            btnBuscar.BackColor = SystemColors.Desktop;
+            btnBuscar.BackColor = Color.Transparent;
             btnBuscar.ForeColor = SystemColors.Control;
             btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             btnBuscar.IconColor = SystemColors.Control;
@@ -160,50 +163,47 @@ namespace seguridad_barrios_privados.Presentacion
             tbBuscarUsuario.Texts = "";
             tbBuscarUsuario.UnderlinedStyle = false;
             // 
-            // iconPictureBox1
+            // lbVisitantesActuales
             // 
-            iconPictureBox1.Anchor = AnchorStyles.None;
-            iconPictureBox1.BackColor = SystemColors.Desktop;
-            iconPictureBox1.ForeColor = SystemColors.Control;
-            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Rotate;
-            iconPictureBox1.IconColor = SystemColors.Control;
-            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox1.Location = new Point(719, 18);
-            iconPictureBox1.Name = "iconPictureBox1";
-            iconPictureBox1.Size = new Size(32, 32);
-            iconPictureBox1.TabIndex = 26;
-            iconPictureBox1.TabStop = false;
+            lbVisitantesActuales.Anchor = AnchorStyles.None;
+            lbVisitantesActuales.AutoSize = true;
+            lbVisitantesActuales.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lbVisitantesActuales.ForeColor = SystemColors.ButtonFace;
+            lbVisitantesActuales.Location = new Point(258, 27);
+            lbVisitantesActuales.Name = "lbVisitantesActuales";
+            lbVisitantesActuales.Size = new Size(214, 23);
+            lbVisitantesActuales.TabIndex = 23;
+            lbVisitantesActuales.Text = "VISITANTES ACTUALES";
             // 
-            // lbObservaciones
+            // rjTextBox1
             // 
-            lbObservaciones.Anchor = AnchorStyles.None;
-            lbObservaciones.AutoSize = true;
-            lbObservaciones.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbObservaciones.ForeColor = SystemColors.ButtonFace;
-            lbObservaciones.Location = new Point(47, 45);
-            lbObservaciones.Name = "lbObservaciones";
-            lbObservaciones.Size = new Size(174, 17);
-            lbObservaciones.TabIndex = 27;
-            lbObservaciones.Text = "Observaciones (opcional)";
+            rjTextBox1.BackColor = SystemColors.Window;
+            rjTextBox1.BorderColor = Color.Transparent;
+            rjTextBox1.BorderFocusColor = Color.DeepSkyBlue;
+            rjTextBox1.BorderRadius = 15;
+            rjTextBox1.BorderSize = 2;
+            rjTextBox1.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            rjTextBox1.ForeColor = Color.FromArgb(64, 64, 64);
+            rjTextBox1.Location = new Point(37, 66);
+            rjTextBox1.Margin = new Padding(4);
+            rjTextBox1.Multiline = true;
+            rjTextBox1.Name = "rjTextBox1";
+            rjTextBox1.Padding = new Padding(10, 7, 10, 7);
+            rjTextBox1.PasswordChar = false;
+            rjTextBox1.PlaceholderColor = Color.DarkGray;
+            rjTextBox1.PlaceholderText = "";
+            rjTextBox1.Size = new Size(200, 97);
+            rjTextBox1.TabIndex = 1;
+            rjTextBox1.Texts = "";
+            rjTextBox1.UnderlinedStyle = false;
             // 
-            // btnRegistrarEgreso
+            // panel3
             // 
-            btnRegistrarEgreso.BackColor = Color.Lavender;
-            btnRegistrarEgreso.BackgroundColor = Color.Lavender;
-            btnRegistrarEgreso.BorderColor = Color.Transparent;
-            btnRegistrarEgreso.BorderRadius = 10;
-            btnRegistrarEgreso.BorderSize = 0;
-            btnRegistrarEgreso.FlatAppearance.BorderSize = 0;
-            btnRegistrarEgreso.FlatStyle = FlatStyle.Flat;
-            btnRegistrarEgreso.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnRegistrarEgreso.ForeColor = SystemColors.Desktop;
-            btnRegistrarEgreso.Location = new Point(60, 209);
-            btnRegistrarEgreso.Name = "btnRegistrarEgreso";
-            btnRegistrarEgreso.Size = new Size(151, 40);
-            btnRegistrarEgreso.TabIndex = 28;
-            btnRegistrarEgreso.Text = "REGISTRAR EGRESO";
-            btnRegistrarEgreso.TextColor = SystemColors.Desktop;
-            btnRegistrarEgreso.UseVisualStyleBackColor = false;
+            panel3.Controls.Add(dgUsuarios);
+            panel3.Location = new Point(258, 66);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(493, 251);
+            panel3.TabIndex = 0;
             // 
             // dgUsuarios
             // 
@@ -287,9 +287,9 @@ namespace seguridad_barrios_privados.Presentacion
             Text = "FormEgresos";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
+            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
             ResumeLayout(false);
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using seguridad_barrios_privados.Logica;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -32,6 +33,17 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrar_Click(object sender, EventArgs e)
         {
+            //if (!(Validaciones.CamposCompletos(tbNombre, tbApellido, tbDni)))
+            //{
+            //    Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
+            //}
+
+            //if (!(Validaciones.ComboBoxSeleccionado(cbPropietarios)))
+            //{
+            //    Validaciones.MostrarError("Seleccione propietaro responsable", lbError, ErrorIcon);
+            //}
+
+
         }
 
         private void tbApellido__TextChanged(object sender, EventArgs e)
@@ -66,7 +78,25 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void TBDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (Validaciones.CamposCompletos(tbBuscarSolicitud))
+            {
+                //buscar usuario
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

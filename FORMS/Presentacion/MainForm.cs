@@ -11,7 +11,7 @@ using System.Xml;
 
 using System.Windows.Forms;
 using seguridad_barrios_privados.Presentacion;
-namespace seguridad_barrios_privados.Presentacion 
+namespace seguridad_barrios_privados.Presentacion
 {
     public partial class MainForm : Form
     {
@@ -164,7 +164,7 @@ namespace seguridad_barrios_privados.Presentacion
         private void btnMovimientos_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-     
+            OpenChildForm(new FormInformeMovimientos());
 
         }
 
@@ -206,6 +206,12 @@ namespace seguridad_barrios_privados.Presentacion
         {
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new FormIngresos());
+        }
+
+        private void btnEgresos_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new FormEgresos());
         }
     }
 }

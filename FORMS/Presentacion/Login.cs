@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using seguridad_barrios_privados.Logica;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -30,13 +31,15 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
-
+            if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
+            {
+                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
+                return;
+            }
             Form menuInicio = new MainForm();
             menuInicio.Show();
             this.Hide();
-            lbError.Text = "ERROR";
-            lbError.Visible = true;
-            ErrorIcon.Visible = true;
+
 
         }
 

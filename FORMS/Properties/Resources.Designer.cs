@@ -61,6 +61,15 @@ namespace seguridad_barrios_privados.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Server=LAPTOP-27C43Q6P;Database=db_barrios_privados;Integrated Security=True;Trust server certificate=True;.
+        /// </summary>
+        internal static string conexion {
+            get {
+                return ResourceManager.GetString("conexion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo {

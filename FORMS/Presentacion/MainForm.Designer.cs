@@ -1,6 +1,6 @@
 ﻿using seguridad_barrios_privados.Controls;
 
-namespace seguridad_barrios_privados.Presentacion 
+namespace seguridad_barrios_privados.Presentacion
 {
     partial class MainForm
     {
@@ -121,6 +121,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnEgresos.Text = "Egresos";
             btnEgresos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEgresos.UseVisualStyleBackColor = true;
+            btnEgresos.Click += btnEgresos_Click;
             // 
             // btnIngresos
             // 
@@ -431,6 +432,7 @@ namespace seguridad_barrios_privados.Presentacion
             Controls.Add(panelMenu);
             MinimumSize = new Size(1110, 637);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormMainAdmin";
             panelMenu.ResumeLayout(false);
             logo.ResumeLayout(false);

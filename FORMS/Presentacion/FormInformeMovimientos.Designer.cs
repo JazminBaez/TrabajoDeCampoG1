@@ -1,5 +1,4 @@
-﻿using seguridad_barrios_privados.Controls;
-namespace seguridad_barrios_privados.Presentacion
+﻿namespace seguridad_barrios_privados.Presentacion
 {
     partial class FormInformeMovimientos
     {
@@ -38,6 +37,7 @@ namespace seguridad_barrios_privados.Presentacion
             dtFechaMovimeintos = new DateTimePicker();
             cbFiltrarMovimientos = new ComboBox();
             panel2 = new Panel();
+            panel4 = new Panel();
             panel3 = new Panel();
             dgUsuarios = new DataGridView();
             CIDmovimientp = new DataGridViewTextBoxColumn();
@@ -46,8 +46,6 @@ namespace seguridad_barrios_privados.Presentacion
             CVisitante = new DataGridViewTextBoxColumn();
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
-            panelShadow = new Panel();
-            panel4 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -57,7 +55,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(0, 38, 66);
+            panel1.BackColor = Color.FromArgb(26, 25, 62);
             panel1.Controls.Add(lbFiltrarMoviminetos);
             panel1.Controls.Add(iconPictureBox1);
             panel1.Controls.Add(lbFiltrarMovimientos);
@@ -138,18 +136,27 @@ namespace seguridad_barrios_privados.Presentacion
             panel2.BackColor = SystemColors.Desktop;
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
-            panel2.Controls.Add(panelShadow);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 76);
             panel2.Name = "panel2";
             panel2.Size = new Size(858, 406);
             panel2.TabIndex = 1;
             // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(26, 25, 62);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(0, 305);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(858, 101);
+            panel4.TabIndex = 5;
+            // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(18, 38, 58);
             panel3.Controls.Add(dgUsuarios);
             panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 9);
+            panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(858, 305);
             panel3.TabIndex = 4;
@@ -174,7 +181,7 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
             dgUsuarios.EnableHeadersVisualStyles = false;
             dgUsuarios.GridColor = Color.MediumAquamarine;
-            dgUsuarios.Location = new Point(34, 8);
+            dgUsuarios.Location = new Point(34, 18);
             dgUsuarios.Margin = new Padding(3, 15, 3, 3);
             dgUsuarios.Name = "dgUsuarios";
             dgUsuarios.RowHeadersVisible = false;
@@ -185,7 +192,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgUsuarios.RowTemplate.Height = 25;
-            dgUsuarios.Size = new Size(794, 291);
+            dgUsuarios.Size = new Size(794, 262);
             dgUsuarios.TabIndex = 12;
             // 
             // CIDmovimientp
@@ -223,31 +230,14 @@ namespace seguridad_barrios_privados.Presentacion
             Cfecha.Name = "Cfecha";
             Cfecha.ReadOnly = true;
             // 
-            // panelShadow
-            // 
-            panelShadow.BackColor = Color.FromArgb(0, 20, 50);
-            panelShadow.Dock = DockStyle.Top;
-            panelShadow.Location = new Point(0, 0);
-            panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(858, 9);
-            panelShadow.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 314);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(858, 92);
-            panel4.TabIndex = 5;
-            // 
-            // Movimientos
+            // FormInformeMovimientos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(858, 482);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Movimientos";
+            Name = "FormInformeMovimientos";
             Text = "FormInformeMovimientos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -266,7 +256,6 @@ namespace seguridad_barrios_privados.Presentacion
         private ComboBox cbFiltrarMovimientos;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private Label lbFiltrarMovimientos;
-        private Panel panelShadow;
         private Panel panel3;
         private DataGridView dgUsuarios;
         private Label lbFiltrarMoviminetos;

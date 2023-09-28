@@ -48,6 +48,15 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrar_Click(object sender, EventArgs e)
         {
+            if (!(Validaciones.CamposCompletos(tbNombre, tbApellido, tbDni)))
+            {
+                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
+            }
+
+        }
+
+        private void lbError_Click(object sender, EventArgs e)
+        {
 
         }
     }
