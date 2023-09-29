@@ -30,8 +30,16 @@ namespace seguridad_barrios_privados.Repositorio
         {
             return barriosPrivadosContext.Usuarios.Any(u => u.Email == email);
         }
-            
-        
+
+        public async Task<Usuario> ObtenerUsuario(string correo, string contrasena)
+        {
+            // Consulta LINQ para buscar un usuario por correo y contraseña
+            var usuario = await barriosPrivadosContext.Usuarios
+                .Where(u => u.Email == correo && u.Contrasena == contrasena)
+                .FirstOrDefaultAsync();
+
+            return usuario;
+        }
 
 
     }

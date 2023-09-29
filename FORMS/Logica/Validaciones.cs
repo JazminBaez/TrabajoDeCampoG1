@@ -72,7 +72,7 @@ namespace seguridad_barrios_privados.Logica
         }
 
 
-        public bool RegistrarUsuario(Usuario usuario, Label error, IconPictureBox errorIcon,DataGridView usuarios)
+        public bool RegistrarUsuario(Usuario usuario,string repetirContrasena, Label errorMsg, IconPictureBox errorIcon,DataGridView usuarios)
         {
             var validator = new UsuarioValidators();
             var result = validator.Validate(usuario);
@@ -80,25 +80,41 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                foreach (var errorcito in result.Errors)
+                if(usuario.Contrasena != repetirContrasena)
                 {
-                    MessageBox.Show($"Error en {errorcito.PropertyName} {errorcito.ErrorMessage}", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
 
                 }
+                else
+                {
+                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                }
+                
                 return false;
             }
             else
             {
-                if (!usuariosRepositorio.ExisteUsuario(usuario.Email))
+                if (usuariosRepositorio.ExisteUsuario(usuario.Email))
                 {
-
-                    usuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar");
-                    MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
+                    Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
+                    return false;
                 }
+                usuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar");
 
-                Validaciones.MostrarError("Correo ya registrado", error, errorIcon);
-                return false;
+                //usuariosRepositorio.
+
+                MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+               
+             
+            }
+        }
+
+        public bool LogearUsuario(string correo, string contrasena)
+        {
+            if (usuariosRepositorio.ObtenerUsuario(correo, contrasena) != null)
+            {
+
             }
         }
 

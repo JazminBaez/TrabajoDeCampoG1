@@ -71,6 +71,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrar_Click(object sender, EventArgs e)
         {
+
             var usuario = new Usuario() {
                 Nombre = tbNombre.Texts,
                 Apellido = tbApellido.Texts,
@@ -81,7 +82,7 @@ namespace seguridad_barrios_privados.Presentacion
                 IdRol = cbRol.SelectedIndex
             };
 
-            if (validaciones.RegistrarUsuario(usuario, lbError, ErrorIcon,dgUsuarios))
+            if (validaciones.RegistrarUsuario(usuario,tbRepetirContrasena.Texts, lbError, ErrorIcon,dgUsuarios))
             {
                 RestablecerFormulario(lbError,ErrorIcon,tbNombre,tbApellido,tbTelefono,tbDireccion,tbContrasena,tbRepetirContrasena);
                 cbRol.SelectedIndex = -1;
@@ -89,13 +90,6 @@ namespace seguridad_barrios_privados.Presentacion
            
            
           
-        }
-
-        public string RepetirContrasena()
-        {
-            MessageBox.Show(tbRepetirContrasena.Texts, "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            return tbRepetirContrasena.Texts;
         }
 
         private static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
