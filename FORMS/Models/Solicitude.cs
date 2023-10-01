@@ -13,6 +13,8 @@ public partial class Solicitude
 
     public DateTime? Fecha { get; set; }
 
+    public bool? Estado { get; set; }
+
     public virtual Usuario? IdUsuarioNavigation { get; set; }
 
     public virtual Visitante? IdVisitanteNavigation { get; set; }

@@ -15,7 +15,7 @@ using seguridad_barrios_privados.Repositorio;
 namespace seguridad_barrios_privados.Presentacion
 {
 
-  
+
     public partial class Login : Form
     {
         private UsuariosRepositorio usuariosRepositorio;
@@ -23,6 +23,7 @@ namespace seguridad_barrios_privados.Presentacion
         public Login()
         {
             InitializeComponent();
+            this.usuariosRepositorio = new UsuariosRepositorio();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -38,17 +39,22 @@ namespace seguridad_barrios_privados.Presentacion
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
 
+
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
+                //Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
                 Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
                 return;
             }
             else
             {
-                if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
+                
+                
+                
+                /*if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
                 {
-                    var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts)
-                   
+                    var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts);
+
 
                     // Puedes almacenar el modelo de vista en TempData para pasarlo a la vista
                     TempData["UsuarioViewModel"] = new Usuario();
@@ -58,6 +64,10 @@ namespace seguridad_barrios_privados.Presentacion
                     menuInicio.Show();
                     this.Hide();
                 }
+                */
+
+
+
                 Form menuInicio = new MainForm();
                 menuInicio.Show();
                 this.Hide();
@@ -70,6 +80,11 @@ namespace seguridad_barrios_privados.Presentacion
             lbError.Text = msg;
             lbError.Visible = true;
             ErrorIcon.Visible = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

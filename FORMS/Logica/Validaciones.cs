@@ -112,9 +112,10 @@ namespace seguridad_barrios_privados.Logica
 
         public bool LogearUsuario(string correo, string contrasena)
         {
+            return true;
             if (usuariosRepositorio.ObtenerUsuario(correo, contrasena) != null)
             {
-
+    
             }
         }
 

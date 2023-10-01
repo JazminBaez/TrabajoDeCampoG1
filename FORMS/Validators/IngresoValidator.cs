@@ -31,10 +31,10 @@ namespace seguridad_barrios_privados.Validators
                 ;
            
             //validar rol
-            RuleFor(x => x.)
+            /*RuleFor(x => x.Rol)
                 .GreaterThan(-1)
                 .WithMessage("Selecciona un rol")
-               ;
+               ;*/
         }
 
 

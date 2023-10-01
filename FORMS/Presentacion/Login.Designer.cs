@@ -55,6 +55,7 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.Name = "panel1";
             panel1.Size = new Size(305, 250);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // btnMinimize
             // 
