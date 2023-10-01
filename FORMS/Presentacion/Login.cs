@@ -40,6 +40,9 @@ namespace seguridad_barrios_privados.Presentacion
         {
 
 
+
+
+
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
                 //Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);

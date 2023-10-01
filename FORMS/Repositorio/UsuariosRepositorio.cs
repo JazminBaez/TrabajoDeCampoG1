@@ -40,11 +40,14 @@ namespace seguridad_barrios_privados.Repositorio
 
         public List<Usuario> ObtenerUsuarios()
         {
+            
             return barriosPrivadosContext.Usuarios.Include(usuario=>usuario.Rol).ToList();
         }
 
         public bool ExisteUsuario(string email)
         {
+
+            /*barriosPrivadosContext.ChangeTracker.Clear();*/
             return barriosPrivadosContext.Usuarios.Any(u => u.Email == email);
         }
 

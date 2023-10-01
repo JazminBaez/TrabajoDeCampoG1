@@ -31,7 +31,7 @@ namespace seguridad_barrios_privados.Presentacion
             rolesRepositorio = new RolesRepositorio();
             validaciones = new Validaciones();
 
-            cbRol.DisplayMember = "Descripcion";
+            cbRol.DisplayMember = "rolcompleto";
 
             foreach (Role rol in rolesRepositorio.ObtenerRoles())
             {
@@ -85,6 +85,7 @@ namespace seguridad_barrios_privados.Presentacion
         private void btRegistrar_Click(object sender, EventArgs e)
         {
 
+
             Role rol = (Role) cbRol.SelectedItem;
 
             var usuario = new Usuario()
@@ -95,7 +96,7 @@ namespace seguridad_barrios_privados.Presentacion
                 Direccion = tbDireccion.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
-                IdRol = rol.IdRol
+                IdRol = rol != null ? rol.IdRol : null,
             };
 
             if (validaciones.RegistrarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
