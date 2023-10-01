@@ -19,6 +19,7 @@ namespace seguridad_barrios_privados.Logica
     public class Validaciones
     {
         private UsuariosRepositorio? usuariosRepositorio;
+        private VisitantesRepositorio? visitantesRepositorio;
         public static bool IsNumber(char caracter)
         {
             return char.IsDigit(caracter);
@@ -110,13 +111,43 @@ namespace seguridad_barrios_privados.Logica
             }
         }
 
-        public bool LogearUsuario(string correo, string contrasena)
+        public bool RegistrarIngreso(Visitante visitante, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
-            if (usuariosRepositorio.ObtenerUsuario(correo, contrasena) != null)
+            var validator = new VisitanteValidators();
+            var result = validator.Validate(visitante);
+            visitantesRepositorio = new VisitantesRepositorio();
+
+            if (!result.IsValid)
             {
+                if (!(propietario.SelectedIndex != -1))
+                {
+                    Validaciones.MostrarError("Seleccione propietario responsable", errorMsg, errorIcon);
+                }
+                else
+                {
+                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                }
+
+                return false;
+            }
+            else
+            {
+                //Aniadir Vistitante
+
+
+                MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
 
             }
         }
+
+        //public bool LogearUsuario(string correo, string contrasena)
+        //{
+        //    if (usuariosRepositorio.ObtenerUsuario(correo, contrasena) != null)
+        //    {
+
+        //    }
+        //}
 
     }
 }

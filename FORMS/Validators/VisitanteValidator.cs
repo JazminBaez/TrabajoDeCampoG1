@@ -30,11 +30,6 @@ namespace seguridad_barrios_privados.Validators
                 .Length(10, 10).WithMessage("Telefno no valido")
                 ;
            
-            //validar rol
-            RuleFor(x => x.)
-                .GreaterThan(-1)
-                .WithMessage("Selecciona un rol")
-               ;
         }
 
 

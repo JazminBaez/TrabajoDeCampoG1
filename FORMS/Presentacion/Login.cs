@@ -37,6 +37,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("hola");
 
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
@@ -45,19 +46,19 @@ namespace seguridad_barrios_privados.Presentacion
             }
             else
             {
-                if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
-                {
-                    var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts)
-                   
+               // if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
+               // {
+                   // var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts);
 
-                    // Puedes almacenar el modelo de vista en TempData para pasarlo a la vista
-                    TempData["UsuarioViewModel"] = new Usuario();
 
-                    return RedirectToAction("Index", "Home"); // Redirige a la página principal
-                    Form menuInicio = new MainForm();
-                    menuInicio.Show();
-                    this.Hide();
-                }
+                   // Puedes almacenar el modelo de vista en TempData para pasarlo a la vista
+                   //TempData["UsuarioViewModel"] = new Usuario();
+
+                   // return RedirectToAction("Index", "Home"); // Redirige a la página principal
+                   // Form menuInicio = new MainForm();
+                   // menuInicio.Show();
+                   // this.Hide();
+               // }
                 Form menuInicio = new MainForm();
                 menuInicio.Show();
                 this.Hide();

@@ -41,6 +41,10 @@ namespace seguridad_barrios_privados.Repositorio
             return usuario;
         }
 
+        public List<Usuario> ObtenerUsuariosPorId(int id)
+        {
+            return barriosPrivadosContext.Usuarios.Where(u => u.IdRol == id).ToList();
+        }
 
     }
 }
