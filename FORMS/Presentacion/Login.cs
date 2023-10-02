@@ -11,6 +11,7 @@ using System.Windows.Interop;
 using seguridad_barrios_privados.Logica;
 using seguridad_barrios_privados.Models;
 using seguridad_barrios_privados.Repositorio;
+using System.Security.Cryptography;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -38,54 +39,40 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("hola");
-
-
-
 
 
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
-                //Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
+                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
                 Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
                 return;
             }
             else
             {
-               // if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
-               // {
-                   // var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts);
 
-                
-                
-                
-                /*if (validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts))
+                var usuario = usuariosRepositorio.getUsuarioByEmail(tbCorreo.Texts);
+
+                if (usuario != null)
                 {
-                    var usuario = validaciones.LogearUsuario(tbCorreo.Texts, tbContrasena.Texts);
+
+                    if (VerifyPassword(tbContrasena.Texts, usuario.Contrasena))
+                    {
+                        AppState.UsuarioActual = usuario;
+                        Form menuInicio = new MainForm();
+                        menuInicio.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        this.msgError("Correo y/o contraseña incorrectos.");
+                    }
 
 
-                   // Puedes almacenar el modelo de vista en TempData para pasarlo a la vista
-                   //TempData["UsuarioViewModel"] = new Usuario();
-
-                   // return RedirectToAction("Index", "Home"); // Redirige a la página principal
-                   // Form menuInicio = new MainForm();
-                   // menuInicio.Show();
-                   // this.Hide();
-               // }
-
-                    return RedirectToAction("Index", "Home"); // Redirige a la página principal
-                    Form menuInicio = new MainForm();
-                    menuInicio.Show();
-                    this.Hide();
                 }
-                */
-
-
-
-
-                Form menuInicio = new MainForm();
-                menuInicio.Show();
-                this.Hide();
+                else
+                {
+                    this.msgError("Usuario no registrado");
+                }
             }
 
         }
@@ -100,6 +87,35 @@ namespace seguridad_barrios_privados.Presentacion
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        static bool VerifyPassword(string password, string hashedPassword)
+        {
+            string hashedInputPassword = HashPasswordSHA256(password);
+            return string.Equals(hashedInputPassword, hashedPassword, StringComparison.OrdinalIgnoreCase);
+        }
+
+
+
+        static string HashPasswordSHA256(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convertir la contraseña en bytes
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                // Calcular el hash
+                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+
+                // Convertir el hash en una cadena hexadecimal
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    stringBuilder.Append(hashBytes[i].ToString("x2")); // "x2" para formato hexadecimal
+                }
+
+                return stringBuilder.ToString();
+            }
         }
     }
 }

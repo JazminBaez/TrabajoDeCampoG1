@@ -86,7 +86,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
 
 
-            Role rol = (Role) cbRol.SelectedItem;
+            Role rol = (Role)cbRol.SelectedItem;
 
             var usuario = new Usuario()
             {
@@ -100,11 +100,14 @@ namespace seguridad_barrios_privados.Presentacion
             };
 
             if (validaciones.RegistrarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
-            { 
-                
+            {
+                usuario.Contrasena = HashPasswordSHA256(tbContrasena.Texts);
                 this.usuariosRepositorio.InsertarUsuario(usuario);
-                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena);
+                MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarUsuarios();
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
+
             }
 
 
@@ -127,6 +130,26 @@ namespace seguridad_barrios_privados.Presentacion
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        static string HashPasswordSHA256(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convertir la contraseña en bytes
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                // Calcular el hash
+                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+
+                // Convertir el hash en una cadena hexadecimal
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    stringBuilder.Append(hashBytes[i].ToString("x2")); // "x2" para formato hexadecimal
+                }
+
+                return stringBuilder.ToString();
+            }
         }
     }
 }

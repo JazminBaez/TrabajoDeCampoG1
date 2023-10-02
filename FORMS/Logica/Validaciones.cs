@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -103,11 +104,9 @@ namespace seguridad_barrios_privados.Logica
                     Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
                     return false;
                 }
-                usuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar");
+            
 
-                //usuariosRepositorio.
-
-                MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+         
                 return true;
 
 
@@ -120,25 +119,53 @@ namespace seguridad_barrios_privados.Logica
             var result = validator.Validate(visitante);
             visitantesRepositorio = new VisitantesRepositorio();
             solicitudesRepositorio = new SolicitudesRepositorio();
+            int IdVisitante;
+            int IdPropietario;
 
             if (!result.IsValid)
             {
-                if (!(propietario.SelectedIndex != -1))
-                {
-                    Validaciones.MostrarError("Seleccione propietario responsable", errorMsg, errorIcon);
-                }
-                else
-                {
+                
+                
                     Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
-                }
+                
 
                 return false;
             }
+
+            if (propietario.SelectedIndex == -1)
+            {
+                Validaciones.MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg, errorIcon);
+                return false;
+            }
+
             else
             {
-                var IdVisitante = visitantesRepositorio.RegistrarVisitante(visitante);
-                int IdPropietario = (int)propietario.SelectedValue;
+                if (visitantesRepositorio.ExisteVisitante(visitante.Dni))
+                {
+                    
+                    var visitanteEncontrado = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni);
+                    string mensaje = $"Visitante encontrado: {visitanteEncontrado.NombreCompleto}, DNI: {visitanteEncontrado.Dni}";
+                    DialogResult resultado = MessageBox.Show(mensaje, "Mensaje de Visitante", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+                    if (resultado == DialogResult.OK)
+                    {
+                        IdVisitante = visitanteEncontrado.IdVisitante;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    IdVisitante = visitantesRepositorio.RegistrarVisitante(visitante);
+                }
+
+                
+                IdPropietario = (int)propietario.SelectedValue;
                 solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario);
+
                 return true;
             }
         }

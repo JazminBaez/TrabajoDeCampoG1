@@ -36,6 +36,7 @@ namespace seguridad_barrios_privados.Presentacion
             cbPropietarios.ValueMember = "IdUsuario";
 
             CargarSolicitudes();
+            cbPropietarios.SelectedIndex = -1;
         }
 
         private void LRegistrarUsuario_Click(object sender, EventArgs e)
@@ -47,9 +48,10 @@ namespace seguridad_barrios_privados.Presentacion
             List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
+            var fechaHoy = DateTime.Today;
             foreach (Solicitude solicitud in solicitudes)
             {
-                if (solicitud.Estado == false)
+                if (solicitud.Estado == false && solicitud.Fecha == fechaHoy)
                 {
                     dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar");
 
@@ -90,9 +92,11 @@ namespace seguridad_barrios_privados.Presentacion
                 MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarSolicitudes();
                 RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
+                cbPropietarios.SelectedIndex = -1;
 
             }
 
+           
 
         }
 

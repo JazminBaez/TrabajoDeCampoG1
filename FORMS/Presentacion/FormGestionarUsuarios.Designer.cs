@@ -43,10 +43,10 @@ namespace seguridad_barrios_privados.Presentacion
             tbApellido = new RJTextBox();
             tbCorreo = new RJTextBox();
             cbRol = new ComboBox();
-            rolesRepositorioBindingSource1 = new BindingSource(components);
             tbDireccion = new RJTextBox();
             tbTelefono = new RJTextBox();
             tbNombre = new RJTextBox();
+            rolesRepositorioBindingSource1 = new BindingSource(components);
             iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
             panel2 = new Panel();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -55,7 +55,6 @@ namespace seguridad_barrios_privados.Presentacion
             cbFiltrarUsuarios = new ComboBox();
             lbFiltrarUsuarios = new Label();
             panel3 = new Panel();
-            btnEliminarUsuario = new RJButton();
             dgUsuarios = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -257,10 +256,6 @@ namespace seguridad_barrios_privados.Presentacion
             cbRol.TabIndex = 5;
             cbRol.SelectedIndexChanged += cbRol_SelectedIndexChanged;
             // 
-            // rolesRepositorioBindingSource1
-            // 
-            rolesRepositorioBindingSource1.DataSource = typeof(Repositorio.RolesRepositorio);
-            // 
             // tbDireccion
             // 
             tbDireccion.BackColor = SystemColors.Window;
@@ -327,6 +322,10 @@ namespace seguridad_barrios_privados.Presentacion
             tbNombre.Texts = "";
             tbNombre.UnderlinedStyle = false;
             tbNombre.KeyPress += string_KeyPress;
+            // 
+            // rolesRepositorioBindingSource1
+            // 
+            rolesRepositorioBindingSource1.DataSource = typeof(Repositorio.RolesRepositorio);
             // 
             // iconToolStripButton1
             // 
@@ -430,32 +429,12 @@ namespace seguridad_barrios_privados.Presentacion
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
-            panel3.Controls.Add(btnEliminarUsuario);
             panel3.Controls.Add(dgUsuarios);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(306, 75);
             panel3.Name = "panel3";
             panel3.Size = new Size(552, 407);
             panel3.TabIndex = 2;
-            // 
-            // btnEliminarUsuario
-            // 
-            btnEliminarUsuario.BackColor = Color.GhostWhite;
-            btnEliminarUsuario.BackgroundColor = Color.GhostWhite;
-            btnEliminarUsuario.BorderColor = Color.LavenderBlush;
-            btnEliminarUsuario.BorderRadius = 20;
-            btnEliminarUsuario.BorderSize = 0;
-            btnEliminarUsuario.FlatAppearance.BorderSize = 0;
-            btnEliminarUsuario.FlatStyle = FlatStyle.Flat;
-            btnEliminarUsuario.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminarUsuario.ForeColor = Color.Black;
-            btnEliminarUsuario.Location = new Point(423, 355);
-            btnEliminarUsuario.Name = "btnEliminarUsuario";
-            btnEliminarUsuario.Size = new Size(107, 40);
-            btnEliminarUsuario.TabIndex = 12;
-            btnEliminarUsuario.Text = "ELIMINAR";
-            btnEliminarUsuario.TextColor = Color.Black;
-            btnEliminarUsuario.UseVisualStyleBackColor = false;
             // 
             // dgUsuarios
             // 
@@ -487,7 +466,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgUsuarios.RowTemplate.Height = 25;
-            dgUsuarios.Size = new Size(494, 311);
+            dgUsuarios.Size = new Size(494, 375);
             dgUsuarios.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
@@ -581,7 +560,6 @@ namespace seguridad_barrios_privados.Presentacion
         private RJTextBox tbBuscarUsuario;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox btnBuscar;
-        private RJButton btnEliminarUsuario;
         private DataGridView dgUsuarios;
         private RJTextBox tbRepetirContrasena;
         private FontAwesome.Sharp.IconPictureBox ErrorIcon;

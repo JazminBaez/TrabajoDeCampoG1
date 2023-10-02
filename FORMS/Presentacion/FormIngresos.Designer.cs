@@ -113,7 +113,7 @@ namespace seguridad_barrios_privados.Presentacion
             ErrorIcon.IconColor = Color.DarkRed;
             ErrorIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ErrorIcon.IconSize = 30;
-            ErrorIcon.Location = new Point(22, 44);
+            ErrorIcon.Location = new Point(22, 39);
             ErrorIcon.Name = "ErrorIcon";
             ErrorIcon.Size = new Size(30, 36);
             ErrorIcon.TabIndex = 31;
@@ -313,7 +313,7 @@ namespace seguridad_barrios_privados.Presentacion
             lbSolicitudesRealizadas.AutoSize = true;
             lbSolicitudesRealizadas.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbSolicitudesRealizadas.ForeColor = SystemColors.ButtonFace;
-            lbSolicitudesRealizadas.Location = new Point(36, 27);
+            lbSolicitudesRealizadas.Location = new Point(24, 27);
             lbSolicitudesRealizadas.Name = "lbSolicitudesRealizadas";
             lbSolicitudesRealizadas.Size = new Size(192, 19);
             lbSolicitudesRealizadas.TabIndex = 23;

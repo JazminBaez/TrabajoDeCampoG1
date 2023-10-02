@@ -24,8 +24,14 @@ namespace seguridad_barrios_privados.Repositorio
             return barriosPrivadosContext.Visitantes.ToList();
         }
 
+        public List<Usuario> pruebaDos()
+        {
+            return barriosPrivadosContext.Usuarios.ToList();
+        }
+
         public List<Solicitude> ObtenerSolicitudes()
         {
+            var usuarios = pruebaDos();
             var visitantes = prueba();
             var solicitudes =  barriosPrivadosContext.Solicitudes.Include(s => s.IdUsuarioNavigation).Include(s => s.IdVisitanteNavigation).ToList();
             foreach(Solicitude solicitud in solicitudes)
@@ -35,6 +41,14 @@ namespace seguridad_barrios_privados.Repositorio
                     if(solicitud.IdVisitante == visitante.IdVisitante)
                     {
                         solicitud.IdVisitanteNavigation = visitante;
+                    }
+                }
+
+                foreach (Usuario usuario in usuarios)
+                {
+                    if (solicitud.IdUsuario == usuario.IdUsuario)
+                    {
+                        solicitud.IdUsuarioNavigation = usuario;
                     }
                 }
             }

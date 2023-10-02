@@ -29,7 +29,30 @@ namespace seguridad_barrios_privados.Presentacion
             ControlBox = false;
             DoubleBuffered = true;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            lbNombreUsuario.Text = AppState.UsuarioActual.Nombre + "!";
+            var usuarioRol = AppState.UsuarioActual.IdRol;
 
+            if (usuarioRol == 1)
+            {
+                btnEgresos.Visible = false;
+                btnMovimientos.Visible = false;
+                btnIngresos.Visible = false;
+                btnGestionUsuarios.Visible = false;
+            }
+
+            if (usuarioRol == 2)
+            {
+                btnSolicitudes.Visible = false;
+                btnIngresos.Visible = false;
+                btnEgresos.Visible = false;
+            }
+
+            if (usuarioRol == 3)
+            {
+                btnGestionUsuarios.Visible = false;
+                btnSolicitudes.Visible = false;
+                btnSolicitudes.Visible = false;
+            }
         }
 
         private struct RGBColors
@@ -171,8 +194,9 @@ namespace seguridad_barrios_privados.Presentacion
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-
-
+            this.Close();
+            Login login = new Login();
+            login.Show();
         }
 
         private void lblTitleChildForm_Click(object sender, EventArgs e)
@@ -212,6 +236,14 @@ namespace seguridad_barrios_privados.Presentacion
         {
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new FormEgresos());
+        }
+
+        private void btnCerrarSesion_Click_1(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            this.Close();
+            Login login = new Login();
+            login.Show();
         }
     }
 }

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             lbFiltrarMoviminetos = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -39,7 +39,7 @@
             panel2 = new Panel();
             panel4 = new Panel();
             panel3 = new Panel();
-            dgUsuarios = new DataGridView();
+            dgMovimientos = new DataGridView();
             CIDmovimientp = new DataGridViewTextBoxColumn();
             Ctipo = new DataGridViewTextBoxColumn();
             CResponsable = new DataGridViewTextBoxColumn();
@@ -50,12 +50,12 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgMovimientos).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(26, 25, 62);
+            panel1.BackColor = SystemColors.Desktop;
             panel1.Controls.Add(lbFiltrarMoviminetos);
             panel1.Controls.Add(iconPictureBox1);
             panel1.Controls.Add(lbFiltrarMovimientos);
@@ -82,7 +82,7 @@
             // iconPictureBox1
             // 
             iconPictureBox1.Anchor = AnchorStyles.None;
-            iconPictureBox1.BackColor = Color.FromArgb(0, 38, 66);
+            iconPictureBox1.BackColor = Color.Transparent;
             iconPictureBox1.ForeColor = SystemColors.ButtonHighlight;
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Rotate;
             iconPictureBox1.IconColor = SystemColors.ButtonHighlight;
@@ -144,56 +144,56 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(26, 25, 62);
+            panel4.BackColor = SystemColors.Desktop;
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 305);
+            panel4.Location = new Point(0, 403);
             panel4.Name = "panel4";
-            panel4.Size = new Size(858, 101);
+            panel4.Size = new Size(858, 3);
             panel4.TabIndex = 5;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
-            panel3.Controls.Add(dgUsuarios);
+            panel3.Controls.Add(dgMovimientos);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(858, 305);
+            panel3.Size = new Size(858, 403);
             panel3.TabIndex = 4;
             // 
-            // dgUsuarios
+            // dgMovimientos
             // 
-            dgUsuarios.AllowUserToAddRows = false;
-            dgUsuarios.Anchor = AnchorStyles.None;
-            dgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgUsuarios.BackgroundColor = Color.FromArgb(45, 66, 91);
-            dgUsuarios.BorderStyle = BorderStyle.None;
-            dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
-            dgUsuarios.EnableHeadersVisualStyles = false;
-            dgUsuarios.GridColor = Color.MediumAquamarine;
-            dgUsuarios.Location = new Point(34, 18);
-            dgUsuarios.Margin = new Padding(3, 15, 3, 3);
-            dgUsuarios.Name = "dgUsuarios";
-            dgUsuarios.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            dgUsuarios.RowTemplate.Height = 25;
-            dgUsuarios.Size = new Size(794, 262);
-            dgUsuarios.TabIndex = 12;
+            dgMovimientos.AllowUserToAddRows = false;
+            dgMovimientos.Anchor = AnchorStyles.None;
+            dgMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgMovimientos.BackgroundColor = Color.FromArgb(45, 66, 91);
+            dgMovimientos.BorderStyle = BorderStyle.None;
+            dgMovimientos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
+            dgMovimientos.EnableHeadersVisualStyles = false;
+            dgMovimientos.GridColor = Color.MediumAquamarine;
+            dgMovimientos.Location = new Point(34, 22);
+            dgMovimientos.Margin = new Padding(3, 15, 3, 3);
+            dgMovimientos.Name = "dgMovimientos";
+            dgMovimientos.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dgMovimientos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgMovimientos.RowTemplate.Height = 25;
+            dgMovimientos.Size = new Size(794, 372);
+            dgMovimientos.TabIndex = 12;
             // 
             // CIDmovimientp
             // 
@@ -244,7 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgMovimientos).EndInit();
             ResumeLayout(false);
         }
 
@@ -254,10 +254,9 @@
         private Panel panel2;
         private DateTimePicker dtFechaMovimeintos;
         private ComboBox cbFiltrarMovimientos;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private Label lbFiltrarMovimientos;
         private Panel panel3;
-        private DataGridView dgUsuarios;
+        private DataGridView dgMovimientos;
         private Label lbFiltrarMoviminetos;
         private DataGridViewTextBoxColumn CIDmovimientp;
         private DataGridViewTextBoxColumn Ctipo;
@@ -266,5 +265,6 @@
         private DataGridViewTextBoxColumn CDNIvisitante;
         private DataGridViewTextBoxColumn Cfecha;
         private Panel panel4;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }

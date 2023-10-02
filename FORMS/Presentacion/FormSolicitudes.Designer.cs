@@ -30,8 +30,8 @@ namespace seguridad_barrios_privados.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             ErrorIcon = new FontAwesome.Sharp.IconPictureBox();
             lbError = new Label();
@@ -44,18 +44,17 @@ namespace seguridad_barrios_privados.Presentacion
             tbNombre = new RJTextBox();
             panel2 = new Panel();
             panel3 = new Panel();
-            panel4 = new Panel();
-            dgUsuarios = new DataGridView();
+            dgSolicitudes = new DataGridView();
             CEstado = new DataGridViewTextBoxColumn();
             CNombre = new DataGridViewTextBoxColumn();
             CApellido = new DataGridViewTextBoxColumn();
             CDNI = new DataGridViewTextBoxColumn();
-            CEliminar = new DataGridViewTextBoxColumn();
+            CFecha_soli = new DataGridViewTextBoxColumn();
+            lbSolicitudes = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgSolicitudes).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -78,14 +77,14 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // ErrorIcon
             // 
-            ErrorIcon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ErrorIcon.Anchor = AnchorStyles.None;
             ErrorIcon.BackColor = Color.Transparent;
             ErrorIcon.ForeColor = Color.DarkRed;
             ErrorIcon.IconChar = FontAwesome.Sharp.IconChar.Warning;
             ErrorIcon.IconColor = Color.DarkRed;
             ErrorIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ErrorIcon.IconSize = 30;
-            ErrorIcon.Location = new Point(29, 51);
+            ErrorIcon.Location = new Point(29, 35);
             ErrorIcon.Name = "ErrorIcon";
             ErrorIcon.Size = new Size(30, 36);
             ErrorIcon.TabIndex = 27;
@@ -94,11 +93,11 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // lbError
             // 
-            lbError.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lbError.Anchor = AnchorStyles.None;
             lbError.AutoSize = true;
             lbError.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lbError.ForeColor = Color.DarkRed;
-            lbError.Location = new Point(56, 52);
+            lbError.Location = new Point(56, 36);
             lbError.Name = "lbError";
             lbError.Size = new Size(37, 16);
             lbError.TabIndex = 26;
@@ -136,7 +135,7 @@ namespace seguridad_barrios_privados.Presentacion
             LRegistrarUsuario.AutoSize = true;
             LRegistrarUsuario.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
             LRegistrarUsuario.ForeColor = SystemColors.ButtonFace;
-            LRegistrarUsuario.Location = new Point(29, 25);
+            LRegistrarUsuario.Location = new Point(29, 9);
             LRegistrarUsuario.Name = "LRegistrarUsuario";
             LRegistrarUsuario.Size = new Size(213, 23);
             LRegistrarUsuario.TabIndex = 10;
@@ -237,7 +236,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(26, 25, 62);
+            panel2.BackColor = SystemColors.Desktop;
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(279, 0);
             panel2.Name = "panel2";
@@ -247,54 +246,47 @@ namespace seguridad_barrios_privados.Presentacion
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
-            panel3.Controls.Add(panel4);
+            panel3.Controls.Add(dgSolicitudes);
+            panel3.Controls.Add(lbSolicitudes);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(279, 78);
             panel3.Name = "panel3";
             panel3.Size = new Size(521, 372);
             panel3.TabIndex = 2;
             // 
-            // panel4
+            // dgSolicitudes
             // 
-            panel4.Controls.Add(dgUsuarios);
-            panel4.Location = new Point(42, 40);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(456, 265);
-            panel4.TabIndex = 0;
-            // 
-            // dgUsuarios
-            // 
-            dgUsuarios.AllowUserToAddRows = false;
-            dgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgUsuarios.BackgroundColor = Color.FromArgb(45, 66, 91);
-            dgUsuarios.BorderStyle = BorderStyle.None;
-            dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle7.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { CEstado, CNombre, CApellido, CDNI, CEliminar });
-            dgUsuarios.Dock = DockStyle.Fill;
-            dgUsuarios.EnableHeadersVisualStyles = false;
-            dgUsuarios.GridColor = Color.MediumAquamarine;
-            dgUsuarios.Location = new Point(0, 0);
-            dgUsuarios.Margin = new Padding(3, 15, 3, 3);
-            dgUsuarios.Name = "dgUsuarios";
-            dgUsuarios.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle8.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            dgUsuarios.RowTemplate.Height = 25;
-            dgUsuarios.Size = new Size(456, 265);
-            dgUsuarios.TabIndex = 13;
+            dgSolicitudes.AllowUserToAddRows = false;
+            dgSolicitudes.Anchor = AnchorStyles.None;
+            dgSolicitudes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
+            dgSolicitudes.BorderStyle = BorderStyle.None;
+            dgSolicitudes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CEstado, CNombre, CApellido, CDNI, CFecha_soli });
+            dgSolicitudes.EnableHeadersVisualStyles = false;
+            dgSolicitudes.GridColor = Color.MediumAquamarine;
+            dgSolicitudes.Location = new Point(33, 48);
+            dgSolicitudes.Margin = new Padding(3, 15, 3, 3);
+            dgSolicitudes.Name = "dgSolicitudes";
+            dgSolicitudes.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgSolicitudes.RowTemplate.Height = 25;
+            dgSolicitudes.Size = new Size(485, 324);
+            dgSolicitudes.TabIndex = 13;
             // 
             // CEstado
             // 
@@ -320,11 +312,23 @@ namespace seguridad_barrios_privados.Presentacion
             CDNI.Name = "CDNI";
             CDNI.ReadOnly = true;
             // 
-            // CEliminar
+            // CFecha_soli
             // 
-            CEliminar.HeaderText = "Eliminar";
-            CEliminar.Name = "CEliminar";
-            CEliminar.ReadOnly = true;
+            CFecha_soli.HeaderText = "Fecha";
+            CFecha_soli.Name = "CFecha_soli";
+            CFecha_soli.ReadOnly = true;
+            // 
+            // lbSolicitudes
+            // 
+            lbSolicitudes.Anchor = AnchorStyles.Top;
+            lbSolicitudes.AutoSize = true;
+            lbSolicitudes.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSolicitudes.ForeColor = SystemColors.ButtonFace;
+            lbSolicitudes.Location = new Point(33, 29);
+            lbSolicitudes.Name = "lbSolicitudes";
+            lbSolicitudes.Size = new Size(203, 19);
+            lbSolicitudes.TabIndex = 11;
+            lbSolicitudes.Text = "HISTORIAL DE SOLICITUDES";
             // 
             // FormSolicitudes
             // 
@@ -340,8 +344,8 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();
             panel3.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgSolicitudes).EndInit();
             ResumeLayout(false);
         }
 
@@ -355,16 +359,16 @@ namespace seguridad_barrios_privados.Presentacion
         private RJTextBox tbNombre;
         private Panel panel2;
         private Panel panel3;
-        private Panel panel4;
         private Label lbFiltrarUsuarios;
         private DateTimePicker dtFechaMovimeintos;
-        private DataGridView dgUsuarios;
+        private FontAwesome.Sharp.IconPictureBox ErrorIcon;
+        private Label lbError;
+        private Label lbSolicitudes;
+        private DataGridView dgSolicitudes;
         private DataGridViewTextBoxColumn CEstado;
         private DataGridViewTextBoxColumn CNombre;
         private DataGridViewTextBoxColumn CApellido;
         private DataGridViewTextBoxColumn CDNI;
-        private DataGridViewTextBoxColumn CEliminar;
-        private FontAwesome.Sharp.IconPictureBox ErrorIcon;
-        private Label lbError;
+        private DataGridViewTextBoxColumn CFecha_soli;
     }
 }

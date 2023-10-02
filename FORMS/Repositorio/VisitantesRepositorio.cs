@@ -41,8 +41,23 @@ namespace seguridad_barrios_privados.Repositorio
             return visitante.IdVisitante;
         }
 
-      
+        public bool ExisteVisitante(string dni)
+        {
+            /*barriosPrivadosContext.ChangeTracker.Clear();*/
+            return barriosPrivadosContext.Visitantes.Any(u => u.Dni== dni);
+        }
+
+        public Visitante ObtenerVisitanteDni(string dni)
+        {
+            // Consulta LINQ para buscar un usuario por correo y contraseña
+            var visitante =  barriosPrivadosContext.Visitantes
+                .Where(u => u.Dni == dni)
+                .FirstOrDefault();
+
+            return visitante;
+        }
+
 
 
     }
- }
+}

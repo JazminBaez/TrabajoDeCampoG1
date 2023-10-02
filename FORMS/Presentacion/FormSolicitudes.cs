@@ -1,4 +1,6 @@
 ﻿using seguridad_barrios_privados.Logica;
+using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +16,34 @@ namespace seguridad_barrios_privados.Presentacion
 {
     public partial class FormSolicitudes : Form
     {
+        private UsuariosRepositorio usuariosRepositorio;
+        private Validaciones validaciones;
+        private SolicitudesRepositorio solicitudesRepositorio;
+        private VisitantesRepositorio visitantesRepositorio;
         public FormSolicitudes()
         {
             InitializeComponent();
+            solicitudesRepositorio = new SolicitudesRepositorio();
+            CargarSolicitudes();
         }
+
+        private void CargarSolicitudes()
+        {
+            List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            dgSolicitudes.Rows.Clear();
+            dgSolicitudes.Refresh();
+            var fechaHoy = DateTime.Today;
+            foreach (Solicitude solicitud in solicitudes)
+
+                if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario)
+                {
+                    string estadoSolicitud = solicitud.Estado.HasValue ? (solicitud.Estado.Value ? "aceptado" : "pendiente") : "pendiente";
+                    dgSolicitudes.Rows.Add(estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
+
+                }
+        }
+
+
 
         private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
