@@ -11,9 +11,9 @@ public partial class Solicitude
 
     public int? IdVisitante { get; set; }
 
-    public int? Estado { get; set; }
-
     public DateTime? Fecha { get; set; }
+
+    public bool? Estado { get; set; }
 
     public virtual Usuario? IdUsuarioNavigation { get; set; }
 

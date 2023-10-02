@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using seguridad_barrios_privados.Logica;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Presentacion;
+using System.Data;
 
 namespace seguridad_barrios_privados.Repositorio
 {
@@ -21,13 +22,32 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
+        public void InsertarUsuario(Usuario user)
+        {
+            barriosPrivadosContext.Usuarios.Add(user);
+            barriosPrivadosContext.SaveChanges();
+        }
+
+        /*public void InsertarRol()
+        {
+            Console.WriteLine("NUEVO ROL");
+            Role role = new Role();
+            role.Descripcion = "Hello";
+
+            barriosPrivadosContext.Roles.Add(role);
+            barriosPrivadosContext.SaveChanges();
+        }*/
+
         public List<Usuario> ObtenerUsuarios()
         {
+            
             return barriosPrivadosContext.Usuarios.Include(usuario=>usuario.Rol).ToList();
         }
 
         public bool ExisteUsuario(string email)
         {
+
+            /*barriosPrivadosContext.ChangeTracker.Clear();*/
             return barriosPrivadosContext.Usuarios.Any(u => u.Email == email);
         }
 

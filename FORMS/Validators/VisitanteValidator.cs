@@ -27,9 +27,16 @@ namespace seguridad_barrios_privados.Validators
             //validar dni
             RuleFor(x => x.Dni)
                 .NotEmpty().WithMessage("Complete todos los campos")
-                .Length(10, 10).WithMessage("Telefno no valido")
+                .Length(7, 8).WithMessage("DNI no valido")
                 ;
            
+
+            //validar rol
+            /*RuleFor(x => x.Rol)
+                .GreaterThan(-1)
+                .WithMessage("Selecciona un rol")
+               ;*/
+
         }
 
 

@@ -47,6 +47,7 @@ namespace seguridad_barrios_privados.Validators
             //validar rol
             RuleFor(x => x.IdRol)
                 .GreaterThan(-1)
+                .NotNull()
                 .WithMessage("Selecciona un rol")
                ;
         }

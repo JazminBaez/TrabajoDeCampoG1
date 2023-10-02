@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Controls;
 using seguridad_barrios_privados.Models;
@@ -15,11 +16,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace seguridad_barrios_privados.Logica
 {
-   
+
     public class Validaciones
     {
         private UsuariosRepositorio? usuariosRepositorio;
         private VisitantesRepositorio? visitantesRepositorio;
+        private SolicitudesRepositorio? solicitudesRepositorio;
+        private IngresosRepositorio? ingresosRepositorio;
         public static bool IsNumber(char caracter)
         {
             return char.IsDigit(caracter);
@@ -36,7 +39,7 @@ namespace seguridad_barrios_privados.Logica
             {
                 if (string.IsNullOrWhiteSpace(campo.Texts))
                 {
-                 
+
                     return false;
                 }
             }
@@ -47,7 +50,7 @@ namespace seguridad_barrios_privados.Logica
         {
             if (contrasena.Texts != repetirContrasena.Texts)
             {
-               
+
                 return false;
             }
             return true;
@@ -73,7 +76,7 @@ namespace seguridad_barrios_privados.Logica
         }
 
 
-        public bool RegistrarUsuario(Usuario usuario,string repetirContrasena, Label errorMsg, IconPictureBox errorIcon,DataGridView usuarios)
+        public bool RegistrarUsuario(Usuario usuario, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
             var validator = new UsuarioValidators();
             var result = validator.Validate(usuario);
@@ -81,7 +84,7 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                if(usuario.Contrasena != repetirContrasena)
+                if (usuario.Contrasena != repetirContrasena)
                 {
                     Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
 
@@ -90,7 +93,7 @@ namespace seguridad_barrios_privados.Logica
                 {
                     Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
                 }
-                
+
                 return false;
             }
             else
@@ -106,16 +109,17 @@ namespace seguridad_barrios_privados.Logica
 
                 MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
-               
-             
+
+
             }
         }
 
-        public bool RegistrarIngreso(Visitante visitante, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        public bool RegistrarSolicitud(Visitante visitante, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
             var validator = new VisitanteValidators();
             var result = validator.Validate(visitante);
             visitantesRepositorio = new VisitantesRepositorio();
+            solicitudesRepositorio = new SolicitudesRepositorio();
 
             if (!result.IsValid)
             {
@@ -132,22 +136,31 @@ namespace seguridad_barrios_privados.Logica
             }
             else
             {
-                //Aniadir Vistitante
-
-
-                MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var IdVisitante = visitantesRepositorio.RegistrarVisitante(visitante);
+                int IdPropietario = (int)propietario.SelectedValue;
+                solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario);
                 return true;
-
             }
         }
 
-        //public bool LogearUsuario(string correo, string contrasena)
-        //{
-        //    if (usuariosRepositorio.ObtenerUsuario(correo, contrasena) != null)
-        //    {
+        public void AceptarSolicitud(DataGridView solicitudes)
+        {
+            int rowIndex = solicitudes.CurrentCell.RowIndex;
+            int columnIndex = 0; // Índice de la columna que deseas
+            ingresosRepositorio = new IngresosRepositorio();
+            solicitudesRepositorio = new SolicitudesRepositorio();
 
-        //    }
-        //}
+            
+                string cellValue = solicitudes.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+                 int idSolicitud = int.Parse(cellValue);
+
+                if (cellValue != null)
+                {
+                   ingresosRepositorio.RegistrarIngreso(idSolicitud);
+                   solicitudesRepositorio.CambiarEstado(idSolicitud, true);
+                }
+            
+        }
 
     }
 }

@@ -24,4 +24,7 @@ public partial class Usuario
     public virtual Role? Rol { get; set; }
 
     public virtual ICollection<Solicitude> Solicitudes { get; set; } = new List<Solicitude>();
+
+    public string NombreCompleto => $"{Nombre} {Apellido}";
+    public string Datos => $"{Nombre} {Apellido} {Direccion}";
 }

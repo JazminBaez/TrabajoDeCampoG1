@@ -89,6 +89,7 @@ public partial class DbBarriosPrivadosContext : DbContext
             entity.ToTable("solicitudes");
 
             entity.Property(e => e.IdSolicitud).HasColumnName("id_solicitud");
+            entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Fecha)
                 .HasColumnType("date")
                 .HasColumnName("fecha");

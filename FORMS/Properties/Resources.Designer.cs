@@ -61,7 +61,7 @@ namespace seguridad_barrios_privados.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Server=LAPTOP-27C43Q6P;Database=db_barrios_privados;Integrated Security=True;Trust server certificate=True;.
+        ///   Busca una cadena traducida similar a Server=LAPTOP-27C43Q6P;Database=db_barrios_privados;Integrated Security=True;Trust server certificate=True.
         /// </summary>
         internal static string conexion {
             get {

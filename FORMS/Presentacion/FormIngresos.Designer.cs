@@ -46,18 +46,17 @@ namespace seguridad_barrios_privados.Presentacion
             tbApellido = new RJTextBox();
             tbDni = new RJTextBox();
             tbNombre = new RJTextBox();
+            usuariosRepositorioBindingSource = new BindingSource(components);
             panel3 = new Panel();
             panel2 = new Panel();
             lbSolicitudesRealizadas = new Label();
-            dataGridView1 = new DataGridView();
-            CSelect = new DataGridViewCheckBoxColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
+            dgSolicitudes = new DataGridView();
+            CID_soli = new DataGridViewTextBoxColumn();
+            CPropietario = new DataGridViewTextBoxColumn();
+            CVisitante_soli = new DataGridViewTextBoxColumn();
+            CVisitante_Dni = new DataGridViewTextBoxColumn();
+            CFecha_soli = new DataGridViewTextBoxColumn();
+            CAceptar_soli = new DataGridViewButtonColumn();
             panel5 = new Panel();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -72,19 +71,18 @@ namespace seguridad_barrios_privados.Presentacion
             CDNI = new DataGridViewTextBoxColumn();
             CEliminar = new DataGridViewTextBoxColumn();
             CAceptar = new DataGridViewButtonColumn();
-            usuariosRepositorioBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).BeginInit();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgSolicitudes).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -108,7 +106,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // ErrorIcon
             // 
-            ErrorIcon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ErrorIcon.Anchor = AnchorStyles.None;
             ErrorIcon.BackColor = Color.Transparent;
             ErrorIcon.ForeColor = Color.DarkRed;
             ErrorIcon.IconChar = FontAwesome.Sharp.IconChar.Warning;
@@ -124,7 +122,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             // lbError
             // 
-            lbError.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lbError.Anchor = AnchorStyles.None;
             lbError.AutoSize = true;
             lbError.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lbError.ForeColor = Color.DarkRed;
@@ -150,7 +148,6 @@ namespace seguridad_barrios_privados.Presentacion
             // cbPropietarios
             // 
             cbPropietarios.Anchor = AnchorStyles.None;
-            cbPropietarios.DataSource = usuariosRepositorioBindingSource;
             cbPropietarios.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbPropietarios.FormattingEnabled = true;
             cbPropietarios.Location = new Point(22, 264);
@@ -254,7 +251,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbDni.Texts = "";
             tbDni.UnderlinedStyle = false;
             tbDni._TextChanged += TBDireccion__TextChanged;
-            tbDni.KeyPress += TBDireccion_KeyPress;
+            tbDni.KeyPress += number_KeyPress;
             // 
             // tbNombre
             // 
@@ -281,6 +278,10 @@ namespace seguridad_barrios_privados.Presentacion
             tbNombre._TextChanged += tbNombre__TextChanged;
             tbNombre.KeyPress += tbNombre_KeyPress;
             // 
+            // usuariosRepositorioBindingSource
+            // 
+            usuariosRepositorioBindingSource.DataSource = typeof(Repositorio.UsuariosRepositorio);
+            // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
@@ -299,7 +300,7 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             panel2.BackColor = Color.FromArgb(18, 38, 58);
             panel2.Controls.Add(lbSolicitudesRealizadas);
-            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(dgSolicitudes);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 75);
             panel2.Name = "panel2";
@@ -312,19 +313,20 @@ namespace seguridad_barrios_privados.Presentacion
             lbSolicitudesRealizadas.AutoSize = true;
             lbSolicitudesRealizadas.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lbSolicitudesRealizadas.ForeColor = SystemColors.ButtonFace;
-            lbSolicitudesRealizadas.Location = new Point(36, 39);
+            lbSolicitudesRealizadas.Location = new Point(36, 27);
             lbSolicitudesRealizadas.Name = "lbSolicitudesRealizadas";
-            lbSolicitudesRealizadas.Size = new Size(196, 19);
+            lbSolicitudesRealizadas.Size = new Size(192, 19);
             lbSolicitudesRealizadas.TabIndex = 23;
-            lbSolicitudesRealizadas.Text = "SOLICITUDES REALIZADAS";
+            lbSolicitudesRealizadas.Text = "SOLICITUDES PENDIENTES";
             // 
-            // dataGridView1
+            // dgSolicitudes
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridView1.BackgroundColor = Color.FromArgb(45, 66, 91);
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgSolicitudes.AllowUserToAddRows = false;
+            dgSolicitudes.Anchor = AnchorStyles.None;
+            dgSolicitudes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
+            dgSolicitudes.BorderStyle = BorderStyle.None;
+            dgSolicitudes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
             dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
@@ -332,73 +334,62 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { CSelect, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewButtonColumn1 });
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = Color.MediumAquamarine;
-            dataGridView1.Location = new Point(36, 61);
-            dataGridView1.Margin = new Padding(3, 15, 3, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersVisible = false;
+            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptar_soli });
+            dgSolicitudes.EnableHeadersVisualStyles = false;
+            dgSolicitudes.GridColor = Color.MediumAquamarine;
+            dgSolicitudes.Location = new Point(24, 61);
+            dgSolicitudes.Margin = new Padding(3, 15, 3, 3);
+            dgSolicitudes.Name = "dgSolicitudes";
+            dgSolicitudes.ReadOnly = true;
+            dgSolicitudes.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
             dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(494, 311);
-            dataGridView1.TabIndex = 11;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dgSolicitudes.RowTemplate.Height = 25;
+            dgSolicitudes.Size = new Size(530, 311);
+            dgSolicitudes.TabIndex = 11;
+            dgSolicitudes.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // CSelect
+            // CID_soli
             // 
-            CSelect.HeaderText = "";
-            CSelect.Name = "CSelect";
-            CSelect.Width = 5;
+            CID_soli.HeaderText = "ID";
+            CID_soli.Name = "CID_soli";
+            CID_soli.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn1
+            // CPropietario
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 47;
+            CPropietario.HeaderText = "Propietario";
+            CPropietario.Name = "CPropietario";
+            CPropietario.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // CVisitante_soli
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 92;
+            CVisitante_soli.HeaderText = "Visitante";
+            CVisitante_soli.Name = "CVisitante_soli";
+            CVisitante_soli.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // CVisitante_Dni
             // 
-            dataGridViewTextBoxColumn3.HeaderText = "Apellido";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 95;
+            CVisitante_Dni.HeaderText = "DNI";
+            CVisitante_Dni.Name = "CVisitante_Dni";
+            CVisitante_Dni.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn4
+            // CFecha_soli
             // 
-            dataGridViewTextBoxColumn4.HeaderText = "Telefono";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 95;
+            CFecha_soli.HeaderText = "Fecha";
+            CFecha_soli.Name = "CFecha_soli";
+            CFecha_soli.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn5
+            // CAceptar_soli
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Direccion";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 105;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.HeaderText = "Correo";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 84;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            dataGridViewButtonColumn1.HeaderText = "Eliminiar";
-            dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            dataGridViewButtonColumn1.Width = 75;
+            CAceptar_soli.HeaderText = "Aceptar";
+            CAceptar_soli.Name = "CAceptar_soli";
+            CAceptar_soli.ReadOnly = true;
             // 
             // panel5
             // 
@@ -570,11 +561,6 @@ namespace seguridad_barrios_privados.Presentacion
             CAceptar.Name = "CAceptar";
             CAceptar.ReadOnly = true;
             // 
-            // usuariosRepositorioBindingSource
-            // 
-            usuariosRepositorioBindingSource.DataSource = typeof(Repositorio.UsuariosRepositorio);
-            usuariosRepositorioBindingSource.CurrentChanged += usuariosRepositorioBindingSource_CurrentChanged;
-            // 
             // FormIngresos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -587,18 +573,18 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgSolicitudes).EndInit();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
-            ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -623,18 +609,7 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CDNI;
         private DataGridViewTextBoxColumn CEliminar;
         private DataGridViewButtonColumn CAceptar;
-        private FontAwesome.Sharp.IconPictureBox ErrorIcon;
-        private Label lbError;
         private Panel panel2;
-        private DataGridView dataGridView1;
-        private DataGridViewCheckBoxColumn CSelect;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewButtonColumn dataGridViewButtonColumn1;
         private Panel panel5;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox btnBuscar;
@@ -642,5 +617,14 @@ namespace seguridad_barrios_privados.Presentacion
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private Label lbSolicitudesRealizadas;
         private BindingSource usuariosRepositorioBindingSource;
+        private FontAwesome.Sharp.IconPictureBox ErrorIcon;
+        private Label lbError;
+        private DataGridView dgSolicitudes;
+        private DataGridViewTextBoxColumn CID_soli;
+        private DataGridViewTextBoxColumn CPropietario;
+        private DataGridViewTextBoxColumn CVisitante_soli;
+        private DataGridViewTextBoxColumn CVisitante_Dni;
+        private DataGridViewTextBoxColumn CFecha_soli;
+        private DataGridViewButtonColumn CAceptar_soli;
     }
 }

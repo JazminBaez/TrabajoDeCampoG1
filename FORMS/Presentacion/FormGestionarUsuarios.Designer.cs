@@ -30,6 +30,7 @@ namespace seguridad_barrios_privados.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
@@ -42,6 +43,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbApellido = new RJTextBox();
             tbCorreo = new RJTextBox();
             cbRol = new ComboBox();
+            rolesRepositorioBindingSource1 = new BindingSource(components);
             tbDireccion = new RJTextBox();
             tbTelefono = new RJTextBox();
             tbNombre = new RJTextBox();
@@ -62,13 +64,16 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
+            rolesRepositorioBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -246,12 +251,15 @@ namespace seguridad_barrios_privados.Presentacion
             cbRol.AutoCompleteCustomSource.AddRange(new string[] { "Administrador", "Propietario", "Guardia" });
             cbRol.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbRol.FormattingEnabled = true;
-            cbRol.Items.AddRange(new object[] { "Administrador", "Guardia", "Propietario" });
             cbRol.Location = new Point(41, 381);
             cbRol.Name = "cbRol";
             cbRol.Size = new Size(225, 28);
             cbRol.TabIndex = 5;
-            cbRol.Text = "Rol";
+            cbRol.SelectedIndexChanged += cbRol_SelectedIndexChanged;
+            // 
+            // rolesRepositorioBindingSource1
+            // 
+            rolesRepositorioBindingSource1.DataSource = typeof(Repositorio.RolesRepositorio);
             // 
             // tbDireccion
             // 
@@ -524,6 +532,10 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
             dataGridViewButtonColumn1.Width = 75;
             // 
+            // rolesRepositorioBindingSource
+            // 
+            rolesRepositorioBindingSource.DataSource = typeof(Repositorio.RolesRepositorio);
+            // 
             // FormGestionarUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -538,12 +550,14 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -579,5 +593,7 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private BindingSource rolesRepositorioBindingSource1;
+        private BindingSource rolesRepositorioBindingSource;
     }
 }
