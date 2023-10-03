@@ -569,7 +569,7 @@ namespace seguridad_barrios_privados.Presentacion
             Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "FormIngresos";
-            Text = "FormIngresos";
+            Text = "Ingresos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();

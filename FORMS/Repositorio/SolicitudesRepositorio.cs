@@ -72,7 +72,7 @@ namespace seguridad_barrios_privados.Repositorio
 
         public Solicitude ObtenerSolicitud(int id)
         {
-            // Consulta LINQ para buscar un usuario por correo y contraseña
+            
             var solicitud = barriosPrivadosContext.Solicitudes
                 .Where(s => s.IdSolicitud == id)
                 .FirstOrDefault();

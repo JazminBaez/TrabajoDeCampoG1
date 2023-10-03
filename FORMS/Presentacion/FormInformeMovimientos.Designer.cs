@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             lbFiltrarMoviminetos = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -169,14 +169,14 @@
             dgMovimientos.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgMovimientos.BorderStyle = BorderStyle.None;
             dgMovimientos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
             dgMovimientos.EnableHeadersVisualStyles = false;
@@ -185,12 +185,12 @@
             dgMovimientos.Margin = new Padding(3, 15, 3, 3);
             dgMovimientos.Name = "dgMovimientos";
             dgMovimientos.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dgMovimientos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dgMovimientos.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgMovimientos.RowTemplate.Height = 25;
             dgMovimientos.Size = new Size(794, 372);
             dgMovimientos.TabIndex = 12;
@@ -238,7 +238,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormInformeMovimientos";
-            Text = "FormInformeMovimientos";
+            Text = "Informe Movimientos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();

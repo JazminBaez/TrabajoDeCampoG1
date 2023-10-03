@@ -135,13 +135,12 @@ namespace seguridad_barrios_privados.Presentacion
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                // Convertir la contraseña en bytes
+              
                 byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-                // Calcular el hash
                 byte[] hashBytes = sha256.ComputeHash(passwordBytes);
 
-                // Convertir el hash en una cadena hexadecimal
+             
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
                 {

@@ -49,6 +49,7 @@ namespace seguridad_barrios_privados.Presentacion
 
             if (usuarioRol == 3)
             {
+                btnMovimientos.Visible = false;
                 btnGestionUsuarios.Visible = false;
                 btnSolicitudes.Visible = false;
                 btnSolicitudes.Visible = false;
@@ -58,11 +59,7 @@ namespace seguridad_barrios_privados.Presentacion
         private struct RGBColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
-            public static Color color2 = Color.FromArgb(249, 118, 176);
-            public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(95, 77, 221);
-            public static Color color5 = Color.FromArgb(249, 88, 155);
-            public static Color color6 = Color.FromArgb(24, 161, 251);
+
         }
         //Methods
         private void ActivateButton(object senderBtn, Color color)
@@ -70,7 +67,7 @@ namespace seguridad_barrios_privados.Presentacion
             if (senderBtn != null)
             {
                 DisableButton();
-                //Button
+
                 currentBtn = (IconButton)senderBtn;
                 currentBtn.BackColor = Color.FromArgb(37, 36, 81);
                 currentBtn.ForeColor = color;
@@ -78,12 +75,12 @@ namespace seguridad_barrios_privados.Presentacion
                 currentBtn.IconColor = color;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-                //Left border button
+
                 leftBorderBtn.BackColor = color;
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
-                //Current Child Form Icon
+
                 iconCurrentChildForm.IconChar = currentBtn.IconChar;
                 iconCurrentChildForm.IconColor = color;
             }
@@ -103,13 +100,13 @@ namespace seguridad_barrios_privados.Presentacion
         }
         private void OpenChildForm(Form childForm)
         {
-            //open only form
+
             if (currentChildForm != null)
             {
                 currentChildForm.Close();
             }
             currentChildForm = childForm;
-            //End
+
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -146,10 +143,6 @@ namespace seguridad_barrios_privados.Presentacion
         }
 
 
-
-
-
-        //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -159,7 +152,7 @@ namespace seguridad_barrios_privados.Presentacion
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
-        //Close-Maximize-Minimize
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -175,7 +168,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             WindowState = FormWindowState.Minimized;
         }
-        //Remove transparent border in maximized state
+
         private void FormMainMenu_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized)
@@ -191,13 +184,6 @@ namespace seguridad_barrios_privados.Presentacion
 
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.color1);
-            this.Close();
-            Login login = new Login();
-            login.Show();
-        }
 
         private void lblTitleChildForm_Click(object sender, EventArgs e)
         {
@@ -210,9 +196,6 @@ namespace seguridad_barrios_privados.Presentacion
             currentChildForm.Close();
             Reset();
         }
-
-
-
 
         private void btnMaximize_MouseDown(object sender, MouseEventArgs e)
         {

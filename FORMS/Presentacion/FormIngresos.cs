@@ -63,7 +63,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '\b')
             {
-                // Si no es una letra ni Backspace, ignorar la tecla presionada
+               
                 e.Handled = true;
             }
         }
@@ -96,7 +96,7 @@ namespace seguridad_barrios_privados.Presentacion
 
             }
 
-           
+
 
         }
 
@@ -116,7 +116,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
             {
-                // Si no es una letra ni Backspace, ignorar la tecla presionada
+                
                 e.Handled = true;
             }
         }
@@ -125,7 +125,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
             {
-                // Si no es una letra ni Backspace, ignorar la tecla presionada
+               
                 e.Handled = true;
             }
         }

@@ -265,6 +265,7 @@ namespace seguridad_barrios_privados.Presentacion
             panelTitlleBar.Name = "panelTitlleBar";
             panelTitlleBar.Size = new Size(878, 50);
             panelTitlleBar.TabIndex = 1;
+            panelTitlleBar.MouseDown += panelTitleBar_MouseDown;
             // 
             // btnMinimize
             // 
@@ -304,6 +305,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnMaximize.TabIndex = 5;
             btnMaximize.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Click += btnMaximize_Click;
             // 
             // btnExit
             // 
@@ -435,6 +437,7 @@ namespace seguridad_barrios_privados.Presentacion
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormMainAdmin";
+            MouseDown += panelTitleBar_MouseDown;
             panelMenu.ResumeLayout(false);
             logo.ResumeLayout(false);
             panel1.ResumeLayout(false);

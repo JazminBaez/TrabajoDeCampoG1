@@ -37,7 +37,7 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (solicitud.Estado == true)
                 {
-                    dgMovimientos.Rows.Add(solicitud.IdSolicitud,"Ingreso", solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
+                    dgMovimientos.Rows.Add(solicitud.IdSolicitud, "Ingreso", solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
                 }
             }
         }

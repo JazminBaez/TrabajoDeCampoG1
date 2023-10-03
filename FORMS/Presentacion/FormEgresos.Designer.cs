@@ -259,7 +259,7 @@ namespace seguridad_barrios_privados.Presentacion
             ClientSize = new Size(800, 450);
             Controls.Add(panel2);
             Name = "FormEgresos";
-            Text = "FormEgresos";
+            Text = "Egresos";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();

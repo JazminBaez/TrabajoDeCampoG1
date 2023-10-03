@@ -30,8 +30,8 @@ namespace seguridad_barrios_privados.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             ErrorIcon = new FontAwesome.Sharp.IconPictureBox();
             lbError = new Label();
@@ -262,14 +262,14 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgSolicitudes.BorderStyle = BorderStyle.None;
             dgSolicitudes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CEstado, CNombre, CApellido, CDNI, CFecha_soli });
             dgSolicitudes.EnableHeadersVisualStyles = false;
@@ -278,12 +278,12 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.Margin = new Padding(3, 15, 3, 3);
             dgSolicitudes.Name = "dgSolicitudes";
             dgSolicitudes.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.Size = new Size(485, 324);
             dgSolicitudes.TabIndex = 13;
@@ -339,7 +339,7 @@ namespace seguridad_barrios_privados.Presentacion
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormSolicitudes";
-            Text = "FormMovimientos";
+            Text = "Movimientos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();

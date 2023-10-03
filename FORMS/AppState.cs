@@ -9,7 +9,6 @@ namespace seguridad_barrios_privados
 {
     public static class AppState
     {
-        // Define propiedades o campos para almacenar los datos globales
         public static Usuario UsuarioActual { get; set; }
        
     }
