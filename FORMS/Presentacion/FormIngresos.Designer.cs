@@ -51,12 +51,6 @@ namespace seguridad_barrios_privados.Presentacion
             panel2 = new Panel();
             lbSolicitudesRealizadas = new Label();
             dgSolicitudes = new DataGridView();
-            CID_soli = new DataGridViewTextBoxColumn();
-            CPropietario = new DataGridViewTextBoxColumn();
-            CVisitante_soli = new DataGridViewTextBoxColumn();
-            CVisitante_Dni = new DataGridViewTextBoxColumn();
-            CFecha_soli = new DataGridViewTextBoxColumn();
-            CAceptar_soli = new DataGridViewButtonColumn();
             panel5 = new Panel();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -71,6 +65,14 @@ namespace seguridad_barrios_privados.Presentacion
             CDNI = new DataGridViewTextBoxColumn();
             CEliminar = new DataGridViewTextBoxColumn();
             CAceptar = new DataGridViewButtonColumn();
+            CID_soli = new DataGridViewTextBoxColumn();
+            CPropietario = new DataGridViewTextBoxColumn();
+            CVisitante_soli = new DataGridViewTextBoxColumn();
+            CVisitante_Dni = new DataGridViewTextBoxColumn();
+            CFecha_soli = new DataGridViewTextBoxColumn();
+            CAceptar_soli = new DataGridViewButtonColumn();
+            CRechazar = new DataGridViewButtonColumn();
+            CCancelar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).BeginInit();
@@ -336,7 +338,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptar_soli });
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptar_soli, CRechazar, CCancelar });
             dgSolicitudes.EnableHeadersVisualStyles = false;
             dgSolicitudes.GridColor = Color.MediumAquamarine;
             dgSolicitudes.Location = new Point(24, 61);
@@ -353,43 +355,7 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.Size = new Size(530, 311);
             dgSolicitudes.TabIndex = 11;
-            dgSolicitudes.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // CID_soli
-            // 
-            CID_soli.HeaderText = "ID";
-            CID_soli.Name = "CID_soli";
-            CID_soli.ReadOnly = true;
-            // 
-            // CPropietario
-            // 
-            CPropietario.HeaderText = "Propietario";
-            CPropietario.Name = "CPropietario";
-            CPropietario.ReadOnly = true;
-            // 
-            // CVisitante_soli
-            // 
-            CVisitante_soli.HeaderText = "Visitante";
-            CVisitante_soli.Name = "CVisitante_soli";
-            CVisitante_soli.ReadOnly = true;
-            // 
-            // CVisitante_Dni
-            // 
-            CVisitante_Dni.HeaderText = "DNI";
-            CVisitante_Dni.Name = "CVisitante_Dni";
-            CVisitante_Dni.ReadOnly = true;
-            // 
-            // CFecha_soli
-            // 
-            CFecha_soli.HeaderText = "Fecha";
-            CFecha_soli.Name = "CFecha_soli";
-            CFecha_soli.ReadOnly = true;
-            // 
-            // CAceptar_soli
-            // 
-            CAceptar_soli.HeaderText = "Aceptar";
-            CAceptar_soli.Name = "CAceptar_soli";
-            CAceptar_soli.ReadOnly = true;
+            dgSolicitudes.CellContentClick += dgSolicitudes_CellContentClick;
             // 
             // panel5
             // 
@@ -561,6 +527,54 @@ namespace seguridad_barrios_privados.Presentacion
             CAceptar.Name = "CAceptar";
             CAceptar.ReadOnly = true;
             // 
+            // CID_soli
+            // 
+            CID_soli.HeaderText = "ID";
+            CID_soli.Name = "CID_soli";
+            CID_soli.ReadOnly = true;
+            // 
+            // CPropietario
+            // 
+            CPropietario.HeaderText = "Propietario";
+            CPropietario.Name = "CPropietario";
+            CPropietario.ReadOnly = true;
+            // 
+            // CVisitante_soli
+            // 
+            CVisitante_soli.HeaderText = "Visitante";
+            CVisitante_soli.Name = "CVisitante_soli";
+            CVisitante_soli.ReadOnly = true;
+            // 
+            // CVisitante_Dni
+            // 
+            CVisitante_Dni.HeaderText = "DNI";
+            CVisitante_Dni.Name = "CVisitante_Dni";
+            CVisitante_Dni.ReadOnly = true;
+            // 
+            // CFecha_soli
+            // 
+            CFecha_soli.HeaderText = "Fecha";
+            CFecha_soli.Name = "CFecha_soli";
+            CFecha_soli.ReadOnly = true;
+            // 
+            // CAceptar_soli
+            // 
+            CAceptar_soli.HeaderText = "Aceptar";
+            CAceptar_soli.Name = "CAceptar_soli";
+            CAceptar_soli.ReadOnly = true;
+            // 
+            // CRechazar
+            // 
+            CRechazar.HeaderText = "Rechazar";
+            CRechazar.Name = "CRechazar";
+            CRechazar.ReadOnly = true;
+            // 
+            // CCancelar
+            // 
+            CCancelar.HeaderText = "Cancelar";
+            CCancelar.Name = "CCancelar";
+            CCancelar.ReadOnly = true;
+            // 
             // FormIngresos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -626,5 +640,7 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CVisitante_Dni;
         private DataGridViewTextBoxColumn CFecha_soli;
         private DataGridViewButtonColumn CAceptar_soli;
+        private DataGridViewButtonColumn CRechazar;
+        private DataGridViewButtonColumn CCancelar;
     }
 }

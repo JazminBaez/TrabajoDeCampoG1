@@ -37,8 +37,22 @@ namespace seguridad_barrios_privados.Presentacion
 
                 if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario)
                 {
-                    string estadoSolicitud = solicitud.Estado.HasValue ? (solicitud.Estado.Value ? "aceptado" : "pendiente") : "pendiente";
-                    dgSolicitudes.Rows.Add(estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
+                    string estadoSolicitud;
+                    int estado = solicitud.Estado ?? 0;
+
+                    switch (estado)
+                    {
+                        default:
+                            estadoSolicitud = "pendiente";
+                            break;
+                        case 1:
+                            estadoSolicitud = "aceptado";
+                            break;
+                        case 2:
+                            estadoSolicitud = "rechazado";
+                            break;
+                    }
+                    dgSolicitudes.Rows.Add(estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Cancelar");
 
                 }
         }
@@ -75,7 +89,6 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
             }
-
         }
 
         private void lbError_Click(object sender, EventArgs e)

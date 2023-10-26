@@ -52,7 +52,7 @@ namespace seguridad_barrios_privados.Presentacion
             foreach (Usuario usuario in usuarios)
             {
 
-                if (usuario.Estado == 0)
+                if (usuario.Estado == 1)
                 {
                     dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar","Modificar");
                     dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;

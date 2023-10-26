@@ -45,12 +45,13 @@ namespace seguridad_barrios_privados.Presentacion
             panel2 = new Panel();
             panel3 = new Panel();
             dgSolicitudes = new DataGridView();
+            lbSolicitudes = new Label();
             CEstado = new DataGridViewTextBoxColumn();
             CNombre = new DataGridViewTextBoxColumn();
             CApellido = new DataGridViewTextBoxColumn();
             CDNI = new DataGridViewTextBoxColumn();
             CFecha_soli = new DataGridViewTextBoxColumn();
-            lbSolicitudes = new Label();
+            CCancelar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             panel3.SuspendLayout();
@@ -271,7 +272,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CEstado, CNombre, CApellido, CDNI, CFecha_soli });
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CEstado, CNombre, CApellido, CDNI, CFecha_soli, CCancelar });
             dgSolicitudes.EnableHeadersVisualStyles = false;
             dgSolicitudes.GridColor = Color.MediumAquamarine;
             dgSolicitudes.Location = new Point(33, 48);
@@ -287,6 +288,18 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.Size = new Size(485, 324);
             dgSolicitudes.TabIndex = 13;
+            // 
+            // lbSolicitudes
+            // 
+            lbSolicitudes.Anchor = AnchorStyles.Top;
+            lbSolicitudes.AutoSize = true;
+            lbSolicitudes.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSolicitudes.ForeColor = SystemColors.ButtonFace;
+            lbSolicitudes.Location = new Point(33, 29);
+            lbSolicitudes.Name = "lbSolicitudes";
+            lbSolicitudes.Size = new Size(203, 19);
+            lbSolicitudes.TabIndex = 11;
+            lbSolicitudes.Text = "HISTORIAL DE SOLICITUDES";
             // 
             // CEstado
             // 
@@ -318,17 +331,11 @@ namespace seguridad_barrios_privados.Presentacion
             CFecha_soli.Name = "CFecha_soli";
             CFecha_soli.ReadOnly = true;
             // 
-            // lbSolicitudes
+            // CCancelar
             // 
-            lbSolicitudes.Anchor = AnchorStyles.Top;
-            lbSolicitudes.AutoSize = true;
-            lbSolicitudes.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbSolicitudes.ForeColor = SystemColors.ButtonFace;
-            lbSolicitudes.Location = new Point(33, 29);
-            lbSolicitudes.Name = "lbSolicitudes";
-            lbSolicitudes.Size = new Size(203, 19);
-            lbSolicitudes.TabIndex = 11;
-            lbSolicitudes.Text = "HISTORIAL DE SOLICITUDES";
+            CCancelar.HeaderText = "Cancelar";
+            CCancelar.Name = "CCancelar";
+            CCancelar.ReadOnly = true;
             // 
             // FormSolicitudes
             // 
@@ -370,5 +377,6 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CApellido;
         private DataGridViewTextBoxColumn CDNI;
         private DataGridViewTextBoxColumn CFecha_soli;
+        private DataGridViewButtonColumn CCancelar;
     }
 }

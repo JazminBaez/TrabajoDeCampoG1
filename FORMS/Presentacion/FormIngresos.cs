@@ -31,7 +31,7 @@ namespace seguridad_barrios_privados.Presentacion
             solicitudesRepositorio = new SolicitudesRepositorio();
             validaciones = new Validaciones();
 
-            cbPropietarios.DataSource = usuariosRepositorio.ObtenerUsuariosPorId(1);
+            cbPropietarios.DataSource = usuariosRepositorio.ObtenerUsuariosPorRol(1);
             cbPropietarios.DisplayMember = "Datos";
             cbPropietarios.ValueMember = "IdUsuario";
 
@@ -51,9 +51,9 @@ namespace seguridad_barrios_privados.Presentacion
             var fechaHoy = DateTime.Today;
             foreach (Solicitude solicitud in solicitudes)
             {
-                if (solicitud.Estado == false && solicitud.Fecha == fechaHoy)
+                if (solicitud.Baja == false && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
                 {
-                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar");
+                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar","Rechazar","Cancelar");
 
                 }
             }
@@ -63,7 +63,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '\b')
             {
-               
+
                 e.Handled = true;
             }
         }
@@ -116,7 +116,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
             {
-                
+
                 e.Handled = true;
             }
         }
@@ -125,7 +125,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
             {
-               
+
                 e.Handled = true;
             }
         }
@@ -148,11 +148,36 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            validaciones.AceptarSolicitud(dgSolicitudes);
-            MessageBox.Show("Ingreso registrado", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CargarSolicitudes();
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CAceptar"].Index)
+            {
+
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                solicitud.Estado = 1;
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarSolicitudes();
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CRechazar"].Index)
+            {
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                solicitud.Estado = 2;
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud rechazada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarSolicitudes();
+
+            }
+
+            if(e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CCancelar"].Index){
+
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                solicitud.Baja = true;
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarSolicitudes();
+            }
         }
 
 

@@ -205,24 +205,7 @@ namespace seguridad_barrios_privados.Logica
             }
         }
 
-        public void AceptarSolicitud(DataGridView solicitudes)
-        {
-            int rowIndex = solicitudes.CurrentCell.RowIndex;
-            int columnIndex = 0; // Índice de la columna que deseas
-            ingresosRepositorio = new IngresosRepositorio();
-            solicitudesRepositorio = new SolicitudesRepositorio();
-
-
-            string cellValue = solicitudes.Rows[rowIndex].Cells[columnIndex].Value.ToString();
-            int idSolicitud = int.Parse(cellValue);
-
-            if (cellValue != null)
-            {
-                ingresosRepositorio.RegistrarIngreso(idSolicitud);
-                solicitudesRepositorio.CambiarEstado(idSolicitud, true);
-            }
-
-        }
+      
 
     }
 }

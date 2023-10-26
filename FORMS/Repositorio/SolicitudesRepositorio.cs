@@ -61,7 +61,8 @@ namespace seguridad_barrios_privados.Repositorio
             {
                 IdUsuario = usuario,
                 IdVisitante = visitante,
-                Estado =false,
+                Baja = false,
+                Estado = 0,
                 Fecha = DateTime.Today
             };
 
@@ -80,11 +81,10 @@ namespace seguridad_barrios_privados.Repositorio
             return solicitud;
         }
 
-        public void CambiarEstado(int id, bool estado)
+     
+        public void ActualizarSolicitud(Solicitude solicitud)
         {
-            var solicitud = ObtenerSolicitud(id);
-
-            solicitud.Estado = estado;
+            barriosPrivadosContext.Solicitudes.Update(solicitud);
             barriosPrivadosContext.SaveChanges();
         }
     }
