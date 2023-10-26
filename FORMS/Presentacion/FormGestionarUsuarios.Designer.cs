@@ -34,6 +34,7 @@ namespace seguridad_barrios_privados.Presentacion
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            btCancelar = new RJButton();
             ErrorIcon = new FontAwesome.Sharp.IconPictureBox();
             lbError = new Label();
             tbRepetirContrasena = new RJTextBox();
@@ -78,6 +79,7 @@ namespace seguridad_barrios_privados.Presentacion
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(107, 127, 215);
+            panel1.Controls.Add(btCancelar);
             panel1.Controls.Add(ErrorIcon);
             panel1.Controls.Add(lbError);
             panel1.Controls.Add(tbRepetirContrasena);
@@ -95,6 +97,27 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.Name = "panel1";
             panel1.Size = new Size(306, 482);
             panel1.TabIndex = 0;
+            // 
+            // btCancelar
+            // 
+            btCancelar.BackColor = Color.GhostWhite;
+            btCancelar.BackgroundColor = Color.GhostWhite;
+            btCancelar.BorderColor = Color.LavenderBlush;
+            btCancelar.BorderRadius = 20;
+            btCancelar.BorderSize = 0;
+            btCancelar.FlatAppearance.BorderSize = 0;
+            btCancelar.FlatStyle = FlatStyle.Flat;
+            btCancelar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btCancelar.ForeColor = Color.Black;
+            btCancelar.Location = new Point(175, 415);
+            btCancelar.Name = "btCancelar";
+            btCancelar.Size = new Size(91, 40);
+            btCancelar.TabIndex = 26;
+            btCancelar.Text = "CANCELAR";
+            btCancelar.TextColor = Color.Black;
+            btCancelar.UseVisualStyleBackColor = false;
+            btCancelar.Visible = false;
+            btCancelar.Click += btCancelar_Click;
             // 
             // ErrorIcon
             // 
@@ -169,9 +192,9 @@ namespace seguridad_barrios_privados.Presentacion
             btRegistrar.FlatStyle = FlatStyle.Flat;
             btRegistrar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btRegistrar.ForeColor = Color.Black;
-            btRegistrar.Location = new Point(105, 415);
+            btRegistrar.Location = new Point(41, 415);
             btRegistrar.Name = "btRegistrar";
-            btRegistrar.Size = new Size(107, 40);
+            btRegistrar.Size = new Size(91, 40);
             btRegistrar.TabIndex = 9;
             btRegistrar.Text = "REGISTRAR";
             btRegistrar.TextColor = Color.Black;
@@ -573,5 +596,6 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewButtonColumn dataGridViewButtonColumn1;
         private BindingSource rolesRepositorioBindingSource1;
         private BindingSource rolesRepositorioBindingSource;
+        private RJButton btCancelar;
     }
 }

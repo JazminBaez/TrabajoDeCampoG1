@@ -18,6 +18,7 @@ using System.Security.Cryptography;
 
 namespace seguridad_barrios_privados.Presentacion
 {
+
     public partial class FormGestionarUsuarios : Form
     {
         private UsuariosRepositorio usuariosRepositorio;
@@ -50,7 +51,13 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.Refresh();
             foreach (Usuario usuario in usuarios)
             {
-                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar");
+
+                if (usuario.Estado == 0)
+                {
+                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar","Modificar");
+                    dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar", "Modificar");
             }
         }
 
@@ -96,7 +103,9 @@ namespace seguridad_barrios_privados.Presentacion
                 Direccion = tbDireccion.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
+                Estado = 0,
                 IdRol = rol != null ? rol.IdRol : null,
+
             };
 
             if (validaciones.RegistrarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
@@ -107,7 +116,6 @@ namespace seguridad_barrios_privados.Presentacion
                 CargarUsuarios();
                 RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
-
             }
 
 
@@ -135,12 +143,12 @@ namespace seguridad_barrios_privados.Presentacion
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-              
+
                 byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
                 byte[] hashBytes = sha256.ComputeHash(passwordBytes);
 
-             
+
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
                 {
@@ -149,6 +157,74 @@ namespace seguridad_barrios_privados.Presentacion
 
                 return stringBuilder.ToString();
             }
+        }
+
+        private void dgUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CDarBaja"].Index)
+            {
+
+                var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                usuario.Estado = 0;
+                usuariosRepositorio.ActualizarUsuario(usuario);
+                MessageBox.Show("Usuario dado de baja con exito", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarUsuarios();
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CModificar"].Index)
+            {
+                var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                //rellene todos los textBox con la informacion obtenida en la variable usuario
+                tbNombre.Texts = usuario.Nombre;
+                tbApellido.Texts = usuario.Apellido;
+                tbTelefono.Texts = usuario.Telefono;
+                tbDireccion.Texts = usuario.Direccion;
+                tbCorreo.Texts = usuario.Email;
+                //los campos de contrasena y repetirContrasena deben estar desabilitados
+                tbContrasena.Enabled = false;
+                tbRepetirContrasena.Enabled = false;
+                cbRol.SelectedItem = usuario.Rol;
+                //cambie el texto del boton registrar por modificar
+                btRegistrar.Text = "Modificar";
+                //cambie el evento click del boton registrar por modificar
+                btRegistrar.Click -= btRegistrar_Click;
+                btRegistrar.Click += btModificar_Click;
+                //haz visible el boton cancelar
+                btCancelar.Visible = true;
+
+
+            }
+        }
+
+
+        private void btModificar_Click(object sender, EventArgs e)
+        {
+            Role rol = (Role)cbRol.SelectedItem;
+            var usuario = new Usuario()
+            {
+                Nombre = tbNombre.Texts,
+                Apellido = tbApellido.Texts,
+                Telefono = tbTelefono.Texts,
+                Direccion = tbDireccion.Texts,
+                Email = tbCorreo.Texts,
+                Contrasena = tbContrasena.Texts,
+                Estado = 0,
+                IdRol = rol != null ? rol.IdRol : null,
+            };
+            if (validaciones.ModificarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
+            {
+                usuariosRepositorio.ActualizarUsuario(usuario);
+                MessageBox.Show("Usuario Actualizado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarUsuarios();
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+                cbRol.SelectedIndex = -1;
+            }
+        }
+
+        private void btCancelar_Click(object sender, EventArgs e)
+        {
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            cbRol.SelectedIndex = -1;
         }
     }
 }

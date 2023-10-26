@@ -18,7 +18,8 @@ namespace seguridad_barrios_privados.Repositorio
     {
         private DbBarriosPrivadosContext barriosPrivadosContext;
 
-        public UsuariosRepositorio() {
+        public UsuariosRepositorio()
+        {
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
@@ -40,8 +41,8 @@ namespace seguridad_barrios_privados.Repositorio
 
         public List<Usuario> ObtenerUsuarios()
         {
-            
-            return barriosPrivadosContext.Usuarios.Include(usuario=>usuario.Rol).ToList();
+
+            return barriosPrivadosContext.Usuarios.Include(usuario => usuario.Rol).ToList();
         }
 
         public bool ExisteUsuario(string email)
@@ -61,7 +62,7 @@ namespace seguridad_barrios_privados.Repositorio
             return usuario;
         }
 
-        public List<Usuario> ObtenerUsuariosPorId(int id)
+        public List<Usuario> ObtenerUsuariosPorRol(int id)
         {
             return barriosPrivadosContext.Usuarios.Where(u => u.IdRol == id).ToList();
         }
@@ -69,6 +70,17 @@ namespace seguridad_barrios_privados.Repositorio
         public Usuario getUsuarioByEmail(string email)
         {
             return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.Email == email);
+        }
+
+        public Usuario ObtenerUsuarioPorId(int id)
+        {
+            return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
+        }
+
+        public void ActualizarUsuario(Usuario usuario)
+        {
+            barriosPrivadosContext.Usuarios.Update(usuario);
+            barriosPrivadosContext.SaveChanges();
         }
 
     }

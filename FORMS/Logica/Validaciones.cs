@@ -104,14 +104,49 @@ namespace seguridad_barrios_privados.Logica
                     Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
                     return false;
                 }
-            
 
-         
                 return true;
 
 
             }
         }
+
+        public bool ModificarUsuario(Usuario usuario, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        {
+            var validator = new UsuarioValidators();
+            var result = validator.Validate(usuario);
+            usuariosRepositorio = new UsuariosRepositorio();
+
+            if (!result.IsValid)
+            {
+                if (usuario.Contrasena != repetirContrasena)
+                {
+                    Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
+
+                }
+                else
+                {
+                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                }
+
+                return false;
+            }
+            else
+            {
+                string emailAntiguo = usuariosRepositorio.ObtenerUsuarioPorId(usuario.IdUsuario).Email;
+
+                if (emailAntiguo != usuario.Email && usuariosRepositorio.ExisteUsuario(usuario.Email))
+                {
+                    Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
+                    return false;
+                }
+
+                return true;
+
+
+            }
+        }
+
 
         public bool RegistrarSolicitud(Visitante visitante, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
@@ -124,10 +159,10 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                
-                
-                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
-                
+
+
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+
 
                 return false;
             }
@@ -142,7 +177,7 @@ namespace seguridad_barrios_privados.Logica
             {
                 if (visitantesRepositorio.ExisteVisitante(visitante.Dni))
                 {
-                    
+
                     var visitanteEncontrado = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni);
                     string mensaje = $"Visitante encontrado: {visitanteEncontrado.NombreCompleto}, DNI: {visitanteEncontrado.Dni}";
                     DialogResult resultado = MessageBox.Show(mensaje, "Mensaje de Visitante", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
@@ -162,7 +197,7 @@ namespace seguridad_barrios_privados.Logica
                     IdVisitante = visitantesRepositorio.RegistrarVisitante(visitante);
                 }
 
-                
+
                 IdPropietario = (int)propietario.SelectedValue;
                 solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario);
 
@@ -177,16 +212,16 @@ namespace seguridad_barrios_privados.Logica
             ingresosRepositorio = new IngresosRepositorio();
             solicitudesRepositorio = new SolicitudesRepositorio();
 
-            
-                string cellValue = solicitudes.Rows[rowIndex].Cells[columnIndex].Value.ToString();
-                 int idSolicitud = int.Parse(cellValue);
 
-                if (cellValue != null)
-                {
-                   ingresosRepositorio.RegistrarIngreso(idSolicitud);
-                   solicitudesRepositorio.CambiarEstado(idSolicitud, true);
-                }
-            
+            string cellValue = solicitudes.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+            int idSolicitud = int.Parse(cellValue);
+
+            if (cellValue != null)
+            {
+                ingresosRepositorio.RegistrarIngreso(idSolicitud);
+                solicitudesRepositorio.CambiarEstado(idSolicitud, true);
+            }
+
         }
 
     }

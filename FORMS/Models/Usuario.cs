@@ -23,6 +23,8 @@ public partial class Usuario
 
     public virtual Role? Rol { get; set; }
 
+    public int? Estado { get; set; }
+
     public virtual ICollection<Solicitude> Solicitudes { get; set; } = new List<Solicitude>();
 
     public string NombreCompleto => $"{Nombre} {Apellido}";

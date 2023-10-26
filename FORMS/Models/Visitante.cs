@@ -14,6 +14,5 @@ public partial class Visitante
     public string? Dni { get; set; }
 
     public virtual ICollection<Solicitude> Solicitudes { get; set; } = new List<Solicitude>();
-
     public string NombreCompleto => $"{Nombre} {Apellido}";
 }
