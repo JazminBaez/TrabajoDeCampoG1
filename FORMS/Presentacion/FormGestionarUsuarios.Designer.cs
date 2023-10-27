@@ -63,7 +63,8 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewButtonColumn1 = new DataGridViewButtonColumn();
+            CDarBaja = new DataGridViewButtonColumn();
+            CModificar = new DataGridViewButtonColumn();
             rolesRepositorioBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
@@ -475,7 +476,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewButtonColumn1 });
+            dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, CDarBaja, CModificar });
             dgUsuarios.EnableHeadersVisualStyles = false;
             dgUsuarios.GridColor = Color.MediumAquamarine;
             dgUsuarios.Location = new Point(36, 32);
@@ -491,6 +492,7 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.RowTemplate.Height = 25;
             dgUsuarios.Size = new Size(494, 375);
             dgUsuarios.TabIndex = 11;
+            dgUsuarios.CellContentClick += dgUsuarios_CellContentClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -528,11 +530,20 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.Width = 84;
             // 
-            // dataGridViewButtonColumn1
+            // CDarBaja
             // 
-            dataGridViewButtonColumn1.HeaderText = "Eliminiar";
-            dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            dataGridViewButtonColumn1.Width = 75;
+            CDarBaja.HeaderText = "Dar Baja";
+            CDarBaja.Name = "CDarBaja";
+            CDarBaja.Width = 76;
+            // 
+            // CModificar
+            // 
+            CModificar.HeaderText = "Modificar";
+            CModificar.Name = "CModificar";
+            CModificar.ReadOnly = true;
+            CModificar.Resizable = DataGridViewTriState.True;
+            CModificar.SortMode = DataGridViewColumnSortMode.Automatic;
+            CModificar.Width = 103;
             // 
             // rolesRepositorioBindingSource
             // 
@@ -587,15 +598,16 @@ namespace seguridad_barrios_privados.Presentacion
         private RJTextBox tbRepetirContrasena;
         private FontAwesome.Sharp.IconPictureBox ErrorIcon;
         private Label lbError;
+        private BindingSource rolesRepositorioBindingSource1;
+        private BindingSource rolesRepositorioBindingSource;
+        private RJButton btCancelar;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewButtonColumn dataGridViewButtonColumn1;
-        private BindingSource rolesRepositorioBindingSource1;
-        private BindingSource rolesRepositorioBindingSource;
-        private RJButton btCancelar;
+        private DataGridViewButtonColumn CDarBaja;
+        private DataGridViewButtonColumn CModificar;
     }
 }

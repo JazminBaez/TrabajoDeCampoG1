@@ -85,7 +85,7 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                if (usuario.Contrasena != repetirContrasena)
+                if (usuario.Contrasena != repetirContrasena || repetirContrasena == null)
                 {
                     Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
 
@@ -111,35 +111,32 @@ namespace seguridad_barrios_privados.Logica
             }
         }
 
-        public bool ModificarUsuario(Usuario usuario, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        public bool ModificarUsuario(Usuario usuario, string correoOriginal, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
-            var validator = new UsuarioValidators();
+            var validator = new ModificarUsuarioValidators();
             var result = validator.Validate(usuario);
             usuariosRepositorio = new UsuariosRepositorio();
 
             if (!result.IsValid)
             {
-                if (usuario.Contrasena != repetirContrasena)
-                {
-                    Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
-
-                }
-                else
-                {
                     Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
-                }
-
                 return false;
             }
             else
             {
-                string emailAntiguo = usuariosRepositorio.ObtenerUsuarioPorId(usuario.IdUsuario).Email;
+                string emailNuevo = usuario.Email;
 
-                if (emailAntiguo != usuario.Email && usuariosRepositorio.ExisteUsuario(usuario.Email))
-                {
-                    Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
-                    return false;
-                }
+                    if (emailNuevo != correoOriginal){
+
+
+                        if (usuariosRepositorio.ExisteUsuario(usuario.Email))
+                        {
+                        Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
+                        return false;
+                    }
+                   
+              }
+        
 
                 return true;
 

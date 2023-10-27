@@ -35,7 +35,7 @@ namespace seguridad_barrios_privados.Presentacion
             var fechaHoy = DateTime.Today;
             foreach (Solicitude solicitud in solicitudes)
             {
-                if (solicitud.Estado == true)
+                if (solicitud.Baja == false)
                 {
                     dgMovimientos.Rows.Add(solicitud.IdSolicitud, "Ingreso", solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
                 }

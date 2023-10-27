@@ -10,6 +10,7 @@ using seguridad_barrios_privados.Logica;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Presentacion;
 using System.Data;
+using System.Runtime.Versioning;
 
 namespace seguridad_barrios_privados.Repositorio
 {
@@ -77,10 +78,21 @@ namespace seguridad_barrios_privados.Repositorio
             return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
         }
 
-        public void ActualizarUsuario(Usuario usuario)
+        public void ActualizarUsuario(Usuario usuario, int id)
         {
-            barriosPrivadosContext.Usuarios.Update(usuario);
+            var usuarioActualizar = this.ObtenerUsuarioPorId(id);
+
+                //actualiza las propiedades de usuarioActualizar con las de usuario menos con barriosPrivadosContext.Entry(usuarioActualizar).CurrentValues.SetValues(usuario); porque eso me actualiza la id y me da error
+                usuarioActualizar.Nombre = usuario.Nombre;
+                usuarioActualizar.Apellido = usuario.Apellido;
+                usuarioActualizar.Telefono = usuario.Telefono;
+                usuarioActualizar.Direccion = usuario.Direccion;
+                usuarioActualizar.Email = usuario.Email;
+                usuarioActualizar.IdRol = usuario.IdRol;
+                usuarioActualizar.Estado = usuario.Estado;
+            //guarda los cambios
             barriosPrivadosContext.SaveChanges();
+
         }
 
     }

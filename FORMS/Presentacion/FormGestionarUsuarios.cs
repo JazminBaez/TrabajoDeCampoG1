@@ -24,6 +24,8 @@ namespace seguridad_barrios_privados.Presentacion
         private UsuariosRepositorio usuariosRepositorio;
         private RolesRepositorio rolesRepositorio;
         private Validaciones validaciones;
+        private string correoOriginal;
+        private int usuarioId;
         public FormGestionarUsuarios()
         {
 
@@ -31,7 +33,7 @@ namespace seguridad_barrios_privados.Presentacion
             usuariosRepositorio = new UsuariosRepositorio();
             rolesRepositorio = new RolesRepositorio();
             validaciones = new Validaciones();
-
+           
             cbRol.DisplayMember = "rolcompleto";
 
             foreach (Role rol in rolesRepositorio.ObtenerRoles())
@@ -54,10 +56,15 @@ namespace seguridad_barrios_privados.Presentacion
 
                 if (usuario.Estado == 1)
                 {
-                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar","Modificar");
-                    dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar", "Modificar");
+                    Color colorOscuro = Color.FromArgb(25, 46, 71);
+                    Color colorTexto = Color.FromArgb(45, 66, 91);
+                    dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
+                    dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
+
+                    continue;
                 }
-                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Eliminar", "Modificar");
+                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Dar Baja", "Modificar");
             }
         }
 
@@ -165,10 +172,19 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
-                usuario.Estado = 0;
-                usuariosRepositorio.ActualizarUsuario(usuario);
+                if(usuario.Estado == 1)
+                {
+                    usuario.Estado = 0;
+                }
+                else
+                {
+                    usuario.Estado = 1;
+                }
+                usuarioId = usuario.IdUsuario;
+                usuariosRepositorio.ActualizarUsuario(usuario, usuarioId);
                 MessageBox.Show("Usuario dado de baja con exito", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
+
             }
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CModificar"].Index)
@@ -180,18 +196,23 @@ namespace seguridad_barrios_privados.Presentacion
                 tbTelefono.Texts = usuario.Telefono;
                 tbDireccion.Texts = usuario.Direccion;
                 tbCorreo.Texts = usuario.Email;
+
                 //los campos de contrasena y repetirContrasena deben estar desabilitados
                 tbContrasena.Enabled = false;
+                tbContrasena.BackColor = Color.LightGray;
                 tbRepetirContrasena.Enabled = false;
+                tbRepetirContrasena.BackColor = Color.LightGray;
                 cbRol.SelectedItem = usuario.Rol;
                 //cambie el texto del boton registrar por modificar
-                btRegistrar.Text = "Modificar";
+                btRegistrar.Text = "GUARDAR";
                 //cambie el evento click del boton registrar por modificar
                 btRegistrar.Click -= btRegistrar_Click;
                 btRegistrar.Click += btModificar_Click;
                 //haz visible el boton cancelar
                 btCancelar.Visible = true;
 
+                correoOriginal = usuario.Email;
+                usuarioId = usuario.IdUsuario;
 
             }
         }
@@ -208,16 +229,20 @@ namespace seguridad_barrios_privados.Presentacion
                 Direccion = tbDireccion.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
-                Estado = 0,
+                Estado = usuariosRepositorio.ObtenerUsuarioPorId(usuarioId).Estado,
                 IdRol = rol != null ? rol.IdRol : null,
             };
-            if (validaciones.ModificarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
+            if (validaciones.ModificarUsuario(usuario, correoOriginal, lbError, ErrorIcon, dgUsuarios))
             {
-                usuariosRepositorio.ActualizarUsuario(usuario);
+                usuariosRepositorio.ActualizarUsuario(usuario, usuarioId);
                 MessageBox.Show("Usuario Actualizado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
                 RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
+                btCancelar.Visible = false;
+                btRegistrar.Text = "REGISTRAR";
+                tbContrasena.Enabled = false;
+                tbRepetirContrasena.Enabled = false;
             }
         }
 
@@ -225,6 +250,10 @@ namespace seguridad_barrios_privados.Presentacion
         {
             RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
+            btCancelar.Visible = false;
+            btRegistrar.Text = "REGISTRAR";
+            tbContrasena.Enabled = false;
+            tbRepetirContrasena.Enabled = false;
         }
     }
 }

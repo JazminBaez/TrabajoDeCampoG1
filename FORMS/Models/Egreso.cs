@@ -13,5 +13,7 @@ public partial class Egreso
 
     public string? Observaciones { get; set; }
 
+    public int? Estado { get; set; }
+
     public virtual Ingreso? IdIngresoNavigation { get; set; }
 }
