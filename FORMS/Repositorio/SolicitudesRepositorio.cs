@@ -55,7 +55,7 @@ namespace seguridad_barrios_privados.Repositorio
             return solicitudes;
         }
 
-        public void RegistrarSolicitud(int visitante, int usuario)
+        public void RegistrarSolicitud(int visitante, int usuario, DateTime fecha)
         {
             var solicitud = new Solicitude()
             {
@@ -63,7 +63,7 @@ namespace seguridad_barrios_privados.Repositorio
                 IdVisitante = visitante,
                 Baja = false,
                 Estado = 0,
-                Fecha = DateTime.Today
+                Fecha = fecha
             };
 
             barriosPrivadosContext.Solicitudes.Add(solicitud);

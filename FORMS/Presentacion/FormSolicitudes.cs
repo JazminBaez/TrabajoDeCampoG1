@@ -1,4 +1,6 @@
-﻿using seguridad_barrios_privados.Logica;
+﻿using FontAwesome.Sharp;
+using seguridad_barrios_privados.Controls;
+using seguridad_barrios_privados.Logica;
 using seguridad_barrios_privados.Models;
 using seguridad_barrios_privados.Repositorio;
 using System;
@@ -24,7 +26,10 @@ namespace seguridad_barrios_privados.Presentacion
         {
             InitializeComponent();
             solicitudesRepositorio = new SolicitudesRepositorio();
+            visitantesRepositorio = new VisitantesRepositorio();
+            validaciones = new Validaciones();
             CargarSolicitudes();
+
         }
 
         private void CargarSolicitudes()
@@ -33,28 +38,55 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
             var fechaHoy = DateTime.Today;
-            foreach (Solicitude solicitud in solicitudes)
+            if (solicitudes != null)
+            {
 
-                if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario)
+                foreach (Solicitude solicitud in solicitudes)
                 {
-                    string estadoSolicitud;
-                    int estado = solicitud.Estado ?? 0;
 
-                    switch (estado)
+                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Baja != true)
                     {
-                        default:
-                            estadoSolicitud = "pendiente";
-                            break;
-                        case 1:
-                            estadoSolicitud = "aceptado";
-                            break;
-                        case 2:
-                            estadoSolicitud = "rechazado";
-                            break;
-                    }
-                    dgSolicitudes.Rows.Add(estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Cancelar");
+                        string estadoSolicitud;
+                        int estado = solicitud.Estado ?? 0;
 
+                        switch (estado)
+                        {
+                            default:
+                                estadoSolicitud = "pendiente";
+                                break;
+                            case 1:
+                                estadoSolicitud = "aceptado";
+                                break;
+                            case 2:
+                                estadoSolicitud = "rechazado";
+                                dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Eliminar");
+                                Color colorOscuro = Color.FromArgb(25, 46, 71);
+                                Color colorTexto = Color.FromArgb(45, 66, 91);
+                                dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
+                                dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
+
+                                continue;
+
+                        }
+                        dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Cancelar");
+
+                    }
                 }
+            }
+        }
+
+        private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
+            {
+
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
+                solicitud.Baja = true;
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarSolicitudes();
+            }
         }
 
 
@@ -85,12 +117,38 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrar_Click(object sender, EventArgs e)
         {
-            if (!(Validaciones.CamposCompletos(tbNombre, tbApellido, tbDni)))
+            var visitante = new Visitante()
             {
-                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
-            }
-        }
+                Nombre = tbNombre.Texts,
+                Apellido = tbApellido.Texts,
+                Dni = tbDni.Texts
+            };
 
+            //fuarda en fechaProgramada la fecha seleccionada en dtFechaMovimientos
+            var fechaProgramada = dtFechaMovimeintos.Value;
+
+            if (validaciones.RegistrarSolicitud(visitante, fechaProgramada, null, lbError, ErrorIcon, dgSolicitudes))
+            {
+
+                MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarSolicitudes();
+                RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
+                dtFechaMovimeintos.DataContext = DateTime.Today;
+
+            }
+
+        }
+        private static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
+        {
+            foreach (var campo in campos)
+            {
+                campo.Texts = string.Empty;
+                campo.BorderColor = SystemColors.Window;
+            }
+            error.Visible = false;
+            errorIcon.Visible = false;
+
+        }
         private void lbError_Click(object sender, EventArgs e)
         {
 

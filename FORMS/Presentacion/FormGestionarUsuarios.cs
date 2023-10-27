@@ -241,8 +241,10 @@ namespace seguridad_barrios_privados.Presentacion
                 cbRol.SelectedIndex = -1;
                 btCancelar.Visible = false;
                 btRegistrar.Text = "REGISTRAR";
-                tbContrasena.Enabled = false;
-                tbRepetirContrasena.Enabled = false;
+                tbContrasena.Enabled = true;
+                tbRepetirContrasena.Enabled = true;
+                tbContrasena.BackColor = Color.White;
+                tbRepetirContrasena.BackColor = Color.White;
             }
         }
 
@@ -254,6 +256,8 @@ namespace seguridad_barrios_privados.Presentacion
             btRegistrar.Text = "REGISTRAR";
             tbContrasena.Enabled = false;
             tbRepetirContrasena.Enabled = false;
+            tbContrasena.BackColor = Color.White;
+            tbRepetirContrasena.BackColor = Color.White;
         }
     }
 }

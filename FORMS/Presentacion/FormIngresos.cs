@@ -23,12 +23,14 @@ namespace seguridad_barrios_privados.Presentacion
         private Validaciones validaciones;
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
+        private IngresosRepositorio ingresosRepositorio;
 
         public FormIngresos()
         {
             InitializeComponent();
             usuariosRepositorio = new UsuariosRepositorio();
             solicitudesRepositorio = new SolicitudesRepositorio();
+            ingresosRepositorio = new IngresosRepositorio();
             validaciones = new Validaciones();
 
             cbPropietarios.DataSource = usuariosRepositorio.ObtenerUsuariosPorRol(1);
@@ -53,7 +55,7 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (solicitud.Baja == false && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
                 {
-                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar","Rechazar","Cancelar");
+                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar", "Rechazar", "Cancelar");
 
                 }
             }
@@ -84,9 +86,10 @@ namespace seguridad_barrios_privados.Presentacion
                 Apellido = tbApellido.Texts,
                 Dni = tbDni.Texts
             };
+        
+          var fechaHoy = DateTime.Today;
 
-
-            if (validaciones.RegistrarSolicitud(visitante, cbPropietarios, lbError, ErrorIcon, dgSolicitudes))
+            if (validaciones.RegistrarSolicitud(visitante, fechaHoy, cbPropietarios, lbError, ErrorIcon, dgSolicitudes))
             {
 
                 MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -150,29 +153,35 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CAceptar"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CAceptarSolicitud"].Index)
             {
 
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
                 solicitud.Estado = 1;
+                if (ingresosRepositorio.RegistrarIngreso(solicitud.IdSolicitud))
+                {
+                    solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                    MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+                CargarSolicitudes();
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CRechazar"].Index)
+            {
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
+                solicitud.Estado = 2;
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
                 MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarSolicitudes();
+
             }
 
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CRechazar"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
             {
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Estado = 2;
-                solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                MessageBox.Show("Solicitud rechazada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarSolicitudes();
 
-            }
-
-            if(e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CCancelar"].Index){
-
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
+                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
                 solicitud.Baja = true;
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
                 MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);

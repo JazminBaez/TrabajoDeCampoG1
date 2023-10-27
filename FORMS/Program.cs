@@ -18,7 +18,7 @@ namespace seguridad_barrios_privados.Presentacion
             DbContextOptionsBuilder<DbBarriosPrivadosContext> optionsBuilder = new();
             DbBarriosPrivadosContext dbBarriosPrivadosContext = new(optionsBuilder.UseSqlServer(stringConection).Options);
             Contexto.dbBarriosPrivadosContext = dbBarriosPrivadosContext;
-            Application.Run(new FormGestionarUsuarios());
+            Application.Run(new Login());
         }
     }
 }

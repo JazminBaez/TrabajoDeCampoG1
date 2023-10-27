@@ -18,18 +18,18 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
-        public void RegistrarIngreso(int solicitud)
+        public bool RegistrarIngreso(int solicitud)
         {
             var ingreso = new Ingreso()
             {
                 IdSolicitud = solicitud,
-
                 Fecha = DateTime.Today
             };
 
+            //agrega ese ingreso a la base de datos
             barriosPrivadosContext.Ingresos.Add(ingreso);
             barriosPrivadosContext.SaveChanges();
-
+            return true;
         }
 
     }

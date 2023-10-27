@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -145,7 +146,7 @@ namespace seguridad_barrios_privados.Logica
         }
 
 
-        public bool RegistrarSolicitud(Visitante visitante, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        public bool RegistrarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
             var validator = new VisitanteValidators();
             var result = validator.Validate(visitante);
@@ -163,15 +164,14 @@ namespace seguridad_barrios_privados.Logica
 
                 return false;
             }
-
-            if (propietario.SelectedIndex == -1)
-            {
-                Validaciones.MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg, errorIcon);
-                return false;
-            }
-
             else
             {
+                if (AppState.UsuarioActual.IdRol == 3 && (propietario == null || propietario.SelectedIndex == -1))
+                {
+                    Validaciones.MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg, errorIcon);
+                    return false;
+                }
+
                 if (visitantesRepositorio.ExisteVisitante(visitante.Dni))
                 {
 
@@ -195,8 +195,16 @@ namespace seguridad_barrios_privados.Logica
                 }
 
 
-                IdPropietario = (int)propietario.SelectedValue;
-                solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario);
+                if(AppState.UsuarioActual.IdRol == 3)
+                {
+                    IdPropietario = (int)propietario.SelectedValue;
+                }
+                else
+                {
+                    IdPropietario = AppState.UsuarioActual.IdUsuario;
+                }
+                
+                solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario, fecha);
 
                 return true;
             }

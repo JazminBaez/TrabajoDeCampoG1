@@ -70,7 +70,7 @@ namespace seguridad_barrios_privados.Presentacion
             CVisitante_soli = new DataGridViewTextBoxColumn();
             CVisitante_Dni = new DataGridViewTextBoxColumn();
             CFecha_soli = new DataGridViewTextBoxColumn();
-            CAceptar_soli = new DataGridViewButtonColumn();
+            CAceptarSolicitud = new DataGridViewButtonColumn();
             CRechazar = new DataGridViewButtonColumn();
             CCancelar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
@@ -338,7 +338,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptar_soli, CRechazar, CCancelar });
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptarSolicitud, CRechazar, CCancelar });
             dgSolicitudes.EnableHeadersVisualStyles = false;
             dgSolicitudes.GridColor = Color.MediumAquamarine;
             dgSolicitudes.Location = new Point(24, 61);
@@ -557,11 +557,11 @@ namespace seguridad_barrios_privados.Presentacion
             CFecha_soli.Name = "CFecha_soli";
             CFecha_soli.ReadOnly = true;
             // 
-            // CAceptar_soli
+            // CAceptarSolicitud
             // 
-            CAceptar_soli.HeaderText = "Aceptar";
-            CAceptar_soli.Name = "CAceptar_soli";
-            CAceptar_soli.ReadOnly = true;
+            CAceptarSolicitud.HeaderText = "Aceptar";
+            CAceptarSolicitud.Name = "CAceptarSolicitud";
+            CAceptarSolicitud.ReadOnly = true;
             // 
             // CRechazar
             // 
@@ -639,7 +639,7 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CVisitante_soli;
         private DataGridViewTextBoxColumn CVisitante_Dni;
         private DataGridViewTextBoxColumn CFecha_soli;
-        private DataGridViewButtonColumn CAceptar_soli;
+        private DataGridViewButtonColumn CAceptarSolicitud;
         private DataGridViewButtonColumn CRechazar;
         private DataGridViewButtonColumn CCancelar;
     }
