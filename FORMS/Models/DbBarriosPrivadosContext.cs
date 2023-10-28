@@ -39,7 +39,7 @@ namespace seguridad_barrios_privados.Models
                 entity.ToTable("egresos");
 
                 entity.Property(e => e.IdEgreso).HasColumnName("id_egreso");
-                entity.Property(e => e.Estado).HasColumnName("estado");
+           
                 entity.Property(e => e.Fecha)
                     .HasColumnType("date")
                     .HasColumnName("fecha");

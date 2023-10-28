@@ -124,17 +124,15 @@ namespace seguridad_barrios_privados.Presentacion
                 Dni = tbDni.Texts
             };
 
-            //fuarda en fechaProgramada la fecha seleccionada en dtFechaMovimientos
+           
             var fechaProgramada = dtFechaMovimeintos.Value;
 
             if (validaciones.RegistrarSolicitud(visitante, fechaProgramada, null, lbError, ErrorIcon, dgSolicitudes))
             {
-
                 MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarSolicitudes();
                 RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
                 dtFechaMovimeintos.DataContext = DateTime.Today;
-
             }
 
         }
