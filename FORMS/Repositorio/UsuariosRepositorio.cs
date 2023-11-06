@@ -95,5 +95,11 @@ namespace seguridad_barrios_privados.Repositorio
 
         }
 
+        public List<Usuario> FiltrarUsuariosNombre(string nombre)
+        {
+            return barriosPrivadosContext.Usuarios.Where(u => u.NombreCompleto.ToLowerInvariant().Contains(nombre!.ToLowerInvariant())).ToList();
+
+        }
+
     }
 }

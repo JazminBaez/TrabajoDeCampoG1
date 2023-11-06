@@ -56,7 +56,6 @@ namespace seguridad_barrios_privados.Presentacion
                 if (solicitud.Baja == false && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
                 {
                     dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar", "Rechazar", "Cancelar");
-
                 }
             }
         }

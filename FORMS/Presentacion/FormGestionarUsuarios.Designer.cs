@@ -50,10 +50,10 @@ namespace seguridad_barrios_privados.Presentacion
             rolesRepositorioBindingSource1 = new BindingSource(components);
             iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
             panel2 = new Panel();
+            cbFiltrarUsuarios = new ComboBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             btnBuscar = new FontAwesome.Sharp.IconPictureBox();
             tbBuscarUsuario = new RJTextBox();
-            cbFiltrarUsuarios = new ComboBox();
             lbFiltrarUsuarios = new Label();
             panel3 = new Panel();
             dgUsuarios = new DataGridView();
@@ -278,6 +278,7 @@ namespace seguridad_barrios_privados.Presentacion
             cbRol.Name = "cbRol";
             cbRol.Size = new Size(225, 28);
             cbRol.TabIndex = 5;
+            cbRol.Text = "Rol";
             cbRol.SelectedIndexChanged += cbRol_SelectedIndexChanged;
             // 
             // tbDireccion
@@ -363,16 +364,28 @@ namespace seguridad_barrios_privados.Presentacion
             // panel2
             // 
             panel2.BackColor = SystemColors.Desktop;
+            panel2.Controls.Add(cbFiltrarUsuarios);
             panel2.Controls.Add(iconPictureBox1);
             panel2.Controls.Add(btnBuscar);
             panel2.Controls.Add(tbBuscarUsuario);
-            panel2.Controls.Add(cbFiltrarUsuarios);
             panel2.Controls.Add(lbFiltrarUsuarios);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(306, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(552, 75);
             panel2.TabIndex = 1;
+            // 
+            // cbFiltrarUsuarios
+            // 
+            cbFiltrarUsuarios.AutoCompleteCustomSource.AddRange(new string[] { "Administrador", "Propietario", "Guardia" });
+            cbFiltrarUsuarios.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbFiltrarUsuarios.FormattingEnabled = true;
+            cbFiltrarUsuarios.Location = new Point(283, 35);
+            cbFiltrarUsuarios.Name = "cbFiltrarUsuarios";
+            cbFiltrarUsuarios.Size = new Size(123, 28);
+            cbFiltrarUsuarios.TabIndex = 16;
+            cbFiltrarUsuarios.Text = "Rol";
+            cbFiltrarUsuarios.SelectedIndexChanged += cbFiltrarUsuarios_SelectedIndexChanged;
             // 
             // iconPictureBox1
             // 
@@ -387,6 +400,7 @@ namespace seguridad_barrios_privados.Presentacion
             iconPictureBox1.Size = new Size(32, 32);
             iconPictureBox1.TabIndex = 15;
             iconPictureBox1.TabStop = false;
+            iconPictureBox1.Click += iconPictureBox1_Click;
             // 
             // btnBuscar
             // 
@@ -396,7 +410,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             btnBuscar.IconColor = SystemColors.Control;
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.Location = new Point(200, 29);
+            btnBuscar.Location = new Point(460, 31);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(32, 32);
             btnBuscar.TabIndex = 14;
@@ -413,7 +427,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbBuscarUsuario.BorderSize = 2;
             tbBuscarUsuario.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             tbBuscarUsuario.ForeColor = Color.FromArgb(64, 64, 64);
-            tbBuscarUsuario.Location = new Point(22, 29);
+            tbBuscarUsuario.Location = new Point(36, 29);
             tbBuscarUsuario.Margin = new Padding(4);
             tbBuscarUsuario.Multiline = false;
             tbBuscarUsuario.Name = "tbBuscarUsuario";
@@ -425,18 +439,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbBuscarUsuario.TabIndex = 11;
             tbBuscarUsuario.Texts = "";
             tbBuscarUsuario.UnderlinedStyle = false;
-            // 
-            // cbFiltrarUsuarios
-            // 
-            cbFiltrarUsuarios.Anchor = AnchorStyles.None;
-            cbFiltrarUsuarios.AutoCompleteCustomSource.AddRange(new string[] { "Administrador", "Propietario", "Guardia" });
-            cbFiltrarUsuarios.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cbFiltrarUsuarios.Items.AddRange(new object[] { "Administradores", "Guardias", "Propietarios" });
-            cbFiltrarUsuarios.Location = new Point(283, 35);
-            cbFiltrarUsuarios.Name = "cbFiltrarUsuarios";
-            cbFiltrarUsuarios.Size = new Size(117, 25);
-            cbFiltrarUsuarios.TabIndex = 13;
-            cbFiltrarUsuarios.Text = "Roles";
+            tbBuscarUsuario._TextChanged += tbBuscarUsuario__TextChanged;
             // 
             // lbFiltrarUsuarios
             // 
@@ -589,7 +592,6 @@ namespace seguridad_barrios_privados.Presentacion
         private RJTextBox tbContrasena;
         private Panel panel2;
         private Label lbFiltrarUsuarios;
-        private ComboBox cbFiltrarUsuarios;
         private Panel panel3;
         private RJTextBox tbBuscarUsuario;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
@@ -609,5 +611,6 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewButtonColumn CDarBaja;
         private DataGridViewButtonColumn CModificar;
+        private ComboBox cbFiltrarUsuarios;
     }
 }

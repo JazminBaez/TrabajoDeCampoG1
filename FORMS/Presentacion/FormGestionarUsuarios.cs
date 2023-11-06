@@ -15,6 +15,7 @@ using seguridad_barrios_privados.Repositorio;
 using seguridad_barrios_privados.Models;
 using FontAwesome.Sharp;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -26,6 +27,10 @@ namespace seguridad_barrios_privados.Presentacion
         private Validaciones validaciones;
         private string correoOriginal;
         private int usuarioId;
+        private List<Usuario> ListaUsuarios;
+        private List<Usuario> ListaBackup;
+        private string busquedaPrevia;
+       
         public FormGestionarUsuarios()
         {
 
@@ -33,25 +38,29 @@ namespace seguridad_barrios_privados.Presentacion
             usuariosRepositorio = new UsuariosRepositorio();
             rolesRepositorio = new RolesRepositorio();
             validaciones = new Validaciones();
-           
+
             cbRol.DisplayMember = "rolcompleto";
+            cbFiltrarUsuarios.DisplayMember = "rolcompleto";
 
             foreach (Role rol in rolesRepositorio.ObtenerRoles())
             {
                 cbRol.Items.Add(rol);
+                cbFiltrarUsuarios.Items.Add(rol);
             }
 
 
-
+            ListaUsuarios = new List<Usuario>();
+            ListaBackup = new List<Usuario>();
+            busquedaPrevia = string.Empty;
             CargarUsuarios();
         }
 
         private void CargarUsuarios()
         {
-            List<Usuario> usuarios = usuariosRepositorio.ObtenerUsuarios();
+        
             dgUsuarios.Rows.Clear();
             dgUsuarios.Refresh();
-            foreach (Usuario usuario in usuarios)
+            foreach (Usuario usuario in ListaUsuarios)
             {
 
                 if (usuario.Estado == 1)
@@ -68,13 +77,13 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
+ 
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (Validaciones.CamposCompletos(tbBuscarUsuario))
-            {
-                //buscar usuario
-            }
+
+
+
         }
 
 
@@ -172,7 +181,7 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
-                if(usuario.Estado == 1)
+                if (usuario.Estado == 1)
                 {
                     usuario.Estado = 0;
                 }
@@ -258,6 +267,36 @@ namespace seguridad_barrios_privados.Presentacion
             tbRepetirContrasena.Enabled = false;
             tbContrasena.BackColor = Color.White;
             tbRepetirContrasena.BackColor = Color.White;
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            CargarUsuarios();
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            cbRol.SelectedIndex = -1;
+            cbFiltrarUsuarios.SelectedIndex = -1;
+            ListaUsuarios = usuariosRepositorio.ObtenerUsuarios();
+            ListaBackup = usuariosRepositorio.ObtenerUsuarios();
+        }
+
+        private void cbFiltrarUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbBuscarUsuario__TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbBuscarUsuario.Texts))
+            {
+            
+                 ListaUsuarios = usuariosRepositorio.FiltrarUsuariosNombre(tbBuscarUsuario.Texts);
+                
+            }
+            else
+            {
+                view.ProductsList = products;
+            }
+            view.LoadProducts();
         }
     }
 }

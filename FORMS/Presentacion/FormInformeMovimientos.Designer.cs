@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
@@ -40,17 +42,25 @@
             panel4 = new Panel();
             panel3 = new Panel();
             dgMovimientos = new DataGridView();
+            dgEgreso = new DataGridView();
             CIDmovimientp = new DataGridViewTextBoxColumn();
-            Ctipo = new DataGridViewTextBoxColumn();
             CResponsable = new DataGridViewTextBoxColumn();
             CVisitante = new DataGridViewTextBoxColumn();
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
+            CEgreso = new DataGridViewButtonColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            CObservaciones = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgMovimientos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgEgreso).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -154,6 +164,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
+            panel3.Controls.Add(dgEgreso);
             panel3.Controls.Add(dgMovimientos);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
@@ -169,6 +180,40 @@
             dgMovimientos.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgMovimientos.BorderStyle = BorderStyle.None;
             dgMovimientos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, CResponsable, CVisitante, CDNIvisitante, Cfecha, CEgreso });
+            dgMovimientos.EnableHeadersVisualStyles = false;
+            dgMovimientos.GridColor = Color.MediumAquamarine;
+            dgMovimientos.Location = new Point(34, 22);
+            dgMovimientos.Margin = new Padding(3, 15, 3, 3);
+            dgMovimientos.Name = "dgMovimientos";
+            dgMovimientos.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dgMovimientos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgMovimientos.RowTemplate.Height = 25;
+            dgMovimientos.Size = new Size(794, 262);
+            dgMovimientos.TabIndex = 12;
+            // 
+            // dgEgreso
+            // 
+            dgEgreso.AllowUserToAddRows = false;
+            dgEgreso.Anchor = AnchorStyles.None;
+            dgEgreso.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgEgreso.BackgroundColor = Color.FromArgb(45, 66, 91);
+            dgEgreso.BorderStyle = BorderStyle.None;
+            dgEgreso.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
             dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
@@ -176,35 +221,31 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CIDmovimientp, Ctipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
-            dgMovimientos.EnableHeadersVisualStyles = false;
-            dgMovimientos.GridColor = Color.MediumAquamarine;
-            dgMovimientos.Location = new Point(34, 22);
-            dgMovimientos.Margin = new Padding(3, 15, 3, 3);
-            dgMovimientos.Name = "dgMovimientos";
-            dgMovimientos.RowHeadersVisible = false;
+            dgEgreso.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgEgreso.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgEgreso.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, CObservaciones });
+            dgEgreso.EnableHeadersVisualStyles = false;
+            dgEgreso.GridColor = Color.MediumAquamarine;
+            dgEgreso.Location = new Point(34, 321);
+            dgEgreso.Margin = new Padding(3, 15, 3, 3);
+            dgEgreso.Name = "dgEgreso";
+            dgEgreso.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
             dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dgMovimientos.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            dgMovimientos.RowTemplate.Height = 25;
-            dgMovimientos.Size = new Size(794, 372);
-            dgMovimientos.TabIndex = 12;
+            dgEgreso.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dgEgreso.RowTemplate.Height = 25;
+            dgEgreso.Size = new Size(794, 73);
+            dgEgreso.TabIndex = 13;
             // 
             // CIDmovimientp
             // 
             CIDmovimientp.HeaderText = "ID";
             CIDmovimientp.Name = "CIDmovimientp";
             CIDmovimientp.ReadOnly = true;
-            // 
-            // Ctipo
-            // 
-            Ctipo.HeaderText = "Tipo";
-            Ctipo.Name = "Ctipo";
+            CIDmovimientp.Visible = false;
             // 
             // CResponsable
             // 
@@ -230,6 +271,49 @@
             Cfecha.Name = "Cfecha";
             Cfecha.ReadOnly = true;
             // 
+            // CEgreso
+            // 
+            CEgreso.HeaderText = "Ver Egreso";
+            CEgreso.Name = "CEgreso";
+            CEgreso.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Responsable";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Visitante";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "DNI visita";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Fecha";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // CObservaciones
+            // 
+            CObservaciones.HeaderText = "Observaciones";
+            CObservaciones.Name = "CObservaciones";
+            CObservaciones.ReadOnly = true;
+            // 
             // FormInformeMovimientos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -245,6 +329,7 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgMovimientos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgEgreso).EndInit();
             ResumeLayout(false);
         }
 
@@ -258,13 +343,20 @@
         private Panel panel3;
         private DataGridView dgMovimientos;
         private Label lbFiltrarMoviminetos;
+        private Panel panel4;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private DataGridView dgEgreso;
         private DataGridViewTextBoxColumn CIDmovimientp;
-        private DataGridViewTextBoxColumn Ctipo;
         private DataGridViewTextBoxColumn CResponsable;
         private DataGridViewTextBoxColumn CVisitante;
         private DataGridViewTextBoxColumn CDNIvisitante;
         private DataGridViewTextBoxColumn Cfecha;
-        private Panel panel4;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private DataGridViewButtonColumn CEgreso;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn CObservaciones;
     }
 }
