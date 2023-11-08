@@ -17,6 +17,8 @@ public partial class Usuario
 
     public string? Telefono { get; set; }
 
+    public string? Dni { get; set; }
+
     public int? IdRol { get; set; }
 
     public string? Direccion { get; set; }

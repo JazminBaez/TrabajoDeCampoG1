@@ -68,6 +68,19 @@ namespace seguridad_barrios_privados.Repositorio
             return barriosPrivadosContext.Usuarios.Where(u => u.IdRol == id).ToList();
         }
 
+        public List<Usuario> ObtenerUsuariosPorDni(string dni)
+        {
+            return barriosPrivadosContext.Usuarios.Where(u => u.Dni == dni).ToList();
+        }
+
+        public List<Usuario> FiltrarUsuariosPorNombre(string nombre)
+        {
+            //
+            return barriosPrivadosContext.Usuarios.Where(u => u.Nombre.ToLowerInvariant().Contains(nombre!.ToLowerInvariant()) || u.Apellido.ToLowerInvariant().Contains(nombre!.ToLowerInvariant())).ToList();
+            
+
+        }
+
         public Usuario getUsuarioByEmail(string email)
         {
             return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.Email == email);

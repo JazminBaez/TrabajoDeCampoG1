@@ -146,6 +146,10 @@ namespace seguridad_barrios_privados.Models
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasColumnName("estado");
+                entity.Property(e => e.Dni)
+                   .HasMaxLength(8)
+                   .IsUnicode(false)
+                   .HasColumnName("dni");
 
                 entity.HasOne(d => d.Rol).WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdRol)

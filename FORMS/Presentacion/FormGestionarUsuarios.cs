@@ -16,6 +16,8 @@ using seguridad_barrios_privados.Models;
 using FontAwesome.Sharp;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Text.RegularExpressions;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -29,8 +31,9 @@ namespace seguridad_barrios_privados.Presentacion
         private int usuarioId;
         private List<Usuario> ListaUsuarios;
         private List<Usuario> ListaBackup;
+        private List<Usuario> Usuarios;
         private string busquedaPrevia;
-       
+
         public FormGestionarUsuarios()
         {
 
@@ -51,13 +54,17 @@ namespace seguridad_barrios_privados.Presentacion
 
             ListaUsuarios = new List<Usuario>();
             ListaBackup = new List<Usuario>();
+            Usuarios = new List<Usuario>();
+            Usuarios = usuariosRepositorio.ObtenerUsuarios();
+            ListaUsuarios = Usuarios;
+            ListaBackup = ListaUsuarios;
             busquedaPrevia = string.Empty;
             CargarUsuarios();
         }
 
         private void CargarUsuarios()
         {
-        
+
             dgUsuarios.Rows.Clear();
             dgUsuarios.Refresh();
             foreach (Usuario usuario in ListaUsuarios)
@@ -65,7 +72,7 @@ namespace seguridad_barrios_privados.Presentacion
 
                 if (usuario.Estado == 1)
                 {
-                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar", "Modificar");
+                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Rol.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar", "Modificar");
                     Color colorOscuro = Color.FromArgb(25, 46, 71);
                     Color colorTexto = Color.FromArgb(45, 66, 91);
                     dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
@@ -73,11 +80,11 @@ namespace seguridad_barrios_privados.Presentacion
 
                     continue;
                 }
-                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Nombre, usuario.Apellido, usuario.Telefono, usuario.Direccion, usuario.Email, "Dar Baja", "Modificar");
+                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Rol.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.Direccion, usuario.Email, "Dar Baja", "Modificar");
             }
         }
 
- 
+
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -273,30 +280,49 @@ namespace seguridad_barrios_privados.Presentacion
         {
             CargarUsuarios();
             RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
-            cbRol.SelectedIndex = -1;
-            cbFiltrarUsuarios.SelectedIndex = -1;
-            ListaUsuarios = usuariosRepositorio.ObtenerUsuarios();
-            ListaBackup = usuariosRepositorio.ObtenerUsuarios();
+            cbRol.SelectedText = string.Empty;
+            cbRol.SelectedText = "Rol";
+            cbFiltrarUsuarios.SelectedText = string.Empty;
+            cbFiltrarUsuarios.SelectedText = "Rol";
+            Usuarios = ListaBackup;
+            ListaUsuarios = Usuarios;
         }
 
         private void cbFiltrarUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<Usuario>? usuariosFiltrar = ListaBackup;
+            tbBuscarUsuario.Texts = string.Empty;
+            int rolSeleccionado = cbFiltrarUsuarios.SelectedIndex + 1;
+            if (cbFiltrarUsuarios.SelectedText != "Rol")
+            {
+                //que guarde en usuariosFiltrar todos los usuarios de usuariosFiltrar que tengan el rol seleccionado en el comboBox
+                usuariosFiltrar = usuariosFiltrar?.Where(u => u.IdRol == rolSeleccionado).ToList();
+            }
 
+            ListaUsuarios = usuariosFiltrar;
+            Usuarios = usuariosFiltrar;
+            CargarUsuarios();
         }
 
         private void tbBuscarUsuario__TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(tbBuscarUsuario.Texts))
             {
-            
-                 ListaUsuarios = usuariosRepositorio.FiltrarUsuariosNombre(tbBuscarUsuario.Texts);
-                
+                if (Regex.IsMatch(tbBuscarUsuario.Texts, @"^\d+$"))
+                {
+                    ListaUsuarios = Usuarios?.Where(u => u.Dni.Contains(tbBuscarUsuario.Texts!)).ToList();
+                }
+                else
+                {
+                    ListaUsuarios = Usuarios?.Where(u => u.Nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) || u.Apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
+
+                }
             }
             else
             {
-                view.ProductsList = products;
+                ListaUsuarios = Usuarios;
             }
-            view.LoadProducts();
+            this.CargarUsuarios();
         }
     }
 }

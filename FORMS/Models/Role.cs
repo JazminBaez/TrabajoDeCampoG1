@@ -11,5 +11,5 @@ public partial class Role
 
     public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
 
-    public string rolcompleto => $"{IdRol} - {Descripcion}";
+    public string rolcompleto => $"{Descripcion}";
 }
