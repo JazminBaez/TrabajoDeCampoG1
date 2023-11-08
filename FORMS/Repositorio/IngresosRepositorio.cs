@@ -64,6 +64,24 @@ namespace seguridad_barrios_privados.Repositorio
             return ingresos;
         }
 
+        public List<Movimiento> ObtenerMovimientos()
+        {
+            var ingresos = barriosPrivadosContext.Ingresos
+            .Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation)
+            .Include(i => i.IdSolicitudNavigation.IdVisitanteNavigation)
+            .Where(i => i.Fecha != null)
+            .Select(i => new Movimiento
+            {
+                TipoMovimiento = "Ingreso",
+                NombreUsuario = i.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
+                NombreVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
+                DniVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
+                Fecha = i.Fecha,
+            }).ToList();
+
+            return ingresos;
+        }
+
         //obtenerIngresoPorId
         public Ingreso ObtenerIngreso(int id)
         {

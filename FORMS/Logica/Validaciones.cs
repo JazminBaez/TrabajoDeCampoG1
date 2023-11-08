@@ -211,7 +211,5 @@ namespace seguridad_barrios_privados.Logica
         }
 
 
-      
-
     }
 }

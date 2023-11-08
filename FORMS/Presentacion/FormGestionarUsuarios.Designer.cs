@@ -57,7 +57,6 @@ namespace seguridad_barrios_privados.Presentacion
             lbFiltrarUsuarios = new Label();
             panel3 = new Panel();
             dgUsuarios = new DataGridView();
-            rolesRepositorioBindingSource = new BindingSource(components);
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             Crol = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -67,6 +66,7 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             CDarBaja = new DataGridViewButtonColumn();
             CModificar = new DataGridViewButtonColumn();
+            rolesRepositorioBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource1).BeginInit();
@@ -499,10 +499,6 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.Size = new Size(552, 407);
             dgUsuarios.TabIndex = 12;
             // 
-            // rolesRepositorioBindingSource
-            // 
-            rolesRepositorioBindingSource.DataSource = typeof(Repositorio.RolesRepositorio);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewTextBoxColumn1.HeaderText = "ID";
@@ -568,6 +564,10 @@ namespace seguridad_barrios_privados.Presentacion
             CModificar.Resizable = DataGridViewTriState.True;
             CModificar.SortMode = DataGridViewColumnSortMode.Automatic;
             CModificar.Width = 103;
+            // 
+            // rolesRepositorioBindingSource
+            // 
+            rolesRepositorioBindingSource.DataSource = typeof(Repositorio.RolesRepositorio);
             // 
             // FormGestionarUsuarios
             // 

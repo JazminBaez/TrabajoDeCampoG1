@@ -36,11 +36,29 @@ namespace seguridad_barrios_privados.Repositorio
         }
 
         //listar todos los egresos de la tabla egresos
-        public List<Egreso> ObtenerEgresos()
+        public List<Movimiento> ObtenerMovimientos()
         {
-            var egresos = barriosPrivadosContext.Egresos.ToList();
+            var egresos = barriosPrivadosContext.Egresos
+            .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation)
+            .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation)
+            .Where(e => e.Fecha != null)
+            .Select(e => new Movimiento
+            {
+                TipoMovimiento = "Egreso",
+                NombreUsuario = e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
+                NombreVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
+                DniVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
+                Fecha = e.Fecha
+            
+            }).ToList();
+          
             return egresos;
         }
 
+        //funcion para obtener todos los egresos
+        public List<Egreso> ObtenerEgresos()
+        {
+            return barriosPrivadosContext.Egresos.ToList();
+        }
     }
 }

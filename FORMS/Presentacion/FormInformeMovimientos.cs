@@ -18,27 +18,41 @@ namespace seguridad_barrios_privados.Presentacion
         private UsuariosRepositorio usuariosRepositorio;
         private Validaciones validaciones;
         private SolicitudesRepositorio solicitudesRepositorio;
+        private EgresosRepositorio egresosRepositorio;
+        private IngresosRepositorio ingresosRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
+        //private List<Ingreso> ingresos;
+        //private List<Solicitude> solicitudes;
+        //private List<Egreso> egresos;
+        private List<Movimiento> movimientos;
+        private List<Movimiento> ListaMovimientos;
+        private List<Movimiento> movimeintosBackUp;
+        private string orden;
         public FormInformeMovimientos()
         {
             InitializeComponent();
             solicitudesRepositorio = new SolicitudesRepositorio();
-            CargarMovimientos();
+            egresosRepositorio = new EgresosRepositorio();
+            ingresosRepositorio = new IngresosRepositorio();
 
+
+            movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
+            ListaMovimientos = movimientos;
+            movimeintosBackUp = ListaMovimientos;
+            orden = "descendente";
+            CargarMovimientos();
         }
+
+
 
         private void CargarMovimientos()
         {
-            List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             dgMovimientos.Rows.Clear();
             dgMovimientos.Refresh();
-            var fechaHoy = DateTime.Today;
-            foreach (Solicitude solicitud in solicitudes)
+
+            foreach (Movimiento movimiento in ListaMovimientos)
             {
-                if (solicitud.Baja == false)
-                {
-                    dgMovimientos.Rows.Add(solicitud.IdSolicitud, "Ingreso", solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha);
-                }
+                dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha);
             }
         }
 
@@ -49,7 +63,44 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            //este boton deberia actualizar el datagrid para eliminar los filtros puestos
+            movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
+            ListaMovimientos = movimientos;
+            movimeintosBackUp = ListaMovimientos;
+            CargarMovimientos();
+        }
+
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            
+            if(orden == "descendente")
+            {
+                orden = "ascendente";
+                ListaMovimientos = ListaMovimientos.OrderBy(m => m.Fecha).ToList();
+                iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowUpWideShort;
+            }
+            else
+            {
+                orden = "descendente";
+                ListaMovimientos = ListaMovimientos.OrderByDescending(m => m.Fecha).ToList();
+                iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowDownWideShort;
+            }
+            
+            CargarMovimientos();
+        }
+
+        private void cbFiltrarMovimientos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Movimiento>? movimientosFiltrar = movimeintosBackUp;
+            string tipoSeleccionado = cbFiltrarMovimientos.SelectedItem.ToString();
+            if (tipoSeleccionado != "Tipo")
+            {
+                //que guarde en usuariosFiltrar todos los usuarios de usuariosFiltrar que tengan el rol seleccionado en el comboBox
+                movimientosFiltrar = movimientosFiltrar?.Where(m => m.TipoMovimiento == tipoSeleccionado).ToList();
+            }
+
+            ListaMovimientos = movimientosFiltrar;
+            movimientos = movimientosFiltrar;
+            CargarMovimientos();
         }
     }
 }
