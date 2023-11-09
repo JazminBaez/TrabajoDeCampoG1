@@ -49,15 +49,23 @@ namespace seguridad_barrios_privados.Repositorio
         {
             var solicitudes = pruebaDos();
             var visitantes = prueba();
+            var usuarios = barriosPrivadosContext.Usuarios.ToList();
             var ingresos = barriosPrivadosContext.Ingresos.Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation).ToList();
             foreach (Ingreso ingreso in ingresos)
             {
                 foreach (Solicitude solicitud in solicitudes)
                 {
-                    if (ingreso.IdSolicitud == solicitud.IdSolicitud)
-                    {
+                        if (ingreso.IdSolicitud == solicitud.IdSolicitud)
+                        {
+                            foreach (Usuario usuario in usuarios)
+                            {
+                                if (usuario.IdUsuario == solicitud.IdUsuario)
+                                {
+                                    solicitud.IdUsuarioNavigation = usuario;
+                                }
+                            }
                         ingreso.IdSolicitudNavigation = solicitud;
-                    }
+                        }
                 }
 
             }
@@ -77,6 +85,7 @@ namespace seguridad_barrios_privados.Repositorio
                 NombreVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
                 DniVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
                 Fecha = i.Fecha,
+                Observaciones = "-",
             }).ToList();
 
             return ingresos;

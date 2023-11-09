@@ -49,10 +49,29 @@ namespace seguridad_barrios_privados.Presentacion
         {
             dgMovimientos.Rows.Clear();
             dgMovimientos.Refresh();
-
+          
             foreach (Movimiento movimiento in ListaMovimientos)
             {
-                dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha);
+                string observacion = "-";
+                if (movimiento.TipoMovimiento == "Egreso")
+                {
+                    if (movimiento.Observaciones != null)
+                    {
+                        observacion = movimiento.Observaciones;
+                    }
+
+                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, observacion);
+                    Color colorOscuro = Color.FromArgb(25, 46, 71);
+                    Color colorTexto = Color.FromArgb(45, 66, 91);
+                    //quiero que el color de la columna de tipo de ingreso sea de colorOscuro, solo esa celda no toda la fila
+                    dgMovimientos.Rows[dgMovimientos.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
+                   
+                }
+                else
+                {
+                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, movimiento.Observaciones);
+                    
+                }
             }
         }
 
@@ -71,8 +90,8 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
-            
-            if(orden == "descendente")
+
+            if (orden == "descendente")
             {
                 orden = "ascendente";
                 ListaMovimientos = ListaMovimientos.OrderBy(m => m.Fecha).ToList();
@@ -84,7 +103,7 @@ namespace seguridad_barrios_privados.Presentacion
                 ListaMovimientos = ListaMovimientos.OrderByDescending(m => m.Fecha).ToList();
                 iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowDownWideShort;
             }
-            
+
             CargarMovimientos();
         }
 

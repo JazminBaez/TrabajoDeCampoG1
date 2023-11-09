@@ -38,6 +38,7 @@ namespace seguridad_barrios_privados.Repositorio
         //listar todos los egresos de la tabla egresos
         public List<Movimiento> ObtenerMovimientos()
         {
+           
             var egresos = barriosPrivadosContext.Egresos
             .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation)
             .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation)
@@ -48,8 +49,9 @@ namespace seguridad_barrios_privados.Repositorio
                 NombreUsuario = e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
                 NombreVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
                 DniVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
-                Fecha = e.Fecha
-            
+                Fecha = e.Fecha,
+                Observaciones = e.Observaciones,
+
             }).ToList();
           
             return egresos;

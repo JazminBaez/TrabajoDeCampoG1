@@ -177,3 +177,4 @@ C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_priv
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.Presentacion.Form1.resources

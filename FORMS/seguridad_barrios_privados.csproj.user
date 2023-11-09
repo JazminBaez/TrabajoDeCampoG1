@@ -10,6 +10,9 @@
     <Compile Update="Controls\RJTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Presentacion\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Presentacion\FormEgresos.cs">
       <SubType>Form</SubType>
     </Compile>

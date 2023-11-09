@@ -46,6 +46,7 @@
             CVisitante = new DataGridViewTextBoxColumn();
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
+            CObservaciones = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -194,7 +195,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CTipo, CResponsable, CVisitante, CDNIvisitante, Cfecha });
+            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CTipo, CResponsable, CVisitante, CDNIvisitante, Cfecha, CObservaciones });
             dgMovimientos.Dock = DockStyle.Fill;
             dgMovimientos.EnableHeadersVisualStyles = false;
             dgMovimientos.GridColor = Color.MediumAquamarine;
@@ -242,6 +243,12 @@
             Cfecha.Name = "Cfecha";
             Cfecha.ReadOnly = true;
             // 
+            // CObservaciones
+            // 
+            CObservaciones.HeaderText = "Observaciones";
+            CObservaciones.Name = "CObservaciones";
+            CObservaciones.ReadOnly = true;
+            // 
             // FormInformeMovimientos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -273,11 +280,12 @@
         private Label lbFiltrarMoviminetos;
         private Panel panel4;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private DataGridViewTextBoxColumn CTipo;
         private DataGridViewTextBoxColumn CResponsable;
         private DataGridViewTextBoxColumn CVisitante;
         private DataGridViewTextBoxColumn CDNIvisitante;
         private DataGridViewTextBoxColumn Cfecha;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private DataGridViewTextBoxColumn CObservaciones;
     }
 }
