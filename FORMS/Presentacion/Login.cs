@@ -12,6 +12,7 @@ using seguridad_barrios_privados.Logica;
 using seguridad_barrios_privados.Models;
 using seguridad_barrios_privados.Repositorio;
 using System.Security.Cryptography;
+using seguridad_barrios_privados.Properties;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -25,6 +26,9 @@ namespace seguridad_barrios_privados.Presentacion
         {
             InitializeComponent();
             this.usuariosRepositorio = new UsuariosRepositorio();
+            tbCorreo.KeyPress += TextBox_KeyPress;
+            tbContrasena.KeyPress += TextBox_KeyPress;
+
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -36,11 +40,17 @@ namespace seguridad_barrios_privados.Presentacion
         {
             Application.Exit();
         }
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Si se presiona Enter, activa el evento del botón "Iniciar Sesión"
+                btIniciarSesion.PerformClick();
+            }
+        }
 
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
-
-
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
                 Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
@@ -49,7 +59,9 @@ namespace seguridad_barrios_privados.Presentacion
             }
             else
             {
+                btIniciarSesion.Visible = false;
 
+                loader.Visible = true;
                 var usuario = usuariosRepositorio.getUsuarioByEmail(tbCorreo.Texts);
 
                 if (usuario != null)
@@ -64,13 +76,17 @@ namespace seguridad_barrios_privados.Presentacion
                     }
                     else
                     {
-                        this.msgError("Correo y/o contraseña incorrectos.");
+                        this.msgError("Contraseña incorrecta.");
+                        loader.Visible = false;
+                        btIniciarSesion.Visible = true;
                     }
 
 
                 }
                 else
                 {
+                    loader.Visible = false;
+                    btIniciarSesion.Visible = true;
                     this.msgError("Usuario no registrado");
                 }
             }
@@ -101,13 +117,13 @@ namespace seguridad_barrios_privados.Presentacion
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-               
+
                 byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-                
+
                 byte[] hashBytes = sha256.ComputeHash(passwordBytes);
 
-              
+
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
                 {
@@ -116,6 +132,11 @@ namespace seguridad_barrios_privados.Presentacion
 
                 return stringBuilder.ToString();
             }
+        }
+
+        private void loader_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

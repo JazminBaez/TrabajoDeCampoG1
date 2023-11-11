@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -27,6 +28,7 @@ namespace seguridad_barrios_privados.Presentacion
         private List<Ingreso> ListaIngresos;
         private List<Ingreso> ListaBackup;
         private List<Ingreso> Ingresos;
+        private List<Egreso> Egresos;
         private string busquedaPrevia;
         public FormEgresos()
         {
@@ -39,17 +41,20 @@ namespace seguridad_barrios_privados.Presentacion
             ListaIngresos = new List<Ingreso>();
             ListaBackup = new List<Ingreso>();
             Ingresos = new List<Ingreso>();
+            Egresos = new List<Egreso>();
             Ingresos = ingresosRepositorio.ObtenerIngresos();
             ListaIngresos = Ingresos;
             ListaBackup = ListaIngresos;
             busquedaPrevia = string.Empty;
+            
+            Egresos = egresosRepositorio.ObtenerEgresos();
             CargarIngresos();
         }
 
         private void CargarIngresos()
         {
             List<Egreso> egresos = egresosRepositorio.ObtenerEgresos();
-     
+
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
             var fechaHoy = DateTime.Today;
@@ -59,7 +64,7 @@ namespace seguridad_barrios_privados.Presentacion
                 if (!(egresos.Any(egreso => egreso.IdIngreso == ingreso.IdIngreso)))
                 {
                     //agregelo al datagridview
-                    dgSolicitudes.Rows.Add(ingreso.IdIngreso, ingreso.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.Dni, ingreso.IdSolicitudNavigation.Fecha);
+                    dgSolicitudes.Rows.Add(ingreso.IdIngreso, ingreso.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.Dni, ingreso.Fecha);
                     continue;
                 }
             }
@@ -117,16 +122,64 @@ namespace seguridad_barrios_privados.Presentacion
                 }
                 else
                 {
-                    ListaIngresos =Ingresos?.Where(u => u.IdSolicitudNavigation.IdVisitanteNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) || u.IdSolicitudNavigation.IdVisitanteNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
+                    ListaIngresos = Ingresos?.Where(u => u.IdSolicitudNavigation.IdVisitanteNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) || u.IdSolicitudNavigation.IdVisitanteNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
 
                 }
             }
             else
             {
-                ListaIngresos =Ingresos;
+                ListaIngresos = Ingresos;
             }
 
             this.CargarIngresos();
+        }
+
+        private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ckbFiltrarVisitas_CheckedChanged(object sender, EventArgs e)
+        {
+            List<Ingreso>? ingresosFiltrar = ListaBackup;
+            tbBuscarUsuario.Texts = string.Empty;
+            List<Ingreso> ListaIngresosSinEgreso = new List<Ingreso>();
+            List<Ingreso> Listafiltrada = new List<Ingreso>();
+
+            //primero que cargue en ListaIngresosSinEgreso los ingresos que no tengan egreso
+            foreach (Ingreso ingreso in ingresosFiltrar)
+            {
+                if (!(Egresos.Any(egreso => egreso.IdIngreso == ingreso.IdIngreso)))
+                {
+                    //agregelo al datagridview
+                    ListaIngresosSinEgreso.Add(ingreso);
+                    continue;
+                }
+            }
+
+            //ahora que busque en la lista los ingresos que tengan mas de 3 dias de antiguedad
+            if (ckbFiltrarVisitas.Checked)
+            {
+
+                ingresosFiltrar = ListaIngresosSinEgreso?.Where(i => i.Fecha.AddDays(3) < DateTime.Today).ToList();
+                
+            }
+            
+          
+            ListaIngresos = ingresosFiltrar;
+            Ingresos = ingresosFiltrar;
+            
+            CargarIngresos();
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+     
+            Ingresos = ingresosRepositorio.ObtenerIngresos();
+            ListaIngresos = Ingresos;
+            ListaBackup = ListaIngresos;
+            ckbFiltrarVisitas.Checked = false;
+            CargarIngresos();
         }
     }
 }

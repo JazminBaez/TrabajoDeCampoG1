@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 
@@ -37,14 +38,14 @@ namespace seguridad_barrios_privados.Presentacion
             List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
-            var fechaHoy = DateTime.Today;
+           
             if (solicitudes != null)
             {
 
                 foreach (Solicitude solicitud in solicitudes)
                 {
 
-                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Baja != true)
+                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Baja != true && solicitud.Estado == 0)
                     {
                         string estadoSolicitud;
                         int estado = solicitud.Estado ?? 0;
@@ -60,6 +61,7 @@ namespace seguridad_barrios_privados.Presentacion
                             case 2:
                                 estadoSolicitud = "rechazado";
                                 dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Eliminar");
+
                                 Color colorOscuro = Color.FromArgb(25, 46, 71);
                                 Color colorTexto = Color.FromArgb(45, 66, 91);
                                 dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
@@ -83,8 +85,23 @@ namespace seguridad_barrios_privados.Presentacion
 
                 var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
                 solicitud.Baja = true;
-                solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (solicitud.Estado != 0)
+                {
+                    if (System.Windows.Forms.MessageBox.Show("¿Estás seguro de eliminar la solicitud? El adiministrador aun podra ver su historial completo", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                        System.Windows.Forms.MessageBox.Show("Solicitud cancelada", "Éxito");
+                    }
+                }
+                else
+                {
+                    if (System.Windows.Forms.MessageBox.Show("¿Estás seguro de cancelar la solicitud?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                        System.Windows.Forms.MessageBox.Show("Solicitud cancelada", "Éxito");
+                    }
+                }
+
                 CargarSolicitudes();
             }
         }
@@ -124,7 +141,7 @@ namespace seguridad_barrios_privados.Presentacion
                 Dni = tbDni.Texts
             };
 
-           
+
             var fechaProgramada = dtFechaMovimeintos.Value;
 
             if (validaciones.RegistrarSolicitud(visitante, fechaProgramada, null, lbError, ErrorIcon, dgSolicitudes))
@@ -148,6 +165,11 @@ namespace seguridad_barrios_privados.Presentacion
 
         }
         private void lbError_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbSolicitudes_Click(object sender, EventArgs e)
         {
 
         }

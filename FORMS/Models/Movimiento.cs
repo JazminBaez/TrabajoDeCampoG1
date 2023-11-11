@@ -10,6 +10,7 @@ namespace seguridad_barrios_privados.Models
     {
         public string TipoMovimiento { get; set; }
         public string NombreUsuario { get; set; }
+        public string DniUsuario { get; set; }
         public string NombreVisitante { get; set; }
         public string DniVisitante { get; set; }
         public DateTime? Fecha { get; set; }

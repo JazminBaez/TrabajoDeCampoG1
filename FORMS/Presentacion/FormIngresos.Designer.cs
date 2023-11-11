@@ -49,9 +49,16 @@ namespace seguridad_barrios_privados.Presentacion
             usuariosRepositorioBindingSource = new BindingSource(components);
             panel3 = new Panel();
             panel2 = new Panel();
-            lbSolicitudesRealizadas = new Label();
             dgSolicitudes = new DataGridView();
+            CID_soli = new DataGridViewTextBoxColumn();
+            CPropietario = new DataGridViewTextBoxColumn();
+            CVisitante_soli = new DataGridViewTextBoxColumn();
+            CVisitante_Dni = new DataGridViewTextBoxColumn();
+            CAceptarSolicitud = new DataGridViewButtonColumn();
+            CRechazar = new DataGridViewButtonColumn();
+            CCancelar = new DataGridViewButtonColumn();
             panel5 = new Panel();
+            lbSolicitudesRealizadas = new Label();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             btnBuscar = new FontAwesome.Sharp.IconPictureBox();
@@ -65,14 +72,6 @@ namespace seguridad_barrios_privados.Presentacion
             CDNI = new DataGridViewTextBoxColumn();
             CEliminar = new DataGridViewTextBoxColumn();
             CAceptar = new DataGridViewButtonColumn();
-            CID_soli = new DataGridViewTextBoxColumn();
-            CPropietario = new DataGridViewTextBoxColumn();
-            CVisitante_soli = new DataGridViewTextBoxColumn();
-            CVisitante_Dni = new DataGridViewTextBoxColumn();
-            CFecha_soli = new DataGridViewTextBoxColumn();
-            CAceptarSolicitud = new DataGridViewButtonColumn();
-            CRechazar = new DataGridViewButtonColumn();
-            CCancelar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usuariosRepositorioBindingSource).BeginInit();
@@ -301,7 +300,6 @@ namespace seguridad_barrios_privados.Presentacion
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(18, 38, 58);
-            panel2.Controls.Add(lbSolicitudesRealizadas);
             panel2.Controls.Add(dgSolicitudes);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 75);
@@ -309,22 +307,9 @@ namespace seguridad_barrios_privados.Presentacion
             panel2.Size = new Size(580, 407);
             panel2.TabIndex = 25;
             // 
-            // lbSolicitudesRealizadas
-            // 
-            lbSolicitudesRealizadas.Anchor = AnchorStyles.None;
-            lbSolicitudesRealizadas.AutoSize = true;
-            lbSolicitudesRealizadas.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbSolicitudesRealizadas.ForeColor = SystemColors.ButtonFace;
-            lbSolicitudesRealizadas.Location = new Point(24, 27);
-            lbSolicitudesRealizadas.Name = "lbSolicitudesRealizadas";
-            lbSolicitudesRealizadas.Size = new Size(192, 19);
-            lbSolicitudesRealizadas.TabIndex = 23;
-            lbSolicitudesRealizadas.Text = "SOLICITUDES PENDIENTES";
-            // 
             // dgSolicitudes
             // 
             dgSolicitudes.AllowUserToAddRows = false;
-            dgSolicitudes.Anchor = AnchorStyles.None;
             dgSolicitudes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgSolicitudes.BorderStyle = BorderStyle.None;
@@ -338,10 +323,11 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CFecha_soli, CAceptarSolicitud, CRechazar, CCancelar });
+            dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CAceptarSolicitud, CRechazar, CCancelar });
+            dgSolicitudes.Dock = DockStyle.Fill;
             dgSolicitudes.EnableHeadersVisualStyles = false;
             dgSolicitudes.GridColor = Color.MediumAquamarine;
-            dgSolicitudes.Location = new Point(24, 61);
+            dgSolicitudes.Location = new Point(0, 0);
             dgSolicitudes.Margin = new Padding(3, 15, 3, 3);
             dgSolicitudes.Name = "dgSolicitudes";
             dgSolicitudes.ReadOnly = true;
@@ -353,13 +339,57 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgSolicitudes.RowTemplate.Height = 25;
-            dgSolicitudes.Size = new Size(530, 311);
+            dgSolicitudes.Size = new Size(580, 407);
             dgSolicitudes.TabIndex = 11;
             dgSolicitudes.CellContentClick += dgSolicitudes_CellContentClick;
+            // 
+            // CID_soli
+            // 
+            CID_soli.HeaderText = "ID";
+            CID_soli.Name = "CID_soli";
+            CID_soli.ReadOnly = true;
+            CID_soli.Visible = false;
+            // 
+            // CPropietario
+            // 
+            CPropietario.HeaderText = "Propietario";
+            CPropietario.Name = "CPropietario";
+            CPropietario.ReadOnly = true;
+            // 
+            // CVisitante_soli
+            // 
+            CVisitante_soli.HeaderText = "Visitante";
+            CVisitante_soli.Name = "CVisitante_soli";
+            CVisitante_soli.ReadOnly = true;
+            // 
+            // CVisitante_Dni
+            // 
+            CVisitante_Dni.HeaderText = "DNI";
+            CVisitante_Dni.Name = "CVisitante_Dni";
+            CVisitante_Dni.ReadOnly = true;
+            // 
+            // CAceptarSolicitud
+            // 
+            CAceptarSolicitud.HeaderText = "Aceptar";
+            CAceptarSolicitud.Name = "CAceptarSolicitud";
+            CAceptarSolicitud.ReadOnly = true;
+            // 
+            // CRechazar
+            // 
+            CRechazar.HeaderText = "Rechazar";
+            CRechazar.Name = "CRechazar";
+            CRechazar.ReadOnly = true;
+            // 
+            // CCancelar
+            // 
+            CCancelar.HeaderText = "Cancelar";
+            CCancelar.Name = "CCancelar";
+            CCancelar.ReadOnly = true;
             // 
             // panel5
             // 
             panel5.BackColor = SystemColors.Desktop;
+            panel5.Controls.Add(lbSolicitudesRealizadas);
             panel5.Controls.Add(iconPictureBox2);
             panel5.Controls.Add(iconPictureBox1);
             panel5.Controls.Add(btnBuscar);
@@ -370,6 +400,18 @@ namespace seguridad_barrios_privados.Presentacion
             panel5.Size = new Size(580, 75);
             panel5.TabIndex = 24;
             // 
+            // lbSolicitudesRealizadas
+            // 
+            lbSolicitudesRealizadas.Anchor = AnchorStyles.None;
+            lbSolicitudesRealizadas.AutoSize = true;
+            lbSolicitudesRealizadas.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSolicitudesRealizadas.ForeColor = SystemColors.ButtonFace;
+            lbSolicitudesRealizadas.Location = new Point(6, 42);
+            lbSolicitudesRealizadas.Name = "lbSolicitudesRealizadas";
+            lbSolicitudesRealizadas.Size = new Size(253, 19);
+            lbSolicitudesRealizadas.TabIndex = 23;
+            lbSolicitudesRealizadas.Text = "SOLICITUDES PENDIENTES DEL DIA";
+            // 
             // iconPictureBox2
             // 
             iconPictureBox2.Anchor = AnchorStyles.None;
@@ -378,7 +420,7 @@ namespace seguridad_barrios_privados.Presentacion
             iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Rotate;
             iconPictureBox2.IconColor = SystemColors.Control;
             iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox2.Location = new Point(498, 21);
+            iconPictureBox2.Location = new Point(536, 29);
             iconPictureBox2.Name = "iconPictureBox2";
             iconPictureBox2.Size = new Size(32, 32);
             iconPictureBox2.TabIndex = 16;
@@ -406,7 +448,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             btnBuscar.IconColor = SystemColors.Control;
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.Location = new Point(202, 22);
+            btnBuscar.Location = new Point(498, 29);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(32, 32);
             btnBuscar.TabIndex = 14;
@@ -423,7 +465,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbBuscarSolicitud.BorderSize = 2;
             tbBuscarSolicitud.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             tbBuscarSolicitud.ForeColor = Color.FromArgb(64, 64, 64);
-            tbBuscarSolicitud.Location = new Point(24, 22);
+            tbBuscarSolicitud.Location = new Point(320, 29);
             tbBuscarSolicitud.Margin = new Padding(4);
             tbBuscarSolicitud.Multiline = false;
             tbBuscarSolicitud.Name = "tbBuscarSolicitud";
@@ -435,6 +477,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbBuscarSolicitud.TabIndex = 11;
             tbBuscarSolicitud.Texts = "";
             tbBuscarSolicitud.UnderlinedStyle = false;
+            tbBuscarSolicitud._TextChanged += tbBuscarSolicitud__TextChanged;
             // 
             // label2
             // 
@@ -527,54 +570,6 @@ namespace seguridad_barrios_privados.Presentacion
             CAceptar.Name = "CAceptar";
             CAceptar.ReadOnly = true;
             // 
-            // CID_soli
-            // 
-            CID_soli.HeaderText = "ID";
-            CID_soli.Name = "CID_soli";
-            CID_soli.ReadOnly = true;
-            // 
-            // CPropietario
-            // 
-            CPropietario.HeaderText = "Propietario";
-            CPropietario.Name = "CPropietario";
-            CPropietario.ReadOnly = true;
-            // 
-            // CVisitante_soli
-            // 
-            CVisitante_soli.HeaderText = "Visitante";
-            CVisitante_soli.Name = "CVisitante_soli";
-            CVisitante_soli.ReadOnly = true;
-            // 
-            // CVisitante_Dni
-            // 
-            CVisitante_Dni.HeaderText = "DNI";
-            CVisitante_Dni.Name = "CVisitante_Dni";
-            CVisitante_Dni.ReadOnly = true;
-            // 
-            // CFecha_soli
-            // 
-            CFecha_soli.HeaderText = "Fecha";
-            CFecha_soli.Name = "CFecha_soli";
-            CFecha_soli.ReadOnly = true;
-            // 
-            // CAceptarSolicitud
-            // 
-            CAceptarSolicitud.HeaderText = "Aceptar";
-            CAceptarSolicitud.Name = "CAceptarSolicitud";
-            CAceptarSolicitud.ReadOnly = true;
-            // 
-            // CRechazar
-            // 
-            CRechazar.HeaderText = "Rechazar";
-            CRechazar.Name = "CRechazar";
-            CRechazar.ReadOnly = true;
-            // 
-            // CCancelar
-            // 
-            CCancelar.HeaderText = "Cancelar";
-            CCancelar.Name = "CCancelar";
-            CCancelar.ReadOnly = true;
-            // 
             // FormIngresos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -591,9 +586,9 @@ namespace seguridad_barrios_privados.Presentacion
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgSolicitudes).EndInit();
             panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
@@ -638,7 +633,6 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CPropietario;
         private DataGridViewTextBoxColumn CVisitante_soli;
         private DataGridViewTextBoxColumn CVisitante_Dni;
-        private DataGridViewTextBoxColumn CFecha_soli;
         private DataGridViewButtonColumn CAceptarSolicitud;
         private DataGridViewButtonColumn CRechazar;
         private DataGridViewButtonColumn CCancelar;

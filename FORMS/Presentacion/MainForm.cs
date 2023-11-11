@@ -35,9 +35,11 @@ namespace seguridad_barrios_privados.Presentacion
             if (usuarioRol == 1)
             {
                 btnEgresos.Visible = false;
+                btnReportes.Visible = false;
                 btnMovimientos.Visible = false;
                 btnIngresos.Visible = false;
                 btnGestionUsuarios.Visible = false;
+                btnInformeSolicitudes.Visible = false;
             }
 
             if (usuarioRol == 2)
@@ -45,11 +47,15 @@ namespace seguridad_barrios_privados.Presentacion
                 btnSolicitudes.Visible = false;
                 btnIngresos.Visible = false;
                 btnEgresos.Visible = false;
+                btnMisSolicitudes.Visible = false;
             }
 
             if (usuarioRol == 3)
             {
+                btnReportes.Visible = false;
+                btnInformeSolicitudes.Visible = false;
                 btnMovimientos.Visible = false;
+                btnMisSolicitudes.Visible = false;
                 btnGestionUsuarios.Visible = false;
                 btnSolicitudes.Visible = false;
                 btnSolicitudes.Visible = false;
@@ -224,9 +230,38 @@ namespace seguridad_barrios_privados.Presentacion
         private void btnCerrarSesion_Click_1(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            this.Close();
-            Login login = new Login();
-            login.Show();
+            //que pergunte con un messagebox si realmente queire salir
+            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+                Login login = new Login();
+                login.Show();
+            }
+            else
+            {
+                currentChildForm.Close();
+                Reset();
+            }
+
+        }
+
+        private void btnMisSolicitudes_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new FormMisSolicitudes());
+        }
+
+        private void btnInformeSolicitudes_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new FormInformeSolicitudes());
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new FormReportesAdmin());
         }
     }
 }

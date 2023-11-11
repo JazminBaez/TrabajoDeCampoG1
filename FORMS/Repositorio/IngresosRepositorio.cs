@@ -82,6 +82,7 @@ namespace seguridad_barrios_privados.Repositorio
             {
                 TipoMovimiento = "Ingreso",
                 NombreUsuario = i.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
+                DniUsuario = i.IdSolicitudNavigation.IdUsuarioNavigation.Dni,
                 NombreVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
                 DniVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
                 Fecha = i.Fecha,

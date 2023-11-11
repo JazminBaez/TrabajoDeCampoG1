@@ -139,6 +139,7 @@ namespace seguridad_barrios_privados.Presentacion
                 CargarUsuarios();
                 RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
+                cbRol.Text = "Rol";
             }
 
 
@@ -261,6 +262,8 @@ namespace seguridad_barrios_privados.Presentacion
                 tbRepetirContrasena.Enabled = true;
                 tbContrasena.BackColor = Color.White;
                 tbRepetirContrasena.BackColor = Color.White;
+                cbRol.SelectedIndex = -1;
+                cbRol.Text = "Rol";
             }
         }
 
@@ -274,18 +277,20 @@ namespace seguridad_barrios_privados.Presentacion
             tbRepetirContrasena.Enabled = false;
             tbContrasena.BackColor = Color.White;
             tbRepetirContrasena.BackColor = Color.White;
+           
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            CargarUsuarios();
+           
             RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
-            cbRol.SelectedText = string.Empty;
-            cbRol.SelectedText = "Rol";
-            cbFiltrarUsuarios.SelectedText = string.Empty;
-            cbFiltrarUsuarios.SelectedText = "Rol";
+            cbRol.SelectedIndex = -1;
+            cbRol.Text = "Rol";
+            cbFiltrarUsuarios.SelectedIndex = -1;
+            cbFiltrarUsuarios.Text = "Rol";
             Usuarios = ListaBackup;
             ListaUsuarios = Usuarios;
+            CargarUsuarios();
         }
 
         private void cbFiltrarUsuarios_SelectedIndexChanged(object sender, EventArgs e)

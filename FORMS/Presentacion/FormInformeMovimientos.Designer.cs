@@ -31,11 +31,13 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            dtFechaHasta = new DateTimePicker();
+            tbBuscarUsuario = new Controls.RJTextBox();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             lbFiltrarMoviminetos = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             lbFiltrarMovimientos = new Label();
-            dtFechaMovimeintos = new DateTimePicker();
+            dtFechaDesde = new DateTimePicker();
             cbFiltrarMovimientos = new ComboBox();
             panel2 = new Panel();
             panel4 = new Panel();
@@ -43,6 +45,7 @@
             dgMovimientos = new DataGridView();
             CTipo = new DataGridViewTextBoxColumn();
             CResponsable = new DataGridViewTextBoxColumn();
+            CDniPropietario = new DataGridViewTextBoxColumn();
             CVisitante = new DataGridViewTextBoxColumn();
             CDNIvisitante = new DataGridViewTextBoxColumn();
             Cfecha = new DataGridViewTextBoxColumn();
@@ -58,17 +61,54 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.Desktop;
+            panel1.Controls.Add(dtFechaHasta);
+            panel1.Controls.Add(tbBuscarUsuario);
             panel1.Controls.Add(iconPictureBox2);
             panel1.Controls.Add(lbFiltrarMoviminetos);
             panel1.Controls.Add(iconPictureBox1);
             panel1.Controls.Add(lbFiltrarMovimientos);
-            panel1.Controls.Add(dtFechaMovimeintos);
+            panel1.Controls.Add(dtFechaDesde);
             panel1.Controls.Add(cbFiltrarMovimientos);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(858, 76);
             panel1.TabIndex = 0;
+            // 
+            // dtFechaHasta
+            // 
+            dtFechaHasta.Anchor = AnchorStyles.None;
+            dtFechaHasta.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dtFechaHasta.Format = DateTimePickerFormat.Custom;
+            dtFechaHasta.Location = new Point(609, 32);
+            dtFechaHasta.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
+            dtFechaHasta.Name = "dtFechaHasta";
+            dtFechaHasta.Size = new Size(125, 26);
+            dtFechaHasta.TabIndex = 18;
+            dtFechaHasta.ValueChanged += dtFechaHasta_ValueChanged;
+            // 
+            // tbBuscarUsuario
+            // 
+            tbBuscarUsuario.BackColor = SystemColors.Window;
+            tbBuscarUsuario.BorderColor = SystemColors.Window;
+            tbBuscarUsuario.BorderFocusColor = Color.MidnightBlue;
+            tbBuscarUsuario.BorderRadius = 11;
+            tbBuscarUsuario.BorderSize = 2;
+            tbBuscarUsuario.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            tbBuscarUsuario.ForeColor = Color.FromArgb(64, 64, 64);
+            tbBuscarUsuario.Location = new Point(13, 26);
+            tbBuscarUsuario.Margin = new Padding(4);
+            tbBuscarUsuario.Multiline = false;
+            tbBuscarUsuario.Name = "tbBuscarUsuario";
+            tbBuscarUsuario.Padding = new Padding(10, 7, 10, 7);
+            tbBuscarUsuario.PasswordChar = false;
+            tbBuscarUsuario.PlaceholderColor = Color.Gray;
+            tbBuscarUsuario.PlaceholderText = "Buscar propietario";
+            tbBuscarUsuario.Size = new Size(177, 31);
+            tbBuscarUsuario.TabIndex = 17;
+            tbBuscarUsuario.Texts = "";
+            tbBuscarUsuario.UnderlinedStyle = false;
+            tbBuscarUsuario._TextChanged += tbBuscarUsuario__TextChanged;
             // 
             // iconPictureBox2
             // 
@@ -91,7 +131,7 @@
             lbFiltrarMoviminetos.AutoSize = true;
             lbFiltrarMoviminetos.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbFiltrarMoviminetos.ForeColor = SystemColors.ButtonHighlight;
-            lbFiltrarMoviminetos.Location = new Point(40, 12);
+            lbFiltrarMoviminetos.Location = new Point(265, 14);
             lbFiltrarMoviminetos.Name = "lbFiltrarMoviminetos";
             lbFiltrarMoviminetos.Size = new Size(68, 17);
             lbFiltrarMoviminetos.TabIndex = 15;
@@ -119,32 +159,32 @@
             lbFiltrarMovimientos.AutoSize = true;
             lbFiltrarMovimientos.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbFiltrarMovimientos.ForeColor = SystemColors.ButtonHighlight;
-            lbFiltrarMovimientos.Location = new Point(493, 14);
+            lbFiltrarMovimientos.Location = new Point(462, 12);
             lbFiltrarMovimientos.Name = "lbFiltrarMovimientos";
             lbFiltrarMovimientos.Size = new Size(147, 17);
             lbFiltrarMovimientos.TabIndex = 13;
             lbFiltrarMovimientos.Text = "Seleccione una fecha";
             // 
-            // dtFechaMovimeintos
+            // dtFechaDesde
             // 
-            dtFechaMovimeintos.Anchor = AnchorStyles.None;
-            dtFechaMovimeintos.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dtFechaMovimeintos.Format = DateTimePickerFormat.Custom;
-            dtFechaMovimeintos.Location = new Point(493, 34);
-            dtFechaMovimeintos.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
-            dtFechaMovimeintos.Name = "dtFechaMovimeintos";
-            dtFechaMovimeintos.Size = new Size(200, 26);
-            dtFechaMovimeintos.TabIndex = 1;
-            dtFechaMovimeintos.ValueChanged += dtFechaMovimeintos_ValueChanged;
+            dtFechaDesde.Anchor = AnchorStyles.None;
+            dtFechaDesde.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dtFechaDesde.Format = DateTimePickerFormat.Custom;
+            dtFechaDesde.Location = new Point(462, 32);
+            dtFechaDesde.MinDate = new DateTime(2010, 1, 1, 0, 0, 0, 0);
+            dtFechaDesde.Name = "dtFechaDesde";
+            dtFechaDesde.Size = new Size(131, 26);
+            dtFechaDesde.TabIndex = 1;
+            dtFechaDesde.ValueChanged += dtFechaMovimeintos_ValueChanged;
             // 
             // cbFiltrarMovimientos
             // 
             cbFiltrarMovimientos.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbFiltrarMovimientos.FormattingEnabled = true;
             cbFiltrarMovimientos.Items.AddRange(new object[] { "Ingreso", "Egreso" });
-            cbFiltrarMovimientos.Location = new Point(40, 32);
+            cbFiltrarMovimientos.Location = new Point(265, 34);
             cbFiltrarMovimientos.Name = "cbFiltrarMovimientos";
-            cbFiltrarMovimientos.Size = new Size(176, 28);
+            cbFiltrarMovimientos.Size = new Size(131, 28);
             cbFiltrarMovimientos.TabIndex = 0;
             cbFiltrarMovimientos.Text = "Tipo";
             cbFiltrarMovimientos.SelectedIndexChanged += cbFiltrarMovimientos_SelectedIndexChanged;
@@ -195,7 +235,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgMovimientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CTipo, CResponsable, CVisitante, CDNIvisitante, Cfecha, CObservaciones });
+            dgMovimientos.Columns.AddRange(new DataGridViewColumn[] { CTipo, CResponsable, CDniPropietario, CVisitante, CDNIvisitante, Cfecha, CObservaciones });
             dgMovimientos.Dock = DockStyle.Fill;
             dgMovimientos.EnableHeadersVisualStyles = false;
             dgMovimientos.GridColor = Color.MediumAquamarine;
@@ -221,9 +261,15 @@
             // 
             // CResponsable
             // 
-            CResponsable.HeaderText = "Responsable";
+            CResponsable.HeaderText = "Propietario";
             CResponsable.Name = "CResponsable";
             CResponsable.ReadOnly = true;
+            // 
+            // CDniPropietario
+            // 
+            CDniPropietario.HeaderText = "DNI propietario";
+            CDniPropietario.Name = "CDniPropietario";
+            CDniPropietario.ReadOnly = true;
             // 
             // CVisitante
             // 
@@ -272,7 +318,7 @@
 
         private Panel panel1;
         private Panel panel2;
-        private DateTimePicker dtFechaMovimeintos;
+        private DateTimePicker dtFechaDesde;
         private ComboBox cbFiltrarMovimientos;
         private Label lbFiltrarMovimientos;
         private Panel panel3;
@@ -281,11 +327,14 @@
         private Panel panel4;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private Controls.RJTextBox tbBuscarUsuario;
         private DataGridViewTextBoxColumn CTipo;
         private DataGridViewTextBoxColumn CResponsable;
+        private DataGridViewTextBoxColumn CDniPropietario;
         private DataGridViewTextBoxColumn CVisitante;
         private DataGridViewTextBoxColumn CDNIvisitante;
         private DataGridViewTextBoxColumn Cfecha;
         private DataGridViewTextBoxColumn CObservaciones;
+        private DateTimePicker dtFechaHasta;
     }
 }

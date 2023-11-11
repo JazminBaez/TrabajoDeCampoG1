@@ -47,11 +47,16 @@ namespace seguridad_barrios_privados.Presentacion
             CVisitante_soli = new DataGridViewTextBoxColumn();
             CVisitante_Dni = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            panel4 = new Panel();
+            panel5 = new Panel();
+            ckbFiltrarVisitas = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgSolicitudes).BeginInit();
+            panel4.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -143,6 +148,7 @@ namespace seguridad_barrios_privados.Presentacion
             iconPictureBox1.Size = new Size(32, 32);
             iconPictureBox1.TabIndex = 46;
             iconPictureBox1.TabStop = false;
+            iconPictureBox1.Click += iconPictureBox1_Click;
             // 
             // tbBuscarUsuario
             // 
@@ -173,7 +179,7 @@ namespace seguridad_barrios_privados.Presentacion
             lbVisitantesActuales.AutoSize = true;
             lbVisitantesActuales.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
             lbVisitantesActuales.ForeColor = SystemColors.ButtonFace;
-            lbVisitantesActuales.Location = new Point(6, 48);
+            lbVisitantesActuales.Location = new Point(0, 57);
             lbVisitantesActuales.Name = "lbVisitantesActuales";
             lbVisitantesActuales.Size = new Size(214, 23);
             lbVisitantesActuales.TabIndex = 43;
@@ -183,10 +189,10 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             panel3.BackColor = Color.FromArgb(18, 38, 58);
             panel3.Controls.Add(dgSolicitudes);
-            panel3.Dock = DockStyle.Fill;
+            panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(221, 94);
             panel3.Name = "panel3";
-            panel3.Size = new Size(579, 356);
+            panel3.Size = new Size(579, 251);
             panel3.TabIndex = 2;
             panel3.Paint += panel3_Paint;
             // 
@@ -223,8 +229,9 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgSolicitudes.Size = new Size(579, 356);
-            dgSolicitudes.TabIndex = 46;
+            dgSolicitudes.Size = new Size(579, 251);
+            dgSolicitudes.TabIndex = 47;
+            dgSolicitudes.CellContentClick += dgSolicitudes_CellContentClick;
             // 
             // CIdSolicitud
             // 
@@ -257,11 +264,44 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(18, 38, 58);
+            panel4.Controls.Add(panel5);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(221, 345);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(579, 105);
+            panel4.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(ckbFiltrarVisitas);
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(579, 37);
+            panel5.TabIndex = 0;
+            // 
+            // ckbFiltrarVisitas
+            // 
+            ckbFiltrarVisitas.AutoSize = true;
+            ckbFiltrarVisitas.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            ckbFiltrarVisitas.ForeColor = SystemColors.ButtonFace;
+            ckbFiltrarVisitas.Location = new Point(6, 6);
+            ckbFiltrarVisitas.Name = "ckbFiltrarVisitas";
+            ckbFiltrarVisitas.Size = new Size(190, 20);
+            ckbFiltrarVisitas.TabIndex = 0;
+            ckbFiltrarVisitas.Text = "Visitas que superan 48 hs";
+            ckbFiltrarVisitas.UseVisualStyleBackColor = true;
+            ckbFiltrarVisitas.CheckedChanged += ckbFiltrarVisitas_CheckedChanged;
+            // 
             // FormEgresos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -274,6 +314,9 @@ namespace seguridad_barrios_privados.Presentacion
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgSolicitudes).EndInit();
+            panel4.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -294,5 +337,8 @@ namespace seguridad_barrios_privados.Presentacion
         private DataGridViewTextBoxColumn CVisitante_soli;
         private DataGridViewTextBoxColumn CVisitante_Dni;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private Panel panel4;
+        private Panel panel5;
+        private CheckBox ckbFiltrarVisitas;
     }
 }

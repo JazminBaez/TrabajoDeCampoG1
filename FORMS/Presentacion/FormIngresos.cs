@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
@@ -24,6 +25,10 @@ namespace seguridad_barrios_privados.Presentacion
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
         private IngresosRepositorio ingresosRepositorio;
+        private List<Solicitude> Solicitudes;
+        private List<Solicitude> ListaBackup;
+        private List<Solicitude> ListaSolicitudes;
+        private string busquedaPrevia;
 
         public FormIngresos()
         {
@@ -37,6 +42,14 @@ namespace seguridad_barrios_privados.Presentacion
             cbPropietarios.DisplayMember = "Datos";
             cbPropietarios.ValueMember = "IdUsuario";
 
+
+            ListaSolicitudes = new List<Solicitude>();
+            ListaBackup = new List<Solicitude>();
+            Solicitudes = new List<Solicitude>();
+            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            ListaSolicitudes = Solicitudes;
+            ListaBackup = ListaSolicitudes;
+            busquedaPrevia = string.Empty;
             CargarSolicitudes();
             cbPropietarios.SelectedIndex = -1;
         }
@@ -47,15 +60,15 @@ namespace seguridad_barrios_privados.Presentacion
         }
         private void CargarSolicitudes()
         {
-            List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
             var fechaHoy = DateTime.Today;
-            foreach (Solicitude solicitud in solicitudes)
+            foreach (Solicitude solicitud in ListaSolicitudes)
             {
                 if (solicitud.Baja == false && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
                 {
-                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Aceptar", "Rechazar", "Cancelar");
+                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, "Aceptar", "Rechazar", "Cancelar");
                 }
             }
         }
@@ -85,23 +98,28 @@ namespace seguridad_barrios_privados.Presentacion
                 Apellido = tbApellido.Texts,
                 Dni = tbDni.Texts
             };
-        
-          var fechaHoy = DateTime.Today;
+
+            var fechaHoy = DateTime.Today;
 
             if (validaciones.RegistrarSolicitud(visitante, fechaHoy, cbPropietarios, lbError, ErrorIcon, dgSolicitudes))
             {
 
                 MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ActualizarSolicitudes();
                 CargarSolicitudes();
                 RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
                 cbPropietarios.SelectedIndex = -1;
-
             }
 
 
 
         }
-
+        private void ActualizarSolicitudes()
+        {
+            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            ListaSolicitudes = Solicitudes;
+            ListaBackup = ListaSolicitudes;
+        }
         private void tbApellido__TextChanged(object sender, EventArgs e)
         {
         }
@@ -198,6 +216,29 @@ namespace seguridad_barrios_privados.Presentacion
             }
             error.Visible = false;
             errorIcon.Visible = false;
+
+        }
+
+        private void tbBuscarSolicitud__TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbBuscarSolicitud.Texts))
+            {
+                if (Regex.IsMatch(tbBuscarSolicitud.Texts, @"^\d+$"))
+                {
+                    ListaSolicitudes = Solicitudes?.Where(s => s.IdVisitanteNavigation.Dni.Contains(tbBuscarSolicitud.Texts!)).ToList();
+                }
+                else
+                {
+                    ListaSolicitudes = Solicitudes?.Where(s => s.IdVisitanteNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant()) || s.IdVisitanteNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant())).ToList();
+
+                }
+            }
+            else
+            {
+                ListaSolicitudes = Solicitudes;
+            }
+
+            this.CargarSolicitudes();
 
         }
     }

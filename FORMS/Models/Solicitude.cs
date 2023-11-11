@@ -11,7 +11,7 @@ public partial class Solicitude
 
     public int? IdVisitante { get; set; }
 
-    public DateTime? Fecha { get; set; }
+    public DateTime Fecha { get; set; }
 
     public bool? Baja { get; set; }
 

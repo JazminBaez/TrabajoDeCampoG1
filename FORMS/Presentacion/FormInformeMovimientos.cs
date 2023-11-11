@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -49,7 +50,7 @@ namespace seguridad_barrios_privados.Presentacion
         {
             dgMovimientos.Rows.Clear();
             dgMovimientos.Refresh();
-          
+
             foreach (Movimiento movimiento in ListaMovimientos)
             {
                 string observacion = "-";
@@ -60,31 +61,53 @@ namespace seguridad_barrios_privados.Presentacion
                         observacion = movimiento.Observaciones;
                     }
 
-                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, observacion);
+                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.DniUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, observacion);
                     Color colorOscuro = Color.FromArgb(25, 46, 71);
                     Color colorTexto = Color.FromArgb(45, 66, 91);
                     //quiero que el color de la columna de tipo de ingreso sea de colorOscuro, solo esa celda no toda la fila
                     dgMovimientos.Rows[dgMovimientos.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
-                   
+
                 }
                 else
                 {
-                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, movimiento.Observaciones);
-                    
+                    dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.DniUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, movimiento.Observaciones);
+
                 }
             }
         }
 
         private void dtFechaMovimeintos_ValueChanged(object sender, EventArgs e)
         {
+            FiltrarMovimientosPorFecha();
+        }
 
+        private void FiltrarMovimientosPorFecha()
+        {
+            DateTime fechaDesde = dtFechaDesde.Value.Date;
+            DateTime fechaHasta = dtFechaHasta.Value.Date;
+
+            if (fechaDesde > fechaHasta)
+            {
+                MessageBox.Show("La fecha de inicio debe ser anterior o igual a la fecha de fin.", "Error de rango de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ListaMovimientos = movimientos?.Where(m => m.Fecha >= fechaDesde && m.Fecha <= fechaHasta).ToList();
+
+            CargarMovimientos();
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
+            dtFechaHasta.Value = DateTime.Now;
+            dtFechaDesde.Value = DateTime.Now;
+           
             movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
             ListaMovimientos = movimientos;
             movimeintosBackUp = ListaMovimientos;
+            cbFiltrarMovimientos.SelectedIndex = -1;
+            cbFiltrarMovimientos.Text = "Tipo";
+            
             CargarMovimientos();
         }
 
@@ -121,5 +144,32 @@ namespace seguridad_barrios_privados.Presentacion
             movimientos = movimientosFiltrar;
             CargarMovimientos();
         }
+
+        private void tbBuscarUsuario__TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbBuscarUsuario.Texts))
+            {
+                if (Regex.IsMatch(tbBuscarUsuario.Texts, @"^\d+$"))
+                {
+                    ListaMovimientos = movimientos?.Where(m => m.DniVisitante.Contains(tbBuscarUsuario.Texts!)).ToList();
+                }
+                else
+                {
+                    ListaMovimientos = movimientos?.Where(m => m.NombreUsuario.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
+
+                }
+            }
+            else
+            {
+                ListaMovimientos = movimientos;
+            }
+            this.CargarMovimientos();
+        }
+
+        private void dtFechaHasta_ValueChanged(object sender, EventArgs e)
+        {
+            FiltrarMovimientosPorFecha();
+        }
     }
 }
+

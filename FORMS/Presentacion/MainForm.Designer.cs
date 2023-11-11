@@ -34,6 +34,9 @@ namespace seguridad_barrios_privados.Presentacion
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelMenu = new Panel();
             btnCerrarSesion = new FontAwesome.Sharp.IconButton();
+            btnReportes = new FontAwesome.Sharp.IconButton();
+            btnInformeSolicitudes = new FontAwesome.Sharp.IconButton();
+            btnMisSolicitudes = new FontAwesome.Sharp.IconButton();
             btnEgresos = new FontAwesome.Sharp.IconButton();
             btnIngresos = new FontAwesome.Sharp.IconButton();
             btnSolicitudes = new FontAwesome.Sharp.IconButton();
@@ -67,6 +70,9 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             panelMenu.BackColor = Color.FromArgb(26, 25, 70);
             panelMenu.Controls.Add(btnCerrarSesion);
+            panelMenu.Controls.Add(btnReportes);
+            panelMenu.Controls.Add(btnInformeSolicitudes);
+            panelMenu.Controls.Add(btnMisSolicitudes);
             panelMenu.Controls.Add(btnEgresos);
             panelMenu.Controls.Add(btnIngresos);
             panelMenu.Controls.Add(btnSolicitudes);
@@ -91,15 +97,81 @@ namespace seguridad_barrios_privados.Presentacion
             btnCerrarSesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCerrarSesion.IconSize = 40;
             btnCerrarSesion.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCerrarSesion.Location = new Point(0, 443);
+            btnCerrarSesion.Location = new Point(0, 617);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Padding = new Padding(9);
             btnCerrarSesion.Size = new Size(216, 58);
-            btnCerrarSesion.TabIndex = 7;
+            btnCerrarSesion.TabIndex = 13;
             btnCerrarSesion.Text = "Cerrar sesion";
             btnCerrarSesion.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCerrarSesion.UseVisualStyleBackColor = true;
-            btnCerrarSesion.Click += btnCerrarSesion_Click_1;
+            // 
+            // btnReportes
+            // 
+            btnReportes.Dock = DockStyle.Top;
+            btnReportes.FlatAppearance.BorderSize = 0;
+            btnReportes.FlatStyle = FlatStyle.Flat;
+            btnReportes.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReportes.ForeColor = SystemColors.ButtonHighlight;
+            btnReportes.IconChar = FontAwesome.Sharp.IconChar.LineChart;
+            btnReportes.IconColor = Color.White;
+            btnReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnReportes.IconSize = 40;
+            btnReportes.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReportes.Location = new Point(0, 559);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Padding = new Padding(9);
+            btnReportes.Size = new Size(216, 58);
+            btnReportes.TabIndex = 12;
+            btnReportes.Text = "Reportes";
+            btnReportes.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnReportes.UseVisualStyleBackColor = true;
+            btnReportes.Click += btnReportes_Click;
+            // 
+            // btnInformeSolicitudes
+            // 
+            btnInformeSolicitudes.Dock = DockStyle.Top;
+            btnInformeSolicitudes.FlatAppearance.BorderSize = 0;
+            btnInformeSolicitudes.FlatStyle = FlatStyle.Flat;
+            btnInformeSolicitudes.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInformeSolicitudes.ForeColor = SystemColors.ButtonHighlight;
+            btnInformeSolicitudes.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
+            btnInformeSolicitudes.IconColor = Color.White;
+            btnInformeSolicitudes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnInformeSolicitudes.IconSize = 40;
+            btnInformeSolicitudes.ImageAlign = ContentAlignment.MiddleLeft;
+            btnInformeSolicitudes.Location = new Point(0, 501);
+            btnInformeSolicitudes.Name = "btnInformeSolicitudes";
+            btnInformeSolicitudes.Padding = new Padding(9);
+            btnInformeSolicitudes.Size = new Size(216, 58);
+            btnInformeSolicitudes.TabIndex = 10;
+            btnInformeSolicitudes.Text = "Solicitues";
+            btnInformeSolicitudes.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnInformeSolicitudes.UseVisualStyleBackColor = true;
+            btnInformeSolicitudes.Click += btnInformeSolicitudes_Click;
+            // 
+            // btnMisSolicitudes
+            // 
+            btnMisSolicitudes.Dock = DockStyle.Top;
+            btnMisSolicitudes.FlatAppearance.BorderSize = 0;
+            btnMisSolicitudes.FlatStyle = FlatStyle.Flat;
+            btnMisSolicitudes.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMisSolicitudes.ForeColor = SystemColors.ButtonHighlight;
+            btnMisSolicitudes.IconChar = FontAwesome.Sharp.IconChar.FileCircleCheck;
+            btnMisSolicitudes.IconColor = Color.White;
+            btnMisSolicitudes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMisSolicitudes.IconSize = 40;
+            btnMisSolicitudes.ImageAlign = ContentAlignment.MiddleLeft;
+            btnMisSolicitudes.Location = new Point(0, 443);
+            btnMisSolicitudes.Margin = new Padding(3, 10, 3, 3);
+            btnMisSolicitudes.Name = "btnMisSolicitudes";
+            btnMisSolicitudes.Padding = new Padding(9);
+            btnMisSolicitudes.Size = new Size(216, 58);
+            btnMisSolicitudes.TabIndex = 8;
+            btnMisSolicitudes.Text = "Mis solicitudes";
+            btnMisSolicitudes.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMisSolicitudes.UseVisualStyleBackColor = true;
+            btnMisSolicitudes.Click += btnMisSolicitudes_Click;
             // 
             // btnEgresos
             // 
@@ -175,7 +247,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnMovimientos.FlatStyle = FlatStyle.Flat;
             btnMovimientos.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnMovimientos.ForeColor = SystemColors.ButtonHighlight;
-            btnMovimientos.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
+            btnMovimientos.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
             btnMovimientos.IconColor = Color.White;
             btnMovimientos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnMovimientos.IconSize = 40;
@@ -472,6 +544,9 @@ namespace seguridad_barrios_privados.Presentacion
         private FontAwesome.Sharp.IconButton btnEgresos;
         private FontAwesome.Sharp.IconButton btnIngresos;
         private FontAwesome.Sharp.IconButton btnSolicitudes;
+        private FontAwesome.Sharp.IconButton btnMisSolicitudes;
+        private FontAwesome.Sharp.IconButton btnInformeSolicitudes;
         private FontAwesome.Sharp.IconButton btnCerrarSesion;
+        private FontAwesome.Sharp.IconButton btnReportes;
     }
 }

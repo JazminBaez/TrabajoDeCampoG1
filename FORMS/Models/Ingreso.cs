@@ -9,7 +9,7 @@ public partial class Ingreso
 
     public int? IdSolicitud { get; set; }
 
-    public DateTime? Fecha { get; set; }
+    public DateTime Fecha { get; set; }
 
     public virtual ICollection<Egreso> Egresos { get; set; } = new List<Egreso>();
 

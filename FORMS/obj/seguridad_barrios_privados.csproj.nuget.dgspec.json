@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[6.3.0, )"
             },
+            "WinForms.DataVisualization": {
+              "target": "Package",
+              "version": "[1.9.1, )"
+            },
             "microsoft.entityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.11, )"

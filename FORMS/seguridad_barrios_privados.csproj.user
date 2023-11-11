@@ -19,6 +19,9 @@
     <Compile Update="Presentacion\FormGestionarUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Presentacion\FormMisSolicitudes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Presentacion\FormInformeMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
