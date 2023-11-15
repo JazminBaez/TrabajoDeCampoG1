@@ -146,18 +146,15 @@ namespace seguridad_barrios_privados.Presentacion
             List<Ingreso> ListaIngresosSinEgreso = new List<Ingreso>();
             List<Ingreso> Listafiltrada = new List<Ingreso>();
 
-            //primero que cargue en ListaIngresosSinEgreso los ingresos que no tengan egreso
             foreach (Ingreso ingreso in ingresosFiltrar)
             {
                 if (!(Egresos.Any(egreso => egreso.IdIngreso == ingreso.IdIngreso)))
                 {
-                    //agregelo al datagridview
                     ListaIngresosSinEgreso.Add(ingreso);
                     continue;
                 }
             }
 
-            //ahora que busque en la lista los ingresos que tengan mas de 3 dias de antiguedad
             if (ckbFiltrarVisitas.Checked)
             {
 

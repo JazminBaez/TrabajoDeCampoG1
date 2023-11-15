@@ -29,6 +29,7 @@ namespace seguridad_barrios_privados.Presentacion
         private List<Solicitude> ListaBackup;
         private List<Solicitude> ListaSolicitudes;
         private string busquedaPrevia;
+        private List<Usuario> propietarios;
 
         public FormIngresos()
         {
@@ -37,10 +38,15 @@ namespace seguridad_barrios_privados.Presentacion
             solicitudesRepositorio = new SolicitudesRepositorio();
             ingresosRepositorio = new IngresosRepositorio();
             validaciones = new Validaciones();
+            propietarios = new List<Usuario>();
 
-            cbPropietarios.DataSource = usuariosRepositorio.ObtenerUsuariosPorRol(1);
+
+            propietarios = usuariosRepositorio.ObtenerUsuariosPorRol(1);
+            var propietariosActivos = propietarios.Where(u => u.Estado != 1).ToList();
+            cbPropietarios.DataSource = propietariosActivos;
             cbPropietarios.DisplayMember = "Datos";
             cbPropietarios.ValueMember = "IdUsuario";
+
 
 
             ListaSolicitudes = new List<Solicitude>();
@@ -164,7 +170,6 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (Validaciones.CamposCompletos(tbBuscarSolicitud))
             {
-                //buscar usuario
             }
         }
 

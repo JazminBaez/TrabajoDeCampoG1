@@ -64,7 +64,6 @@ namespace seguridad_barrios_privados.Presentacion
                     dgMovimientos.Rows.Add(movimiento.TipoMovimiento, movimiento.NombreUsuario, movimiento.DniUsuario, movimiento.NombreVisitante, movimiento.DniVisitante, movimiento.Fecha, observacion);
                     Color colorOscuro = Color.FromArgb(25, 46, 71);
                     Color colorTexto = Color.FromArgb(45, 66, 91);
-                    //quiero que el color de la columna de tipo de ingreso sea de colorOscuro, solo esa celda no toda la fila
                     dgMovimientos.Rows[dgMovimientos.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
 
                 }
@@ -136,7 +135,6 @@ namespace seguridad_barrios_privados.Presentacion
             string tipoSeleccionado = cbFiltrarMovimientos.SelectedItem.ToString();
             if (tipoSeleccionado != "Tipo")
             {
-                //que guarde en usuariosFiltrar todos los usuarios de usuariosFiltrar que tengan el rol seleccionado en el comboBox
                 movimientosFiltrar = movimientosFiltrar?.Where(m => m.TipoMovimiento == tipoSeleccionado).ToList();
             }
 

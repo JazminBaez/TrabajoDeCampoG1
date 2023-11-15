@@ -128,7 +128,6 @@ namespace seguridad_barrios_privados.Presentacion
             int estadoSeleccionado = cbFiltraSolicitudes.SelectedIndex;
             if (estadoSeleccionado != -1)
             {
-                //que guarde en usuariosFiltrar todos los usuarios de usuariosFiltrar que tengan el rol seleccionado en el comboBox
                 SolicitudesFiltrar = SolicitudesFiltrar?.Where(s => s.Estado == estadoSeleccionado).ToList();
             }
 

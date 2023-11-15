@@ -44,7 +44,6 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                // Si se presiona Enter, activa el evento del botón "Iniciar Sesión"
                 btIniciarSesion.PerformClick();
             }
         }
@@ -67,10 +66,18 @@ namespace seguridad_barrios_privados.Presentacion
 
                     if (VerifyPassword(tbContrasena.Texts, usuario.Contrasena))
                     {
-                        AppState.UsuarioActual = usuario;
-                        Form menuInicio = new MainForm();
-                        menuInicio.Show();
-                        this.Hide();
+                        if(usuario.Estado == 1)
+                        {
+                            this.msgError("Usuario no registrado");
+                        }
+                        else
+                        {
+                            AppState.UsuarioActual = usuario;
+                            Form menuInicio = new MainForm();
+                            menuInicio.Show();
+                            this.Hide();
+                        }
+                        
                     }
                     else
                     {

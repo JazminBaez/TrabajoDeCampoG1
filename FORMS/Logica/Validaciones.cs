@@ -100,11 +100,7 @@ namespace seguridad_barrios_privados.Logica
             }
             else
             {
-                if (usuariosRepositorio.ExisteUsuario(usuario.Email))
-                {
-                    Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
-                    return false;
-                }
+               
 
                 return true;
 
@@ -112,7 +108,7 @@ namespace seguridad_barrios_privados.Logica
             }
         }
 
-        public bool ModificarUsuario(Usuario usuario, string correoOriginal, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        public bool ModificarUsuario(Usuario usuario, string dniOriginal, string correoOriginal, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
             var validator = new ModificarUsuarioValidators();
             var result = validator.Validate(usuario);
@@ -120,28 +116,34 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
                 return false;
             }
             else
             {
                 string emailNuevo = usuario.Email;
+                string dniNuevo = usuario.Dni;
 
-                    if (emailNuevo != correoOriginal){
-
-
-                        if (usuariosRepositorio.ExisteUsuario(usuario.Email))
-                        {
+                if (emailNuevo != correoOriginal)
+                {
+                    if (usuariosRepositorio.ExisteUsuario(usuario.Email))
+                    {
                         Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
                         return false;
                     }
-                   
-              }
-        
+                    return true;
+                }
 
+                if (dniNuevo != dniOriginal)
+                {
+                    if (usuariosRepositorio.ObtenerUsuariosPorDni(usuario.Dni) != null)
+                    {
+                        Validaciones.MostrarError("Dni ya registrado", errorMsg, errorIcon);
+                        return false;
+                    }
+                    return true;
+                }
                 return true;
-
-
             }
         }
 

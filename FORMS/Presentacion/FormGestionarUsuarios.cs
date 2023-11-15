@@ -28,6 +28,7 @@ namespace seguridad_barrios_privados.Presentacion
         private RolesRepositorio rolesRepositorio;
         private Validaciones validaciones;
         private string correoOriginal;
+        private string dniOriginal;
         private int usuarioId;
         private List<Usuario> ListaUsuarios;
         private List<Usuario> ListaBackup;
@@ -60,9 +61,6 @@ namespace seguridad_barrios_privados.Presentacion
             ListaBackup = ListaUsuarios;
             busquedaPrevia = string.Empty;
             CargarUsuarios();
-
-            //que imprima por consola el tamaño del formulario 
-            Console.WriteLine("el tamaño es :" + this.Size);
 
 
         }
@@ -127,6 +125,7 @@ namespace seguridad_barrios_privados.Presentacion
                 Apellido = tbApellido.Texts,
                 Telefono = tbTelefono.Texts,
                 Direccion = tbDireccion.Texts,
+                Dni = tbDNI.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
                 Estado = 0,
@@ -139,18 +138,19 @@ namespace seguridad_barrios_privados.Presentacion
                 usuario.Contrasena = HashPasswordSHA256(tbContrasena.Texts);
                 this.usuariosRepositorio.InsertarUsuario(usuario);
                 MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarUsuarios();
-                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbDNI,tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
                 cbRol.Text = "Rol";
-            }
 
+                CargarUsuarios();
+            }
 
 
 
         }
 
-        private static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
+        private void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
         {
             foreach (var campo in campos)
             {
@@ -159,6 +159,9 @@ namespace seguridad_barrios_privados.Presentacion
             }
             error.Visible = false;
             errorIcon.Visible = false;
+            Usuarios = usuariosRepositorio.ObtenerUsuarios();
+            ListaUsuarios = Usuarios;
+            ListaBackup = ListaUsuarios;
 
         }
 
@@ -202,7 +205,8 @@ namespace seguridad_barrios_privados.Presentacion
                 }
                 usuarioId = usuario.IdUsuario;
                 usuariosRepositorio.ActualizarUsuario(usuario, usuarioId);
-                MessageBox.Show("Usuario dado de baja con exito", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario actualizado con exito", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 CargarUsuarios();
 
             }
@@ -211,28 +215,25 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
-                //rellene todos los textBox con la informacion obtenida en la variable usuario
                 tbNombre.Texts = usuario.Nombre;
                 tbApellido.Texts = usuario.Apellido;
                 tbTelefono.Texts = usuario.Telefono;
                 tbDireccion.Texts = usuario.Direccion;
                 tbCorreo.Texts = usuario.Email;
+                tbDNI.Texts = usuario.Dni;
 
-                //los campos de contrasena y repetirContrasena deben estar desabilitados
                 tbContrasena.Enabled = false;
                 tbContrasena.BackColor = Color.LightGray;
                 tbRepetirContrasena.Enabled = false;
                 tbRepetirContrasena.BackColor = Color.LightGray;
                 cbRol.SelectedItem = usuario.Rol;
-                //cambie el texto del boton registrar por modificar
                 btRegistrar.Text = "GUARDAR";
-                //cambie el evento click del boton registrar por modificar
                 btRegistrar.Click -= btRegistrar_Click;
                 btRegistrar.Click += btModificar_Click;
-                //haz visible el boton cancelar
                 btCancelar.Visible = true;
 
                 correoOriginal = usuario.Email;
+                dniOriginal = usuario.Dni;
                 usuarioId = usuario.IdUsuario;
 
             }
@@ -247,18 +248,19 @@ namespace seguridad_barrios_privados.Presentacion
                 Nombre = tbNombre.Texts,
                 Apellido = tbApellido.Texts,
                 Telefono = tbTelefono.Texts,
+                Dni = tbDNI.Texts,
                 Direccion = tbDireccion.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
                 Estado = usuariosRepositorio.ObtenerUsuarioPorId(usuarioId).Estado,
                 IdRol = rol != null ? rol.IdRol : null,
             };
-            if (validaciones.ModificarUsuario(usuario, correoOriginal, lbError, ErrorIcon, dgUsuarios))
+            if (validaciones.ModificarUsuario(usuario, dniOriginal, correoOriginal, lbError, ErrorIcon, dgUsuarios))
             {
                 usuariosRepositorio.ActualizarUsuario(usuario, usuarioId);
                 MessageBox.Show("Usuario Actualizado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
-                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido,tbDNI, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
                 btCancelar.Visible = false;
                 btRegistrar.Text = "REGISTRAR";
@@ -287,7 +289,7 @@ namespace seguridad_barrios_privados.Presentacion
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
 
-            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario,tbDNI, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
             cbRol.Text = "Rol";
             cbFiltrarUsuarios.SelectedIndex = -1;
@@ -304,7 +306,6 @@ namespace seguridad_barrios_privados.Presentacion
             int rolSeleccionado = cbFiltrarUsuarios.SelectedIndex + 1;
             if (cbFiltrarUsuarios.SelectedText != "Rol")
             {
-                //que guarde en usuariosFiltrar todos los usuarios de usuariosFiltrar que tengan el rol seleccionado en el comboBox
                 usuariosFiltrar = usuariosFiltrar?.Where(u => u.IdRol == rolSeleccionado).ToList();
             }
 
@@ -332,6 +333,11 @@ namespace seguridad_barrios_privados.Presentacion
                 ListaUsuarios = Usuarios;
             }
             this.CargarUsuarios();
+        }
+
+        private void iS(object sender, EventArgs e)
+        {
+
         }
     }
 }
