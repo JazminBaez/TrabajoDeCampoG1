@@ -30,6 +30,8 @@ namespace seguridad_barrios_privados.Presentacion
             visitantesRepositorio = new VisitantesRepositorio();
             validaciones = new Validaciones();
             CargarSolicitudes();
+        
+            dtFechaMovimeintos.MinDate = DateTime.Today;
 
         }
 
@@ -38,7 +40,7 @@ namespace seguridad_barrios_privados.Presentacion
             List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
-           
+
             if (solicitudes != null)
             {
 
@@ -83,23 +85,13 @@ namespace seguridad_barrios_privados.Presentacion
             if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
             {
 
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Baja = true;
-                if (solicitud.Estado != 0)
+                DialogResult dialogResult = MessageBox.Show("¿Estás seguro de eliminar la solicitud? El adiministrador aun podra ver su historial completo", "Confirmación", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    if (System.Windows.Forms.MessageBox.Show("¿Estás seguro de eliminar la solicitud? El adiministrador aun podra ver su historial completo", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                        System.Windows.Forms.MessageBox.Show("Solicitud cancelada", "Éxito");
-                    }
-                }
-                else
-                {
-                    if (System.Windows.Forms.MessageBox.Show("¿Estás seguro de cancelar la solicitud?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                        System.Windows.Forms.MessageBox.Show("Solicitud cancelada", "Éxito");
-                    }
+                    var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
+                    solicitud.Baja = true;
+                    solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                    System.Windows.Forms.MessageBox.Show("Solicitud eliminada", "Éxito");
                 }
 
                 CargarSolicitudes();
