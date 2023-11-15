@@ -150,9 +150,9 @@ namespace seguridad_barrios_privados.Controls
             {
                 RemovePlaceholder();
                 textBox1.Text = value;
-               
+
                 SetPlaceholder();
-         
+
             }
         }
 
@@ -273,15 +273,15 @@ namespace seguridad_barrios_privados.Controls
         private void SetPlaceholder()
         {
             bool resultado = string.IsNullOrWhiteSpace(textBox1.Text);
-                if (resultado && placeholderText != "")
-                {
-                    isPlaceholder = true;
-                    textBox1.Text = placeholderText;
-                    textBox1.ForeColor = placeholderColor;
-                    if (isPasswordChar)
-                        textBox1.UseSystemPasswordChar = false;
-                }
-    
+            if (resultado && placeholderText != "")
+            {
+                isPlaceholder = true;
+                textBox1.Text = placeholderText;
+                textBox1.ForeColor = placeholderColor;
+                if (isPasswordChar)
+                    textBox1.UseSystemPasswordChar = false;
+            }
+
         }
         private void RemovePlaceholder()
         {

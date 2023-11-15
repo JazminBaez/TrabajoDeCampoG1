@@ -17,6 +17,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
+
 namespace seguridad_barrios_privados.Presentacion
 {
 
@@ -28,6 +29,7 @@ namespace seguridad_barrios_privados.Presentacion
         private VisitantesRepositorio visitantesRepositorio;
         private EgresosRepositorio egresosRepositorio;
         private IngresosRepositorio ingresosRepositorio;
+        private BackupRepositorio backupRepositorio;
         private Ingreso ingreso;
         private List<Ingreso> ListaIngresos;
         private List<Ingreso> ListaBackup;
@@ -44,6 +46,7 @@ namespace seguridad_barrios_privados.Presentacion
             egresosRepositorio = new EgresosRepositorio();
             ingresosRepositorio = new IngresosRepositorio();
             usuariosRepositorio = new UsuariosRepositorio();
+            backupRepositorio = new BackupRepositorio();
 
 
             ListaIngresos = new List<Ingreso>();
@@ -62,8 +65,12 @@ namespace seguridad_barrios_privados.Presentacion
             movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
 
             MovimientosPorDia();
-            TopPropietarios();
+            TopPropietariosPorSemana();
             CargarTargetas();
+
+            btnRestoreBuscar.Visible = false;
+            btnRestoreDatabase.Visible = false;
+
         }
 
         private void CargarTargetas()
@@ -72,11 +79,11 @@ namespace seguridad_barrios_privados.Presentacion
             var cantidadDePropietarios = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 1 && u.Estado != 1).Count();
             tgUsuarios.Text = cantidadDePropietarios.ToString() + "\r\nPROPIETARIOS";
 
-            var catidadDeGuardias = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 2 && u.Estado != 1).Count();
+            var catidadDeGuardias = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 3 && u.Estado != 1).Count();
             tgVisitantes.Text = catidadDeGuardias.ToString() + "\r\nGUARDIAS";
 
             var promedioIngresosPorDia = ingresosRepositorio.ObtenerIngresos().GroupBy(i => i.Fecha.Date).Select(g => new { Fecha = g.Key, Cantidad = g.Count() }).Average(i => i.Cantidad);
-            tgPromedioDiario.Text = "PROMEDIO DIARIO DE INGRESOS: " + promedioIngresosPorDia.ToString() +;
+            tgPromedioDiario.Text = "PROMEDIO DIARIO DE INGRESOS: " + promedioIngresosPorDia.ToString();
 
             var ingresosDeHoy = ingresosRepositorio.ObtenerIngresos().Where(i => i.Fecha.Date == DateTime.Today).Count();
             tgIngresosHoy.Text = ingresosDeHoy.ToString() + " INGRESOS REGISTRADOS";
@@ -182,9 +189,7 @@ namespace seguridad_barrios_privados.Presentacion
 
             DistribucionMovimientos.ChartAreas[0].AxisX.Interval = 1;
             DistribucionMovimientos.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-            DistribucionMovimientos.ChartAreas[0].AxisX.Title = "Mes del año";
-            DistribucionMovimientos.ChartAreas[0].AxisY.Title = "Cantidad";
-            DistribucionMovimientos.ChartAreas[0].AxisX.LabelStyle.Angle = 45;
+            DistribucionMovimientos.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
 
 
         }
@@ -203,6 +208,7 @@ namespace seguridad_barrios_privados.Presentacion
                     { DayOfWeek.Saturday, "Sábado" }
                 };
             var todosLosDias = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
+
             foreach (var item in todosLosDias)
             {
                 Console.WriteLine(item);
@@ -254,32 +260,28 @@ namespace seguridad_barrios_privados.Presentacion
 
             DistribucionMovimientos.ChartAreas[0].AxisX.Interval = 1;
             DistribucionMovimientos.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-            DistribucionMovimientos.ChartAreas[0].AxisX.Title = "Día de la semana";
-            DistribucionMovimientos.ChartAreas[0].AxisY.Title = "Cantidad";
-            DistribucionMovimientos.ChartAreas[0].AxisX.LabelStyle.Angle = 45;
+            DistribucionMovimientos.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
         }
 
-        private void TopPropietarios()
+        private void TopPropietariosPorSemana()
         {
-            var visitasPorPropietarioYDia = movimientos
-            .Where(m => m.TipoMovimiento == "Ingreso")
-            .GroupBy(m => new { m.NombreUsuario, Dia = m.Fecha.Date })
-            .Select(g => new
-            {
-                Propietario = g.Key.NombreUsuario,
-                Dia = g.Key.Dia,
-                Visitas = g.Count()
-            });
+            var visitasPorPropietarioYSemana = movimientos
+                .Where(m => m.TipoMovimiento == "Ingreso")
+                .GroupBy(m => new { m.NombreUsuario, Semana = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(m.Fecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) })
+                .Select(g => new
+                {
+                    Propietario = g.Key.NombreUsuario,
+                    Semana = g.Key.Semana,
+                    Visitas = g.Count()
+                });
 
-            //imprime  esto por consola
-            //ponle titulo
-            Console.WriteLine("Agrupar por Propietario y Día:\r\nAgrupa los movimientos por el propietario y el día.\r\nCalcula la cantidad de visitas para cada propietario en cada día.");
-            foreach (var item in visitasPorPropietarioYDia)
+            Console.WriteLine("Agrupar por Propietario y Semana:\r\nAgrupa los movimientos por el propietario y la semana.\r\nCalcula la cantidad de visitas para cada propietario en cada semana.");
+            foreach (var item in visitasPorPropietarioYSemana)
             {
                 Console.WriteLine(item);
             }
 
-            var promedioPorPropietario = visitasPorPropietarioYDia
+            var promedioPorPropietario = visitasPorPropietarioYSemana
                 .GroupBy(v => v.Propietario)
                 .Select(g => new
                 {
@@ -287,31 +289,27 @@ namespace seguridad_barrios_privados.Presentacion
                     PromedioVisitas = g.Average(v => v.Visitas)
                 });
 
-            //imprime  esto por consola
-            Console.WriteLine("Calcular Promedio por Propietario:\r\nCalcula el promedio de visitas por día para cada propietario.");
+            Console.WriteLine("Calcular Promedio por Propietario:\r\nCalcula el promedio de visitas por semana para cada propietario.");
             foreach (var item in promedioPorPropietario)
             {
                 Console.WriteLine(item);
             }
 
             var top3Propietarios = promedioPorPropietario
-             .OrderByDescending(p => p.PromedioVisitas)
-             .Take(3);
+                .OrderByDescending(p => p.PromedioVisitas)
+                .Take(3);
 
-            //imprime  esto por consola
-            Console.WriteLine("Top 3 Propietarios:\r\nOrdena los propietarios por el promedio de visitas por día de forma descendente.\r\nToma los primeros 3 propietarios.");
+            Console.WriteLine("Top 3 Propietarios:\r\nOrdena los propietarios por el promedio de visitas por semana de forma descendente.\r\nToma los primeros 3 propietarios.");
             foreach (var item in top3Propietarios)
             {
                 Console.WriteLine(item);
             }
 
-            // Supongamos que tienes un objeto Chart llamado chartTopPropietarios en tu formulario.
             topPropietarios.Series.Clear();
-            var propietarios = new Series("Promedio visitas \r\n por dia");
+            var propietarios = new Series("Promedio visitas \r\n por semana");
             propietarios.ChartType = SeriesChartType.Column;
 
             int desplazamientoX = 0;
-
 
             foreach (var propietario in top3Propietarios)
             {
@@ -322,14 +320,97 @@ namespace seguridad_barrios_privados.Presentacion
             topPropietarios.Series.Add(propietarios);
             topPropietarios.ChartAreas[0].AxisX.Interval = 1;
             topPropietarios.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
-            topPropietarios.ChartAreas[0].AxisX.Title = "Propietarios";
-            topPropietarios.ChartAreas[0].AxisY.Title = "Promedio visitas por dia";
-            //topPropietarios.ChartAreas[0].AxisX.LabelStyle.Angle = ;
+        }
 
+
+        private void topPropietarios_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void topPropietarios_Click(object sender, EventArgs e)
+        private void btnBackupBuscar_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                tbUbicacion.Texts = dlg.SelectedPath;
+
+            }
+        }
+
+        private void btnRestoreBuscar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Backup files (*.bak)|*.bak";
+            dlg.Title = "Seleccionar archivo";
+            dlg.RestoreDirectory = true;
+            dlg.CheckFileExists = true;
+            dlg.CheckPathExists = true;
+            dlg.Multiselect = false;
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                tbUbicacion.Texts = dlg.FileName;
+            }
+        }
+
+        private async void btnBackup_Click(object sender, EventArgs e)
+        {
+            if (tbUbicacion.Texts != string.Empty)
+            {
+
+                await backupRepositorio.Backup(tbUbicacion.Texts);
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una ubicación", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            tbUbicacion.Texts = string.Empty;
+        }
+
+        private async void btnRestore_Click(object sender, EventArgs e)
+        {
+            if (tbUbicacion.Text != string.Empty)
+            {
+                btnBackupBuscar.Enabled = false;
+                btnBackupDatabase.Enabled = false;
+                await backupRepositorio.Restore(tbUbicacion.Texts);
+                btnBackupBuscar.Enabled = true;
+                btnBackupDatabase.Enabled = true;
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un archivo", "Restore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbBaseDatos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbBaseDatos.SelectedIndex == 0)
+            {
+                btnRestoreDatabase.Visible = false;
+                btnRestoreBuscar.Visible = false;
+
+                btnBackupDatabase.Visible = true;
+                btnBackupBuscar.Visible = true;
+                lBaseDatos.Text = "BACKUP";
+
+            }
+            else
+            {
+                btnRestoreDatabase.Visible = true;
+                btnRestoreBuscar.Visible = true;
+
+                btnBackupDatabase.Visible = false;
+                btnBackupBuscar.Visible = false;
+                lBaseDatos.Text = "RESTORE";
+            }
+        }
+
+        private void tgIngresosHoy_Click(object sender, EventArgs e)
         {
 
         }

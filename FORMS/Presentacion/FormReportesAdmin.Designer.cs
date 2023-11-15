@@ -41,21 +41,20 @@ namespace seguridad_barrios_privados.Presentacion
             DistribucionMovimientos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             cbFiltroMovimientos = new ComboBox();
             panel1 = new Panel();
+            panel2 = new Panel();
+            btnRestoreBuscar = new RJButton();
+            btnRestoreDatabase = new RJButton();
+            cbBaseDatos = new ComboBox();
+            btnBackupDatabase = new RJButton();
+            btnBackupBuscar = new RJButton();
+            tbUbicacion = new RJTextBox();
+            lBaseDatos = new Label();
+            label2 = new Label();
             label1 = new Label();
             tgVisitantes = new FontAwesome.Sharp.IconButton();
             tgIngresosHoy = new FontAwesome.Sharp.IconButton();
             tgPromedioDiario = new FontAwesome.Sharp.IconButton();
             tgUsuarios = new FontAwesome.Sharp.IconButton();
-            panel2 = new Panel();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            rjTextBox1 = new RJTextBox();
-            rjTextBox2 = new RJTextBox();
-            btnBackupBuscar = new RJButton();
-            btnBackup = new RJButton();
-            btnRestoreBuscar = new RJButton();
-            btnRestore = new RJButton();
             ((System.ComponentModel.ISupportInitialize)topPropietarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DistribucionMovimientos).BeginInit();
             panel1.SuspendLayout();
@@ -76,7 +75,7 @@ namespace seguridad_barrios_privados.Presentacion
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             topPropietarios.Series.Add(series1);
-            topPropietarios.Size = new Size(461, 247);
+            topPropietarios.Size = new Size(542, 247);
             topPropietarios.TabIndex = 0;
             topPropietarios.Text = "topPropietarios";
             topPropietarios.Click += topPropietarios_Click;
@@ -101,7 +100,7 @@ namespace seguridad_barrios_privados.Presentacion
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             DistribucionMovimientos.Series.Add(series2);
-            DistribucionMovimientos.Size = new Size(461, 285);
+            DistribucionMovimientos.Size = new Size(542, 290);
             DistribucionMovimientos.TabIndex = 4;
             DistribucionMovimientos.Text = "chart1";
             title1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
@@ -118,7 +117,7 @@ namespace seguridad_barrios_privados.Presentacion
             cbFiltroMovimientos.ForeColor = SystemColors.HighlightText;
             cbFiltroMovimientos.FormattingEnabled = true;
             cbFiltroMovimientos.Items.AddRange(new object[] { "Dia", "Mes" });
-            cbFiltroMovimientos.Location = new Point(365, 79);
+            cbFiltroMovimientos.Location = new Point(427, 80);
             cbFiltroMovimientos.Name = "cbFiltroMovimientos";
             cbFiltroMovimientos.Size = new Size(97, 24);
             cbFiltroMovimientos.TabIndex = 6;
@@ -134,10 +133,165 @@ namespace seguridad_barrios_privados.Presentacion
             panel1.Controls.Add(tgPromedioDiario);
             panel1.Controls.Add(tgUsuarios);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(496, 0);
+            panel1.Location = new Point(560, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(362, 550);
+            panel1.Size = new Size(477, 550);
             panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Azure;
+            panel2.Controls.Add(btnRestoreBuscar);
+            panel2.Controls.Add(btnRestoreDatabase);
+            panel2.Controls.Add(cbBaseDatos);
+            panel2.Controls.Add(btnBackupDatabase);
+            panel2.Controls.Add(btnBackupBuscar);
+            panel2.Controls.Add(tbUbicacion);
+            panel2.Controls.Add(lBaseDatos);
+            panel2.Controls.Add(label2);
+            panel2.Location = new Point(0, 255);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(425, 252);
+            panel2.TabIndex = 5;
+            // 
+            // btnRestoreBuscar
+            // 
+            btnRestoreBuscar.BackColor = Color.LightCyan;
+            btnRestoreBuscar.BackgroundColor = Color.LightCyan;
+            btnRestoreBuscar.BorderColor = Color.DarkSlateGray;
+            btnRestoreBuscar.BorderRadius = 15;
+            btnRestoreBuscar.BorderSize = 1;
+            btnRestoreBuscar.FlatAppearance.BorderSize = 0;
+            btnRestoreBuscar.FlatStyle = FlatStyle.Flat;
+            btnRestoreBuscar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRestoreBuscar.ForeColor = Color.Teal;
+            btnRestoreBuscar.Location = new Point(327, 104);
+            btnRestoreBuscar.Name = "btnRestoreBuscar";
+            btnRestoreBuscar.Size = new Size(85, 31);
+            btnRestoreBuscar.TabIndex = 17;
+            btnRestoreBuscar.Text = "buscar";
+            btnRestoreBuscar.TextColor = Color.Teal;
+            btnRestoreBuscar.UseVisualStyleBackColor = false;
+            btnRestoreBuscar.Click += btnRestoreBuscar_Click;
+            // 
+            // btnRestoreDatabase
+            // 
+            btnRestoreDatabase.BackColor = Color.CadetBlue;
+            btnRestoreDatabase.BackgroundColor = Color.CadetBlue;
+            btnRestoreDatabase.BorderColor = Color.PaleVioletRed;
+            btnRestoreDatabase.BorderRadius = 15;
+            btnRestoreDatabase.BorderSize = 0;
+            btnRestoreDatabase.FlatAppearance.BorderSize = 0;
+            btnRestoreDatabase.FlatStyle = FlatStyle.Flat;
+            btnRestoreDatabase.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRestoreDatabase.ForeColor = Color.White;
+            btnRestoreDatabase.Location = new Point(114, 142);
+            btnRestoreDatabase.Name = "btnRestoreDatabase";
+            btnRestoreDatabase.Size = new Size(179, 41);
+            btnRestoreDatabase.TabIndex = 16;
+            btnRestoreDatabase.Text = "Restore Database";
+            btnRestoreDatabase.TextColor = Color.White;
+            btnRestoreDatabase.UseVisualStyleBackColor = false;
+            btnRestoreDatabase.Click += btnRestore_Click;
+            // 
+            // cbBaseDatos
+            // 
+            cbBaseDatos.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            cbBaseDatos.ForeColor = Color.DarkSlateGray;
+            cbBaseDatos.FormattingEnabled = true;
+            cbBaseDatos.Items.AddRange(new object[] { "Backup", "Restore" });
+            cbBaseDatos.Location = new Point(291, 23);
+            cbBaseDatos.Name = "cbBaseDatos";
+            cbBaseDatos.Size = new Size(121, 24);
+            cbBaseDatos.TabIndex = 15;
+            cbBaseDatos.Text = "Seleccionar";
+            cbBaseDatos.SelectedIndexChanged += cbBaseDatos_SelectedIndexChanged;
+            // 
+            // btnBackupDatabase
+            // 
+            btnBackupDatabase.BackColor = Color.CadetBlue;
+            btnBackupDatabase.BackgroundColor = Color.CadetBlue;
+            btnBackupDatabase.BorderColor = Color.PaleVioletRed;
+            btnBackupDatabase.BorderRadius = 15;
+            btnBackupDatabase.BorderSize = 0;
+            btnBackupDatabase.FlatAppearance.BorderSize = 0;
+            btnBackupDatabase.FlatStyle = FlatStyle.Flat;
+            btnBackupDatabase.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBackupDatabase.ForeColor = Color.White;
+            btnBackupDatabase.Location = new Point(114, 142);
+            btnBackupDatabase.Name = "btnBackupDatabase";
+            btnBackupDatabase.Size = new Size(179, 41);
+            btnBackupDatabase.TabIndex = 12;
+            btnBackupDatabase.Text = "Backup Database";
+            btnBackupDatabase.TextColor = Color.White;
+            btnBackupDatabase.UseVisualStyleBackColor = false;
+            btnBackupDatabase.Click += btnBackup_Click;
+            // 
+            // btnBackupBuscar
+            // 
+            btnBackupBuscar.BackColor = Color.LightCyan;
+            btnBackupBuscar.BackgroundColor = Color.LightCyan;
+            btnBackupBuscar.BorderColor = Color.DarkSlateGray;
+            btnBackupBuscar.BorderRadius = 15;
+            btnBackupBuscar.BorderSize = 1;
+            btnBackupBuscar.FlatAppearance.BorderSize = 0;
+            btnBackupBuscar.FlatStyle = FlatStyle.Flat;
+            btnBackupBuscar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBackupBuscar.ForeColor = Color.Teal;
+            btnBackupBuscar.Location = new Point(327, 104);
+            btnBackupBuscar.Name = "btnBackupBuscar";
+            btnBackupBuscar.Size = new Size(85, 31);
+            btnBackupBuscar.TabIndex = 10;
+            btnBackupBuscar.Text = "buscar";
+            btnBackupBuscar.TextColor = Color.Teal;
+            btnBackupBuscar.UseVisualStyleBackColor = false;
+            btnBackupBuscar.Click += btnBackupBuscar_Click;
+            // 
+            // tbUbicacion
+            // 
+            tbUbicacion.BackColor = SystemColors.Window;
+            tbUbicacion.BorderColor = Color.DarkCyan;
+            tbUbicacion.BorderFocusColor = Color.HotPink;
+            tbUbicacion.BorderRadius = 10;
+            tbUbicacion.BorderSize = 2;
+            tbUbicacion.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            tbUbicacion.ForeColor = Color.FromArgb(64, 64, 64);
+            tbUbicacion.Location = new Point(13, 104);
+            tbUbicacion.Margin = new Padding(4);
+            tbUbicacion.Multiline = false;
+            tbUbicacion.Name = "tbUbicacion";
+            tbUbicacion.Padding = new Padding(10, 7, 10, 7);
+            tbUbicacion.PasswordChar = false;
+            tbUbicacion.PlaceholderColor = Color.DarkGray;
+            tbUbicacion.PlaceholderText = "";
+            tbUbicacion.Size = new Size(307, 31);
+            tbUbicacion.TabIndex = 8;
+            tbUbicacion.Texts = "";
+            tbUbicacion.UnderlinedStyle = false;
+            // 
+            // lBaseDatos
+            // 
+            lBaseDatos.AutoSize = true;
+            lBaseDatos.BackColor = Color.Transparent;
+            lBaseDatos.Font = new Font("Century Gothic", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            lBaseDatos.ForeColor = Color.DarkCyan;
+            lBaseDatos.Location = new Point(13, 82);
+            lBaseDatos.Name = "lBaseDatos";
+            lBaseDatos.Size = new Size(68, 18);
+            lBaseDatos.TabIndex = 6;
+            lBaseDatos.Text = "BACKUP";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.DarkCyan;
+            label2.Location = new Point(13, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(124, 19);
+            label2.TabIndex = 5;
+            label2.Text = "BASE DE DATOS";
             // 
             // label1
             // 
@@ -145,7 +299,7 @@ namespace seguridad_barrios_privados.Presentacion
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DarkCyan;
-            label1.Location = new Point(0, 152);
+            label1.Location = new Point(3, 152);
             label1.Name = "label1";
             label1.Size = new Size(145, 19);
             label1.TabIndex = 4;
@@ -161,12 +315,11 @@ namespace seguridad_barrios_privados.Presentacion
             tgVisitantes.IconColor = Color.CadetBlue;
             tgVisitantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             tgVisitantes.ImageAlign = ContentAlignment.MiddleLeft;
-            tgVisitantes.Location = new Point(183, 3);
+            tgVisitantes.Location = new Point(221, 3);
             tgVisitantes.Name = "tgVisitantes";
-            tgVisitantes.Size = new Size(174, 71);
+            tgVisitantes.Size = new Size(204, 71);
             tgVisitantes.TabIndex = 3;
             tgVisitantes.Text = "iconButton1";
-            tgVisitantes.TextAlign = ContentAlignment.MiddleRight;
             tgVisitantes.UseVisualStyleBackColor = false;
             // 
             // tgIngresosHoy
@@ -179,13 +332,13 @@ namespace seguridad_barrios_privados.Presentacion
             tgIngresosHoy.IconColor = Color.CadetBlue;
             tgIngresosHoy.IconFont = FontAwesome.Sharp.IconFont.Auto;
             tgIngresosHoy.ImageAlign = ContentAlignment.MiddleLeft;
-            tgIngresosHoy.Location = new Point(0, 174);
+            tgIngresosHoy.Location = new Point(1, 174);
             tgIngresosHoy.Name = "tgIngresosHoy";
-            tgIngresosHoy.Size = new Size(356, 55);
+            tgIngresosHoy.Size = new Size(424, 55);
             tgIngresosHoy.TabIndex = 2;
             tgIngresosHoy.Text = "iconButton2";
-            tgIngresosHoy.TextAlign = ContentAlignment.MiddleRight;
             tgIngresosHoy.UseVisualStyleBackColor = false;
+            tgIngresosHoy.Click += tgIngresosHoy_Click;
             // 
             // tgPromedioDiario
             // 
@@ -197,12 +350,11 @@ namespace seguridad_barrios_privados.Presentacion
             tgPromedioDiario.IconColor = Color.CadetBlue;
             tgPromedioDiario.IconFont = FontAwesome.Sharp.IconFont.Auto;
             tgPromedioDiario.ImageAlign = ContentAlignment.MiddleLeft;
-            tgPromedioDiario.Location = new Point(3, 80);
+            tgPromedioDiario.Location = new Point(0, 80);
             tgPromedioDiario.Name = "tgPromedioDiario";
-            tgPromedioDiario.Size = new Size(359, 53);
+            tgPromedioDiario.Size = new Size(425, 53);
             tgPromedioDiario.TabIndex = 1;
             tgPromedioDiario.Text = "iconButton1";
-            tgPromedioDiario.TextAlign = ContentAlignment.MiddleRight;
             tgPromedioDiario.UseVisualStyleBackColor = false;
             // 
             // tgUsuarios
@@ -215,194 +367,19 @@ namespace seguridad_barrios_privados.Presentacion
             tgUsuarios.IconColor = Color.CadetBlue;
             tgUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             tgUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            tgUsuarios.Location = new Point(3, 3);
+            tgUsuarios.Location = new Point(0, 3);
             tgUsuarios.Name = "tgUsuarios";
-            tgUsuarios.Size = new Size(174, 71);
+            tgUsuarios.Size = new Size(215, 71);
             tgUsuarios.TabIndex = 0;
             tgUsuarios.Text = "iconButton1";
-            tgUsuarios.TextAlign = ContentAlignment.MiddleRight;
             tgUsuarios.UseVisualStyleBackColor = false;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Azure;
-            panel2.Controls.Add(btnRestore);
-            panel2.Controls.Add(btnRestoreBuscar);
-            panel2.Controls.Add(btnBackup);
-            panel2.Controls.Add(btnBackupBuscar);
-            panel2.Controls.Add(rjTextBox2);
-            panel2.Controls.Add(rjTextBox1);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(label2);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 253);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(362, 297);
-            panel2.TabIndex = 5;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.DarkCyan;
-            label2.Location = new Point(3, 10);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 19);
-            label2.TabIndex = 5;
-            label2.Text = "BASE DE DATOS";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Century Gothic", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            label3.ForeColor = Color.DarkCyan;
-            label3.Location = new Point(14, 42);
-            label3.Name = "label3";
-            label3.Size = new Size(68, 18);
-            label3.TabIndex = 6;
-            label3.Text = "BACKUP";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Century Gothic", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            label4.ForeColor = Color.DarkCyan;
-            label4.Location = new Point(14, 192);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 18);
-            label4.TabIndex = 7;
-            label4.Text = "RESTORE";
-            // 
-            // rjTextBox1
-            // 
-            rjTextBox1.BackColor = SystemColors.Window;
-            rjTextBox1.BorderColor = Color.DarkCyan;
-            rjTextBox1.BorderFocusColor = Color.HotPink;
-            rjTextBox1.BorderRadius = 10;
-            rjTextBox1.BorderSize = 2;
-            rjTextBox1.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            rjTextBox1.ForeColor = Color.FromArgb(64, 64, 64);
-            rjTextBox1.Location = new Point(14, 64);
-            rjTextBox1.Margin = new Padding(4);
-            rjTextBox1.Multiline = false;
-            rjTextBox1.Name = "rjTextBox1";
-            rjTextBox1.Padding = new Padding(10, 7, 10, 7);
-            rjTextBox1.PasswordChar = false;
-            rjTextBox1.PlaceholderColor = Color.DarkGray;
-            rjTextBox1.PlaceholderText = "";
-            rjTextBox1.Size = new Size(242, 31);
-            rjTextBox1.TabIndex = 8;
-            rjTextBox1.Texts = "";
-            rjTextBox1.UnderlinedStyle = false;
-            // 
-            // rjTextBox2
-            // 
-            rjTextBox2.BackColor = SystemColors.Window;
-            rjTextBox2.BorderColor = Color.DarkCyan;
-            rjTextBox2.BorderFocusColor = Color.HotPink;
-            rjTextBox2.BorderRadius = 10;
-            rjTextBox2.BorderSize = 2;
-            rjTextBox2.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            rjTextBox2.ForeColor = Color.FromArgb(64, 64, 64);
-            rjTextBox2.Location = new Point(14, 214);
-            rjTextBox2.Margin = new Padding(4);
-            rjTextBox2.Multiline = false;
-            rjTextBox2.Name = "rjTextBox2";
-            rjTextBox2.Padding = new Padding(10, 7, 10, 7);
-            rjTextBox2.PasswordChar = false;
-            rjTextBox2.PlaceholderColor = Color.DarkGray;
-            rjTextBox2.PlaceholderText = "";
-            rjTextBox2.Size = new Size(242, 31);
-            rjTextBox2.TabIndex = 9;
-            rjTextBox2.Texts = "";
-            rjTextBox2.UnderlinedStyle = false;
-            // 
-            // btnBackupBuscar
-            // 
-            btnBackupBuscar.BackColor = Color.LightCyan;
-            btnBackupBuscar.BackgroundColor = Color.LightCyan;
-            btnBackupBuscar.BorderColor = Color.DarkSlateGray;
-            btnBackupBuscar.BorderRadius = 15;
-            btnBackupBuscar.BorderSize = 1;
-            btnBackupBuscar.FlatAppearance.BorderSize = 0;
-            btnBackupBuscar.FlatStyle = FlatStyle.Flat;
-            btnBackupBuscar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnBackupBuscar.ForeColor = Color.Teal;
-            btnBackupBuscar.Location = new Point(263, 64);
-            btnBackupBuscar.Name = "btnBackupBuscar";
-            btnBackupBuscar.Size = new Size(85, 31);
-            btnBackupBuscar.TabIndex = 10;
-            btnBackupBuscar.Text = "buscar";
-            btnBackupBuscar.TextColor = Color.Teal;
-            btnBackupBuscar.UseVisualStyleBackColor = false;
-            // 
-            // btnBackup
-            // 
-            btnBackup.BackColor = Color.CadetBlue;
-            btnBackup.BackgroundColor = Color.CadetBlue;
-            btnBackup.BorderColor = Color.PaleVioletRed;
-            btnBackup.BorderRadius = 15;
-            btnBackup.BorderSize = 0;
-            btnBackup.FlatAppearance.BorderSize = 0;
-            btnBackup.FlatStyle = FlatStyle.Flat;
-            btnBackup.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnBackup.ForeColor = Color.White;
-            btnBackup.Location = new Point(169, 102);
-            btnBackup.Name = "btnBackup";
-            btnBackup.Size = new Size(179, 31);
-            btnBackup.TabIndex = 12;
-            btnBackup.Text = "Backup Database";
-            btnBackup.TextColor = Color.White;
-            btnBackup.UseVisualStyleBackColor = false;
-            // 
-            // btnRestoreBuscar
-            // 
-            btnRestoreBuscar.BackColor = Color.LightCyan;
-            btnRestoreBuscar.BackgroundColor = Color.LightCyan;
-            btnRestoreBuscar.BorderColor = Color.DarkSlateGray;
-            btnRestoreBuscar.BorderRadius = 15;
-            btnRestoreBuscar.BorderSize = 1;
-            btnRestoreBuscar.FlatAppearance.BorderSize = 0;
-            btnRestoreBuscar.FlatStyle = FlatStyle.Flat;
-            btnRestoreBuscar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnRestoreBuscar.ForeColor = Color.Teal;
-            btnRestoreBuscar.Location = new Point(263, 214);
-            btnRestoreBuscar.Name = "btnRestoreBuscar";
-            btnRestoreBuscar.Size = new Size(85, 31);
-            btnRestoreBuscar.TabIndex = 13;
-            btnRestoreBuscar.Text = "buscar";
-            btnRestoreBuscar.TextColor = Color.Teal;
-            btnRestoreBuscar.UseVisualStyleBackColor = false;
-            // 
-            // btnRestore
-            // 
-            btnRestore.BackColor = Color.CadetBlue;
-            btnRestore.BackgroundColor = Color.CadetBlue;
-            btnRestore.BorderColor = Color.PaleVioletRed;
-            btnRestore.BorderRadius = 15;
-            btnRestore.BorderSize = 0;
-            btnRestore.FlatAppearance.BorderSize = 0;
-            btnRestore.FlatStyle = FlatStyle.Flat;
-            btnRestore.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnRestore.ForeColor = Color.White;
-            btnRestore.Location = new Point(169, 254);
-            btnRestore.Name = "btnRestore";
-            btnRestore.Size = new Size(179, 31);
-            btnRestore.TabIndex = 14;
-            btnRestore.Text = "Restore Database";
-            btnRestore.TextColor = Color.White;
-            btnRestore.UseVisualStyleBackColor = false;
             // 
             // FormReportesAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(858, 550);
+            ClientSize = new Size(1037, 550);
             Controls.Add(panel1);
             Controls.Add(cbFiltroMovimientos);
             Controls.Add(topPropietarios);
@@ -431,14 +408,13 @@ namespace seguridad_barrios_privados.Presentacion
         private Label label1;
         private FontAwesome.Sharp.IconButton tgVisitantes;
         private Panel panel2;
-        private Label label3;
+        private Label lBaseDatos;
         private Label label2;
-        private RJTextBox rjTextBox2;
-        private RJTextBox rjTextBox1;
-        private Label label4;
+        private RJTextBox tbUbicacion;
         private RJButton btnBackupBuscar;
-        private RJButton btnRestore;
+        private RJButton btnBackupDatabase;
+        private ComboBox cbBaseDatos;
         private RJButton btnRestoreBuscar;
-        private RJButton btnBackup;
+        private RJButton btnRestoreDatabase;
     }
 }
