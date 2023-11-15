@@ -31,7 +31,7 @@ namespace seguridad_barrios_privados.Presentacion
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             lbNombreUsuario.Text = AppState.UsuarioActual.Nombre + "!";
             var usuarioRol = AppState.UsuarioActual.IdRol;
-
+            WindowState = FormWindowState.Maximized;
             if (usuarioRol == 1)
             {
                 btnEgresos.Visible = false;
@@ -227,7 +227,7 @@ namespace seguridad_barrios_privados.Presentacion
             OpenChildForm(new FormEgresos());
         }
 
-        private void btnCerrarSesion_Click_1(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
             //que pergunte con un messagebox si realmente queire salir
@@ -238,11 +238,7 @@ namespace seguridad_barrios_privados.Presentacion
                 Login login = new Login();
                 login.Show();
             }
-            else
-            {
-                currentChildForm.Close();
-                Reset();
-            }
+           
 
         }
 

@@ -9,7 +9,7 @@ public partial class Egreso
 
     public int? IdIngreso { get; set; }
 
-    public DateTime? Fecha { get; set; }
+    public DateTime Fecha { get; set; }
 
     public string? Observaciones { get; set; }
 

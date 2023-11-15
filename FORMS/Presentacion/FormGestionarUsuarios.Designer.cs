@@ -52,7 +52,6 @@ namespace seguridad_barrios_privados.Presentacion
             panel2 = new Panel();
             cbFiltrarUsuarios = new ComboBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            btnBuscar = new FontAwesome.Sharp.IconPictureBox();
             tbBuscarUsuario = new RJTextBox();
             lbFiltrarUsuarios = new Label();
             panel3 = new Panel();
@@ -72,7 +71,6 @@ namespace seguridad_barrios_privados.Presentacion
             ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource).BeginInit();
@@ -325,6 +323,7 @@ namespace seguridad_barrios_privados.Presentacion
             tbTelefono.TabIndex = 3;
             tbTelefono.Texts = "";
             tbTelefono.UnderlinedStyle = false;
+            tbTelefono.KeyPress += number_KeyPress;
             // 
             // tbNombre
             // 
@@ -367,7 +366,6 @@ namespace seguridad_barrios_privados.Presentacion
             panel2.BackColor = SystemColors.Desktop;
             panel2.Controls.Add(cbFiltrarUsuarios);
             panel2.Controls.Add(iconPictureBox1);
-            panel2.Controls.Add(btnBuscar);
             panel2.Controls.Add(tbBuscarUsuario);
             panel2.Controls.Add(lbFiltrarUsuarios);
             panel2.Dock = DockStyle.Top;
@@ -403,21 +401,6 @@ namespace seguridad_barrios_privados.Presentacion
             iconPictureBox1.TabIndex = 15;
             iconPictureBox1.TabStop = false;
             iconPictureBox1.Click += iconPictureBox1_Click;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnBuscar.BackColor = SystemColors.Desktop;
-            btnBuscar.ForeColor = SystemColors.Control;
-            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            btnBuscar.IconColor = SystemColors.Control;
-            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.Location = new Point(460, 31);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(32, 32);
-            btnBuscar.TabIndex = 14;
-            btnBuscar.TabStop = false;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // tbBuscarUsuario
             // 
@@ -467,7 +450,7 @@ namespace seguridad_barrios_privados.Presentacion
             // dgUsuarios
             // 
             dgUsuarios.AllowUserToAddRows = false;
-            dgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgUsuarios.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgUsuarios.BorderStyle = BorderStyle.None;
             dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -498,6 +481,7 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.RowTemplate.Height = 25;
             dgUsuarios.Size = new Size(552, 407);
             dgUsuarios.TabIndex = 12;
+            dgUsuarios.CellContentClick += dgUsuarios_CellContentClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -505,56 +489,48 @@ namespace seguridad_barrios_privados.Presentacion
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.ReadOnly = true;
             dataGridViewTextBoxColumn1.Visible = false;
-            dataGridViewTextBoxColumn1.Width = 47;
             // 
             // Crol
             // 
             Crol.HeaderText = "Rol";
             Crol.Name = "Crol";
             Crol.ReadOnly = true;
-            Crol.Width = 55;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Nombre";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.ReadOnly = true;
-            dataGridViewTextBoxColumn2.Width = 92;
             // 
             // Cdni
             // 
             Cdni.HeaderText = "DNI";
             Cdni.Name = "Cdni";
             Cdni.ReadOnly = true;
-            Cdni.Width = 58;
             // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.HeaderText = "Telefono";
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             dataGridViewTextBoxColumn4.ReadOnly = true;
-            dataGridViewTextBoxColumn4.Width = 95;
             // 
             // dataGridViewTextBoxColumn5
             // 
             dataGridViewTextBoxColumn5.HeaderText = "Direccion";
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             dataGridViewTextBoxColumn5.ReadOnly = true;
-            dataGridViewTextBoxColumn5.Width = 105;
             // 
             // dataGridViewTextBoxColumn6
             // 
             dataGridViewTextBoxColumn6.HeaderText = "Correo";
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Width = 84;
             // 
             // CDarBaja
             // 
             CDarBaja.HeaderText = "Dar Baja";
             CDarBaja.Name = "CDarBaja";
             CDarBaja.ReadOnly = true;
-            CDarBaja.Width = 76;
             // 
             // CModificar
             // 
@@ -563,7 +539,6 @@ namespace seguridad_barrios_privados.Presentacion
             CModificar.ReadOnly = true;
             CModificar.Resizable = DataGridViewTriState.True;
             CModificar.SortMode = DataGridViewColumnSortMode.Automatic;
-            CModificar.Width = 103;
             // 
             // rolesRepositorioBindingSource
             // 
@@ -587,7 +562,6 @@ namespace seguridad_barrios_privados.Presentacion
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)rolesRepositorioBindingSource).EndInit();
@@ -612,7 +586,6 @@ namespace seguridad_barrios_privados.Presentacion
         private Panel panel3;
         private RJTextBox tbBuscarUsuario;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private FontAwesome.Sharp.IconPictureBox btnBuscar;
         private RJTextBox tbRepetirContrasena;
         private FontAwesome.Sharp.IconPictureBox ErrorIcon;
         private Label lbError;

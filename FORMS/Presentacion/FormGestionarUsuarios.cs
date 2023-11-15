@@ -60,6 +60,11 @@ namespace seguridad_barrios_privados.Presentacion
             ListaBackup = ListaUsuarios;
             busquedaPrevia = string.Empty;
             CargarUsuarios();
+
+            //que imprima por consola el tamaño del formulario 
+            Console.WriteLine("el tamaño es :" + this.Size);
+
+
         }
 
         private void CargarUsuarios()
@@ -96,9 +101,8 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void string_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
             {
-                // Si no es una letra ni Backspace, ignorar la tecla presionada
                 e.Handled = true;
             }
         }
@@ -107,7 +111,6 @@ namespace seguridad_barrios_privados.Presentacion
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '\b')
             {
-                // Si no es una letra ni Backspace, ignorar la tecla presionada
                 e.Handled = true;
             }
         }
@@ -206,6 +209,7 @@ namespace seguridad_barrios_privados.Presentacion
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dgUsuarios.Columns["CModificar"].Index)
             {
+
                 var usuario = usuariosRepositorio.ObtenerUsuarioPorId(Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells[0].Value));
                 //rellene todos los textBox con la informacion obtenida en la variable usuario
                 tbNombre.Texts = usuario.Nombre;
@@ -277,12 +281,12 @@ namespace seguridad_barrios_privados.Presentacion
             tbRepetirContrasena.Enabled = false;
             tbContrasena.BackColor = Color.White;
             tbRepetirContrasena.BackColor = Color.White;
-           
+
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-           
+
             RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
             cbRol.Text = "Rol";

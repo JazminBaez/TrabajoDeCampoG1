@@ -46,7 +46,7 @@ namespace seguridad_barrios_privados.Presentacion
             ListaIngresos = Ingresos;
             ListaBackup = ListaIngresos;
             busquedaPrevia = string.Empty;
-            
+
             Egresos = egresosRepositorio.ObtenerEgresos();
             CargarIngresos();
         }
@@ -162,19 +162,19 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 ingresosFiltrar = ListaIngresosSinEgreso?.Where(i => i.Fecha.AddDays(3) < DateTime.Today).ToList();
-                
+
             }
-            
-          
+
+
             ListaIngresos = ingresosFiltrar;
             Ingresos = ingresosFiltrar;
-            
+
             CargarIngresos();
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-     
+
             Ingresos = ingresosRepositorio.ObtenerIngresos();
             ListaIngresos = Ingresos;
             ListaBackup = ListaIngresos;

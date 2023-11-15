@@ -59,9 +59,7 @@ namespace seguridad_barrios_privados.Presentacion
             }
             else
             {
-                btIniciarSesion.Visible = false;
-
-                loader.Visible = true;
+                
                 var usuario = usuariosRepositorio.getUsuarioByEmail(tbCorreo.Texts);
 
                 if (usuario != null)
@@ -77,16 +75,14 @@ namespace seguridad_barrios_privados.Presentacion
                     else
                     {
                         this.msgError("Contraseña incorrecta.");
-                        loader.Visible = false;
-                        btIniciarSesion.Visible = true;
+                     
                     }
 
 
                 }
                 else
                 {
-                    loader.Visible = false;
-                    btIniciarSesion.Visible = true;
+                  
                     this.msgError("Usuario no registrado");
                 }
             }

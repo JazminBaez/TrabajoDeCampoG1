@@ -30,8 +30,8 @@ namespace seguridad_barrios_privados.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btRegistrarEgreso = new RJButton();
             lbObservaciones = new Label();
@@ -89,6 +89,7 @@ namespace seguridad_barrios_privados.Presentacion
             btRegistrarEgreso.Text = "REGISTRAR EGRESO";
             btRegistrarEgreso.TextColor = Color.Black;
             btRegistrarEgreso.UseVisualStyleBackColor = false;
+            btRegistrarEgreso.Click += btRegistrarEgreso_Click;
             // 
             // lbObservaciones
             // 
@@ -203,14 +204,14 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgSolicitudes.BorderStyle = BorderStyle.None;
             dgSolicitudes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CIdSolicitud, CPropietario, CVisitante_soli, CVisitante_Dni, dataGridViewTextBoxColumn1 });
             dgSolicitudes.Dock = DockStyle.Fill;
@@ -221,17 +222,18 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.Name = "dgSolicitudes";
             dgSolicitudes.ReadOnly = true;
             dgSolicitudes.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgSolicitudes.Size = new Size(579, 251);
             dgSolicitudes.TabIndex = 47;
             dgSolicitudes.CellContentClick += dgSolicitudes_CellContentClick;
+            dgSolicitudes.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // CIdSolicitud
             // 
@@ -292,7 +294,7 @@ namespace seguridad_barrios_privados.Presentacion
             ckbFiltrarVisitas.Name = "ckbFiltrarVisitas";
             ckbFiltrarVisitas.Size = new Size(190, 20);
             ckbFiltrarVisitas.TabIndex = 0;
-            ckbFiltrarVisitas.Text = "Visitas que superan 48 hs";
+            ckbFiltrarVisitas.Text = "Visitas que superan 72 hs";
             ckbFiltrarVisitas.UseVisualStyleBackColor = true;
             ckbFiltrarVisitas.CheckedChanged += ckbFiltrarVisitas_CheckedChanged;
             // 

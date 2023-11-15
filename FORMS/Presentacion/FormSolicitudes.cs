@@ -110,7 +110,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
             {
                 e.Handled = true;
             }
@@ -118,7 +118,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void tbApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
             {
                 e.Handled = true;
             }

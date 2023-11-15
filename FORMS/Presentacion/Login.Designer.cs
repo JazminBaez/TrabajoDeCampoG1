@@ -35,7 +35,6 @@ namespace seguridad_barrios_privados.Presentacion
             btnMinimize = new FontAwesome.Sharp.IconButton();
             btnExit = new FontAwesome.Sharp.IconButton();
             panel4 = new Panel();
-            loader = new PictureBox();
             panel3 = new Panel();
             btIniciarSesion = new RJButton();
             ErrorIcon = new FontAwesome.Sharp.IconPictureBox();
@@ -43,7 +42,6 @@ namespace seguridad_barrios_privados.Presentacion
             tbContrasena = new RJTextBox();
             tbCorreo = new RJTextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).BeginInit();
             SuspendLayout();
@@ -108,21 +106,10 @@ namespace seguridad_barrios_privados.Presentacion
             panel4.Size = new Size(115, 117);
             panel4.TabIndex = 0;
             // 
-            // loader
-            // 
-            loader.Image = Properties.Resources.loader;
-            loader.Location = new Point(123, 125);
-            loader.Name = "loader";
-            loader.Size = new Size(48, 40);
-            loader.SizeMode = PictureBoxSizeMode.Zoom;
-            loader.TabIndex = 10;
-            loader.TabStop = false;
-            // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(31, 34, 50);
             panel3.Controls.Add(btIniciarSesion);
-            panel3.Controls.Add(loader);
             panel3.Controls.Add(ErrorIcon);
             panel3.Controls.Add(lbError);
             panel3.Controls.Add(tbContrasena);
@@ -144,7 +131,7 @@ namespace seguridad_barrios_privados.Presentacion
             btIniciarSesion.FlatStyle = FlatStyle.Flat;
             btIniciarSesion.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btIniciarSesion.ForeColor = Color.Black;
-            btIniciarSesion.Location = new Point(94, 171);
+            btIniciarSesion.Location = new Point(94, 138);
             btIniciarSesion.Name = "btIniciarSesion";
             btIniciarSesion.Size = new Size(114, 40);
             btIniciarSesion.TabIndex = 20;
@@ -237,7 +224,6 @@ namespace seguridad_barrios_privados.Presentacion
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)loader).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ErrorIcon).EndInit();
@@ -258,6 +244,5 @@ namespace seguridad_barrios_privados.Presentacion
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconPictureBox ErrorIcon;
         private Label lbError;
-        private PictureBox loader;
     }
 }

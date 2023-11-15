@@ -13,7 +13,7 @@ namespace seguridad_barrios_privados.Models
         public string DniUsuario { get; set; }
         public string NombreVisitante { get; set; }
         public string DniVisitante { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public string Observaciones { get; set; }
 
     }

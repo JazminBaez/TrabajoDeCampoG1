@@ -105,6 +105,7 @@ namespace seguridad_barrios_privados.Presentacion
             btnCerrarSesion.Text = "Cerrar sesion";
             btnCerrarSesion.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCerrarSesion.UseVisualStyleBackColor = true;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // btnReportes
             // 
