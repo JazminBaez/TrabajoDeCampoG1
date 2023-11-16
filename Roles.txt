@@ -1,0 +1,3 @@
+Admnistrador: admin@gmail.com - admin1234
+Guardia: guardia@gmail.com - guardia123
+Propietario: propietario@gmail.com - propietario123
