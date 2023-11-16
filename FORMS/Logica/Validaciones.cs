@@ -76,7 +76,8 @@ namespace seguridad_barrios_privados.Logica
             errorIcon.Visible = true;
             error.Visible = true;
         }
-
+       
+     
 
         public bool RegistrarUsuario(Usuario usuario, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
@@ -136,7 +137,7 @@ namespace seguridad_barrios_privados.Logica
 
                 if (dniNuevo != dniOriginal)
                 {
-                    if (usuariosRepositorio.ObtenerUsuariosPorDni(usuario.Dni) != null)
+                    if (usuariosRepositorio.ObtenerUsuariosPorDni(dniNuevo) != null)
                     {
                         Validaciones.MostrarError("Dni ya registrado", errorMsg, errorIcon);
                         return false;
@@ -184,12 +185,13 @@ namespace seguridad_barrios_privados.Logica
                     if (resultado == DialogResult.OK)
                     {
                         IdVisitante = visitanteEncontrado.IdVisitante;
-                        return true;
+
                     }
                     else
                     {
                         return false;
                     }
+                    
                 }
                 else
                 {

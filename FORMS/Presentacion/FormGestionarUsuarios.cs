@@ -275,7 +275,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
-            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre,tbDNI, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
             btCancelar.Visible = false;
             btRegistrar.Text = "REGISTRAR";

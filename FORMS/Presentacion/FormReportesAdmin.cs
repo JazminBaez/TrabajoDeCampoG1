@@ -82,7 +82,8 @@ namespace seguridad_barrios_privados.Presentacion
             var catidadDeGuardias = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 3 && u.Estado != 1).Count();
             tgVisitantes.Text = catidadDeGuardias.ToString() + "\r\nGUARDIAS";
 
-            var promedioIngresosPorDia = ingresosRepositorio.ObtenerIngresos().GroupBy(i => i.Fecha.Date).Select(g => new { Fecha = g.Key, Cantidad = g.Count() }).Average(i => i.Cantidad);
+           var promedioIngresosPorDia = ingresosRepositorio.ObtenerIngresos().GroupBy(i => i.Fecha.Date).Select(g => new { Fecha = g.Key, Cantidad = g.Count() }).Average(i => i.Cantidad);
+            promedioIngresosPorDia = Math.Round(promedioIngresosPorDia, 1);
             tgPromedioDiario.Text = "PROMEDIO DIARIO DE INGRESOS: " + promedioIngresosPorDia.ToString();
 
             var ingresosDeHoy = ingresosRepositorio.ObtenerIngresos().Where(i => i.Fecha.Date == DateTime.Today).Count();

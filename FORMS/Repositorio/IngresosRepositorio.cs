@@ -27,7 +27,6 @@ namespace seguridad_barrios_privados.Repositorio
                 Fecha = DateTime.Today
             };
 
-            //agrega ese ingreso a la base de datos
             barriosPrivadosContext.Ingresos.Add(ingreso);
             barriosPrivadosContext.SaveChanges();
             return true;
