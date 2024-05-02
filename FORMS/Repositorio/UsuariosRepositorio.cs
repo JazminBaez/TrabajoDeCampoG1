@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -39,11 +39,28 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext.Roles.Add(role);
             barriosPrivadosContext.SaveChanges();
         }*/
-
+     
+        public List<Direccion> prueba()
+        {
+            return barriosPrivadosContext.Direcciones.ToList();
+        }
         public List<Usuario> ObtenerUsuarios()
         {
+            var direcciones = prueba();
+          
 
-            return barriosPrivadosContext.Usuarios.Include(usuario => usuario.Rol).ToList();
+            var usuarios = barriosPrivadosContext.Usuarios.Include(s => s.IdDireccionNavigation).Include(s => s.IdDireccionNavigation).ToList();
+            foreach (Usuario usuario in usuarios)
+            {
+                foreach (Direccion direccion in direcciones)
+                {
+                    if (usuario.IdDireccion == direccion.IdDireccion)
+                    {
+                        usuario.IdDireccionNavigation = direccion;
+                    }
+                }
+            }
+            return usuarios;
         }
 
         public bool ExisteUsuario(string email)
@@ -99,7 +116,7 @@ namespace seguridad_barrios_privados.Repositorio
                 usuarioActualizar.Nombre = usuario.Nombre;
                 usuarioActualizar.Apellido = usuario.Apellido;
                 usuarioActualizar.Telefono = usuario.Telefono;
-                usuarioActualizar.Direccion = usuario.Direccion;
+                usuarioActualizar.IdDireccion = usuario.IdDireccion;
                 usuarioActualizar.Email = usuario.Email;
                 usuarioActualizar.IdRol = usuario.IdRol;
                 usuarioActualizar.Estado = usuario.Estado;

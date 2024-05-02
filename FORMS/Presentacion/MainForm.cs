@@ -58,7 +58,6 @@ namespace seguridad_barrios_privados.Presentacion
                 btnMisSolicitudes.Visible = false;
                 btnGestionUsuarios.Visible = false;
                 btnSolicitudes.Visible = false;
-                btnSolicitudes.Visible = false;
             }
         }
 

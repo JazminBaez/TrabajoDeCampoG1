@@ -31,10 +31,10 @@ namespace seguridad_barrios_privados.Presentacion
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
             ErrorIcon = new FontAwesome.Sharp.IconPictureBox();
             lbError = new Label();
@@ -125,11 +125,11 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             lbError.Anchor = AnchorStyles.None;
             lbError.AutoSize = true;
-            lbError.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lbError.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lbError.ForeColor = Color.DarkRed;
             lbError.Location = new Point(49, 45);
             lbError.Name = "lbError";
-            lbError.Size = new Size(37, 16);
+            lbError.Size = new Size(41, 16);
             lbError.TabIndex = 30;
             lbError.Text = "Error";
             lbError.Visible = false;
@@ -138,22 +138,22 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ButtonHighlight;
             label1.Location = new Point(22, 244);
             label1.Name = "label1";
-            label1.Size = new Size(160, 17);
+            label1.Size = new Size(152, 16);
             label1.TabIndex = 29;
             label1.Text = "Propietario responsable";
             // 
             // cbPropietarios
             // 
             cbPropietarios.Anchor = AnchorStyles.None;
-            cbPropietarios.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbPropietarios.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbPropietarios.FormattingEnabled = true;
             cbPropietarios.Location = new Point(22, 264);
             cbPropietarios.Name = "cbPropietarios";
-            cbPropietarios.Size = new Size(225, 28);
+            cbPropietarios.Size = new Size(225, 26);
             cbPropietarios.TabIndex = 28;
             cbPropietarios.Text = "Propietarios";
             // 
@@ -161,11 +161,11 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             lbFiltrarUsuarios.Anchor = AnchorStyles.None;
             lbFiltrarUsuarios.AutoSize = true;
-            lbFiltrarUsuarios.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lbFiltrarUsuarios.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbFiltrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
             lbFiltrarUsuarios.Location = new Point(22, 97);
             lbFiltrarUsuarios.Name = "lbFiltrarUsuarios";
-            lbFiltrarUsuarios.Size = new Size(128, 17);
+            lbFiltrarUsuarios.Size = new Size(117, 16);
             lbFiltrarUsuarios.TabIndex = 27;
             lbFiltrarUsuarios.Text = "Datos del visitante";
             lbFiltrarUsuarios.Click += lbFiltrarUsuarios_Click;
@@ -174,11 +174,11 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             lbRegistrarIngreso.Anchor = AnchorStyles.None;
             lbRegistrarIngreso.AutoSize = true;
-            lbRegistrarIngreso.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            lbRegistrarIngreso.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Bold, GraphicsUnit.Point);
             lbRegistrarIngreso.ForeColor = SystemColors.ButtonFace;
             lbRegistrarIngreso.Location = new Point(22, 18);
             lbRegistrarIngreso.Name = "lbRegistrarIngreso";
-            lbRegistrarIngreso.Size = new Size(205, 23);
+            lbRegistrarIngreso.Size = new Size(237, 25);
             lbRegistrarIngreso.TabIndex = 22;
             lbRegistrarIngreso.Text = "REGISTRAR INGRESO";
             lbRegistrarIngreso.Click += LRegistrarUsuario_Click;
@@ -193,7 +193,7 @@ namespace seguridad_barrios_privados.Presentacion
             btRegistrar.BorderSize = 0;
             btRegistrar.FlatAppearance.BorderSize = 0;
             btRegistrar.FlatStyle = FlatStyle.Flat;
-            btRegistrar.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btRegistrar.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btRegistrar.ForeColor = Color.Black;
             btRegistrar.Location = new Point(75, 321);
             btRegistrar.Name = "btRegistrar";
@@ -314,14 +314,14 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgSolicitudes.BorderStyle = BorderStyle.None;
             dgSolicitudes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgSolicitudes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgSolicitudes.Columns.AddRange(new DataGridViewColumn[] { CID_soli, CPropietario, CVisitante_soli, CVisitante_Dni, CAceptarSolicitud, CRechazar, CCancelar });
             dgSolicitudes.Dock = DockStyle.Fill;
@@ -332,12 +332,12 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.Name = "dgSolicitudes";
             dgSolicitudes.ReadOnly = true;
             dgSolicitudes.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dgSolicitudes.RowsDefaultCellStyle = dataGridViewCellStyle6;
             dgSolicitudes.RowTemplate.Height = 25;
             dgSolicitudes.Size = new Size(580, 407);
             dgSolicitudes.TabIndex = 11;
@@ -404,13 +404,14 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             lbSolicitudesRealizadas.Anchor = AnchorStyles.None;
             lbSolicitudesRealizadas.AutoSize = true;
-            lbSolicitudesRealizadas.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbSolicitudesRealizadas.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lbSolicitudesRealizadas.ForeColor = SystemColors.ButtonFace;
             lbSolicitudesRealizadas.Location = new Point(6, 42);
             lbSolicitudesRealizadas.Name = "lbSolicitudesRealizadas";
-            lbSolicitudesRealizadas.Size = new Size(253, 19);
+            lbSolicitudesRealizadas.Size = new Size(295, 18);
             lbSolicitudesRealizadas.TabIndex = 23;
             lbSolicitudesRealizadas.Text = "SOLICITUDES PENDIENTES DEL DIA";
+            lbSolicitudesRealizadas.Click += lbSolicitudesRealizadas_Click;
             // 
             // iconPictureBox2
             // 
@@ -483,11 +484,11 @@ namespace seguridad_barrios_privados.Presentacion
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(49, 91);
             label2.Name = "label2";
-            label2.Size = new Size(244, 23);
+            label2.Size = new Size(299, 25);
             label2.TabIndex = 23;
             label2.Text = "SOLICITUDES PENDIENTES";
             // 
@@ -507,14 +508,14 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.BackgroundColor = Color.FromArgb(45, 66, 91);
             dgUsuarios.BorderStyle = BorderStyle.None;
             dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.DarkSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.DarkSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.HotTrack;
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgUsuarios.Columns.AddRange(new DataGridViewColumn[] { CNombre, CResponsable, CApellido, CDNI, CEliminar, CAceptar });
             dgUsuarios.Dock = DockStyle.Fill;
@@ -524,12 +525,12 @@ namespace seguridad_barrios_privados.Presentacion
             dgUsuarios.Margin = new Padding(3, 15, 3, 3);
             dgUsuarios.Name = "dgUsuarios";
             dgUsuarios.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(45, 66, 91);
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(45, 66, 91);
+            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dgUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgUsuarios.RowTemplate.Height = 25;
             dgUsuarios.Size = new Size(472, 332);
             dgUsuarios.TabIndex = 14;

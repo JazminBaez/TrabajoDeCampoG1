@@ -1,4 +1,4 @@
-﻿using seguridad_barrios_privados.Models;
+﻿using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -29,12 +29,12 @@ namespace seguridad_barrios_privados.Repositorio
             return barriosPrivadosContext.Usuarios.ToList();
         }
 
-        public List<Solicitude> ObtenerSolicitudes()
+        public List<Solicitud> ObtenerSolicitudes()
         {
             var usuarios = pruebaDos();
             var visitantes = prueba();
             var solicitudes =  barriosPrivadosContext.Solicitudes.Include(s => s.IdUsuarioNavigation).Include(s => s.IdVisitanteNavigation).ToList();
-            foreach(Solicitude solicitud in solicitudes)
+            foreach(Solicitud solicitud in solicitudes)
             {
                 foreach (Visitante visitante in visitantes)
                 {
@@ -59,11 +59,10 @@ namespace seguridad_barrios_privados.Repositorio
         {
             try
             {
-                var solicitud = new Solicitude()
+                var solicitud = new Solicitud()
                 {
                     IdUsuario = usuario,
                     IdVisitante = visitante,
-                    Baja = false,
                     Estado = 0,
                     Fecha = fecha
                 };
@@ -79,7 +78,7 @@ namespace seguridad_barrios_privados.Repositorio
 
         }
 
-        public Solicitude ObtenerSolicitud(int id)
+        public Solicitud ObtenerSolicitud(int id)
         {
             
             var solicitud = barriosPrivadosContext.Solicitudes
@@ -90,7 +89,7 @@ namespace seguridad_barrios_privados.Repositorio
         }
 
      
-        public void ActualizarSolicitud(Solicitude solicitud)
+        public void ActualizarSolicitud(Solicitud solicitud)
         {
             barriosPrivadosContext.Solicitudes.Update(solicitud);
             barriosPrivadosContext.SaveChanges();

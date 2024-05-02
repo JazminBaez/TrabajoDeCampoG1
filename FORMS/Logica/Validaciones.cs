@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Controls;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Presentacion;
 using seguridad_barrios_privados.Repositorio;
 using seguridad_barrios_privados.Util;
@@ -25,6 +25,7 @@ namespace seguridad_barrios_privados.Logica
         private VisitantesRepositorio? visitantesRepositorio;
         private SolicitudesRepositorio? solicitudesRepositorio;
         private IngresosRepositorio? ingresosRepositorio;
+        private DireccionRepositorio? direccionRepositorio;
         public static bool IsNumber(char caracter)
         {
             return char.IsDigit(caracter);
@@ -214,6 +215,26 @@ namespace seguridad_barrios_privados.Logica
             }
         }
 
+
+        public Direccion RegistrarDireccion(Direccion direccion, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        {
+            var validator = new DireccionValidator();
+            var result = validator.Validate(direccion);
+     
+            if (!result.IsValid)
+            {
+
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                return null;
+            }
+            else
+            {
+                direccionRepositorio = new DireccionRepositorio();
+               return direccionRepositorio.RegistrarDireccion(direccion);
+                
+            }
+            
+        }
 
     }
 }

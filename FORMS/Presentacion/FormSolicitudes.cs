@@ -1,7 +1,7 @@
 ﻿using FontAwesome.Sharp;
 using seguridad_barrios_privados.Controls;
 using seguridad_barrios_privados.Logica;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -37,20 +37,20 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void CargarSolicitudes()
         {
-            List<Solicitude> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            List<Solicitud> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
 
             if (solicitudes != null)
             {
 
-                foreach (Solicitude solicitud in solicitudes)
+                foreach (Solicitud solicitud in solicitudes)
                 {
 
-                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Baja != true && solicitud.Estado == 0)
+                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Estado != 3 && solicitud.Estado == 0)
                     {
                         string estadoSolicitud;
-                        int estado = solicitud.Estado ?? 0;
+                        int estado = solicitud.Estado;
 
                         switch (estado)
                         {
@@ -89,7 +89,7 @@ namespace seguridad_barrios_privados.Presentacion
                 if (dialogResult == DialogResult.Yes)
                 {
                     var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                    solicitud.Baja = true;
+                    solicitud.Estado = 3;
                     solicitudesRepositorio.ActualizarSolicitud(solicitud);
                     System.Windows.Forms.MessageBox.Show("Solicitud eliminada", "Éxito");
                 }

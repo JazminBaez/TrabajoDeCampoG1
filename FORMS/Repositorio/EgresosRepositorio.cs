@@ -1,4 +1,4 @@
-﻿using seguridad_barrios_privados.Models;
+﻿using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;

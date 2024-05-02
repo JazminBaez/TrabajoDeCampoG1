@@ -14,4 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = seguridad_barrios_privados
-build_property.ProjectDir = C:\Users\baezd\Documents\FaCENA\TALLER DE PROGRAMACION II\seguridad_barrios_privados\seguridad_barrios_privados\
+build_property.ProjectDir = J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

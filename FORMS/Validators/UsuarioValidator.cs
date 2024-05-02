@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 using FluentValidation;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Presentacion;
 
 namespace seguridad_barrios_privados.Validators
@@ -25,10 +25,7 @@ namespace seguridad_barrios_privados.Validators
                 .NotEmpty().WithMessage("Complete todos los campos")
                 .Length(10, 10).WithMessage("Telefno no valido")
                 ;
-            RuleFor(x => x.Direccion)
-                .NotEmpty().WithMessage("Complete todos los campos")
-                .Length(3, 50).WithMessage("El campo Direccion debe tener" + Environment.NewLine + " entre 3 y 50 caracteres")
-                ;
+            
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Complete todos los campos")
                 .EmailAddress().WithMessage("El campo Email no es valido");

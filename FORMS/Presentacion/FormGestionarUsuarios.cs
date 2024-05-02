@@ -12,12 +12,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using seguridad_barrios_privados.Logica;
 using System.Drawing.Text;
 using seguridad_barrios_privados.Repositorio;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using FontAwesome.Sharp;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Text.RegularExpressions;
+using System.Net.PeerToPeer.Collaboration;
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -46,7 +47,7 @@ namespace seguridad_barrios_privados.Presentacion
             cbRol.DisplayMember = "rolcompleto";
             cbFiltrarUsuarios.DisplayMember = "rolcompleto";
 
-            foreach (Role rol in rolesRepositorio.ObtenerRoles())
+            foreach (Rol rol in rolesRepositorio.ObtenerRoles())
             {
                 cbRol.Items.Add(rol);
                 cbFiltrarUsuarios.Items.Add(rol);
@@ -73,9 +74,9 @@ namespace seguridad_barrios_privados.Presentacion
             foreach (Usuario usuario in ListaUsuarios)
             {
 
-                if (usuario.Estado == 1)
+                if (usuario.Estado == 1) //dado de baja
                 {
-                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Rol.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.Direccion, usuario.Email, "Activar", "Modificar");
+                    dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.IdRolNavigation.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.IdDireccionNavigation.direccionCompleta, usuario.Email, "Activar", "Modificar");
                     Color colorOscuro = Color.FromArgb(25, 46, 71);
                     Color colorTexto = Color.FromArgb(45, 66, 91);
                     dgUsuarios.Rows[dgUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
@@ -83,7 +84,7 @@ namespace seguridad_barrios_privados.Presentacion
 
                     continue;
                 }
-                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.Rol.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.Direccion, usuario.Email, "Dar Baja", "Modificar");
+                dgUsuarios.Rows.Add(usuario.IdUsuario, usuario.IdRolNavigation.Descripcion, usuario.NombreCompleto, usuario.Dni, usuario.Telefono, usuario.IdDireccionNavigation.direccionCompleta, usuario.Email, "Dar Baja", "Modificar");
             }
         }
 
@@ -117,19 +118,23 @@ namespace seguridad_barrios_privados.Presentacion
         {
 
 
-            Role rol = (Role)cbRol.SelectedItem;
-
+            Rol rol = (Rol)cbRol.SelectedItem;
+            var direccion = new Direccion()
+            {
+                Calle = tbCalle.Texts,
+                Altura = tbAltura.Texts,
+            };
             var usuario = new Usuario()
             {
                 Nombre = tbNombre.Texts,
                 Apellido = tbApellido.Texts,
                 Telefono = tbTelefono.Texts,
-                Direccion = tbDireccion.Texts,
+                IdDireccion = validaciones.RegistrarDireccion(direccion,lbError, ErrorIcon, dgUsuarios).IdDireccion,
                 Dni = tbDNI.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
                 Estado = 0,
-                IdRol = rol != null ? rol.IdRol : null,
+                IdRol = rol.IdRol,
 
             };
 
@@ -139,7 +144,7 @@ namespace seguridad_barrios_privados.Presentacion
                 this.usuariosRepositorio.InsertarUsuario(usuario);
                 MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbDNI,tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbDNI, tbTelefono, tbCalle, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
                 cbRol.Text = "Rol";
 
@@ -218,7 +223,7 @@ namespace seguridad_barrios_privados.Presentacion
                 tbNombre.Texts = usuario.Nombre;
                 tbApellido.Texts = usuario.Apellido;
                 tbTelefono.Texts = usuario.Telefono;
-                tbDireccion.Texts = usuario.Direccion;
+                tbCalle.Texts = usuario.IdDireccionNavigation.direccionCompleta;
                 tbCorreo.Texts = usuario.Email;
                 tbDNI.Texts = usuario.Dni;
 
@@ -226,7 +231,7 @@ namespace seguridad_barrios_privados.Presentacion
                 tbContrasena.BackColor = Color.LightGray;
                 tbRepetirContrasena.Enabled = false;
                 tbRepetirContrasena.BackColor = Color.LightGray;
-                cbRol.SelectedItem = usuario.Rol;
+                cbRol.SelectedItem = usuario.IdRol;
                 btRegistrar.Text = "GUARDAR";
                 btRegistrar.Click -= btRegistrar_Click;
                 btRegistrar.Click += btModificar_Click;
@@ -242,25 +247,27 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-            Role rol = (Role)cbRol.SelectedItem;
+            Rol rol = (Rol)cbRol.SelectedItem;
+
             var usuario = new Usuario()
             {
                 Nombre = tbNombre.Texts,
                 Apellido = tbApellido.Texts,
                 Telefono = tbTelefono.Texts,
                 Dni = tbDNI.Texts,
-                Direccion = tbDireccion.Texts,
+                IdDireccion = 1,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
                 Estado = usuariosRepositorio.ObtenerUsuarioPorId(usuarioId).Estado,
-                IdRol = rol != null ? rol.IdRol : null,
+                IdRol = rol.IdRol
             };
+
             if (validaciones.ModificarUsuario(usuario, dniOriginal, correoOriginal, lbError, ErrorIcon, dgUsuarios))
             {
                 usuariosRepositorio.ActualizarUsuario(usuario, usuarioId);
                 MessageBox.Show("Usuario Actualizado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
-                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido,tbDNI, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+                RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbDNI, tbTelefono, tbCalle, tbContrasena, tbRepetirContrasena, tbCorreo);
                 cbRol.SelectedIndex = -1;
                 btCancelar.Visible = false;
                 btRegistrar.Text = "REGISTRAR";
@@ -273,9 +280,13 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
+
+
+
+
         private void btCancelar_Click(object sender, EventArgs e)
         {
-            RestablecerFormulario(lbError, ErrorIcon, tbNombre,tbDNI, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbDNI, tbApellido, tbTelefono, tbCalle, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
             btCancelar.Visible = false;
             btRegistrar.Text = "REGISTRAR";
@@ -289,7 +300,7 @@ namespace seguridad_barrios_privados.Presentacion
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
 
-            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario,tbDNI, tbApellido, tbTelefono, tbDireccion, tbContrasena, tbRepetirContrasena, tbCorreo);
+            RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbBuscarUsuario, tbDNI, tbApellido, tbTelefono, tbCalle, tbContrasena, tbRepetirContrasena, tbCorreo);
             cbRol.SelectedIndex = -1;
             cbRol.Text = "Rol";
             cbFiltrarUsuarios.SelectedIndex = -1;
@@ -336,6 +347,11 @@ namespace seguridad_barrios_privados.Presentacion
         }
 
         private void iS(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rjTextBox1__TextChanged(object sender, EventArgs e)
         {
 
         }

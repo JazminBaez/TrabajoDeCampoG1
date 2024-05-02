@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 using FluentValidation;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Presentacion;
 
 namespace seguridad_barrios_privados.Validators

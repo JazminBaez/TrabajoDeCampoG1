@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yl35xiTXieZEjnRUv6IUvXr5egvSypnQ9Vgj/WMYfeKShcgeRKay8By1oudHLoSJJflaN9EkFeDj3B7qERkYZA==",
+  "dgSpecHash": "fU7GyUl3z7pB9prLbMvrH+a6N6euWH5PmeroRoyV7OvnQEifC2+yZsfHfTmSOAgj6T6IeTIeeI+ZYelMU9XDfA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+  "projectFilePath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\baezd\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -20,6 +20,7 @@
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.11\\microsoft.entityframeworkcore.design.7.0.11.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.11\\microsoft.entityframeworkcore.relational.7.0.11.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.11\\microsoft.entityframeworkcore.sqlserver.7.0.11.nupkg.sha512",
+    "C:\\Users\\baezd\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.0\\microsoft.entityframeworkcore.tools.7.0.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
@@ -73,7 +74,11 @@
     "C:\\Users\\baezd\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\baezd\\.nuget\\packages\\winforms.datavisualization\\1.9.1\\winforms.datavisualization.1.9.1.nupkg.sha512"
+    "C:\\Users\\baezd\\.nuget\\packages\\winforms.datavisualization\\1.9.1\\winforms.datavisualization.1.9.1.nupkg.sha512",
+    "C:\\Users\\baezd\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\baezd\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\baezd\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\baezd\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.18\\microsoft.netcore.app.host.win-x64.7.0.18.nupkg.sha512"
   ],
   "logs": []
 }

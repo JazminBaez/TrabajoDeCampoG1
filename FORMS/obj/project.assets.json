@@ -294,6 +294,18 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.Tools/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "7.0.0"
+        },
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        }
+      },
       "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -1630,6 +1642,31 @@
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
         "microsoft.entityframeworkcore.sqlserver.7.0.11.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Tools/7.0.0": {
+      "sha512": "DtLJ0usm8NdPbRDxvNUBAYgnvqhodr/HPb461I+jrgHw5ZKF0vRTaokNth2Zy9xiw1ZTpT4c+S40f7AHWakODg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.tools/7.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net6.0/_._",
+        "microsoft.entityframeworkcore.tools.7.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.nuspec",
+        "tools/EntityFrameworkCore.PS2.psd1",
+        "tools/EntityFrameworkCore.PS2.psm1",
+        "tools/EntityFrameworkCore.psd1",
+        "tools/EntityFrameworkCore.psm1",
+        "tools/about_EntityFrameworkCore.help.txt",
+        "tools/init.ps1",
+        "tools/net461/any/ef.exe",
+        "tools/net461/win-arm64/ef.exe",
+        "tools/net461/win-x86/ef.exe",
+        "tools/netcoreapp2.0/any/ef.dll",
+        "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
@@ -3444,6 +3481,7 @@
       "EntityFramework >= 6.4.4",
       "FluentValidation >= 11.7.1",
       "FontAwesome.Sharp >= 6.3.0",
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.0",
       "WinForms.DataVisualization >= 1.9.1",
       "microsoft.entityFrameworkCore >= 7.0.11",
       "microsoft.entityFrameworkCore.design >= 7.0.11",
@@ -3456,11 +3494,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+      "projectUniqueName": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
       "projectName": "seguridad_barrios_privados",
-      "projectPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+      "projectPath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
       "packagesPath": "C:\\Users\\baezd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\obj\\",
+      "outputPath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\baezd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3483,6 +3521,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3500,6 +3543,12 @@
           "FontAwesome.Sharp": {
             "target": "Package",
             "version": "[6.3.0, )"
+          },
+          "Microsoft.EntityFrameworkCore.Tools": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "WinForms.DataVisualization": {
             "target": "Package",
@@ -3531,6 +3580,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.18, 7.0.18]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -3539,7 +3606,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

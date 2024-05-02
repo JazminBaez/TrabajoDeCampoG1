@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Controls;
 using seguridad_barrios_privados.Logica;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -25,9 +25,9 @@ namespace seguridad_barrios_privados.Presentacion
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
         private IngresosRepositorio ingresosRepositorio;
-        private List<Solicitude> Solicitudes;
-        private List<Solicitude> ListaBackup;
-        private List<Solicitude> ListaSolicitudes;
+        private List<Solicitud> Solicitudes;
+        private List<Solicitud> ListaBackup;
+        private List<Solicitud> ListaSolicitudes;
         private string busquedaPrevia;
         private List<Usuario> propietarios;
 
@@ -49,9 +49,9 @@ namespace seguridad_barrios_privados.Presentacion
 
 
 
-            ListaSolicitudes = new List<Solicitude>();
-            ListaBackup = new List<Solicitude>();
-            Solicitudes = new List<Solicitude>();
+            ListaSolicitudes = new List<Solicitud>();
+            ListaBackup = new List<Solicitud>();
+            Solicitudes = new List<Solicitud>();
             Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             ListaSolicitudes = Solicitudes;
             ListaBackup = ListaSolicitudes;
@@ -70,9 +70,9 @@ namespace seguridad_barrios_privados.Presentacion
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
             var fechaHoy = DateTime.Today;
-            foreach (Solicitude solicitud in ListaSolicitudes)
+            foreach (Solicitud solicitud in ListaSolicitudes)
             {
-                if (solicitud.Baja == false && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
+                if (solicitud.Estado != 3 && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
                 {
                     dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, "Aceptar", "Rechazar", "Cancelar");
                 }
@@ -204,7 +204,7 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Baja = true;
+                solicitud.Estado = 3;
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
                 MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarSolicitudes();
@@ -244,6 +244,11 @@ namespace seguridad_barrios_privados.Presentacion
             }
 
             this.CargarSolicitudes();
+
+        }
+
+        private void lbSolicitudesRealizadas_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -1,4 +1,4 @@
-﻿using seguridad_barrios_privados.Models;
+﻿using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
-        public List<Role> ObtenerRoles()
+        public List<Rol> ObtenerRoles()
         {
             return barriosPrivadosContext.Roles.ToList();
         }

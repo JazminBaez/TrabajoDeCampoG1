@@ -1,5 +1,5 @@
 ﻿using seguridad_barrios_privados.Logica;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace seguridad_barrios_privados.Presentacion
         private List<Ingreso> ListaBackup;
         private List<Ingreso> Ingresos;
         private List<Egreso> Egresos;
-        private List<Solicitude> Solicitudes;
+        private List<Solicitud> Solicitudes;
         private string busquedaPrevia;
         private List<Movimiento> movimientos;
         private List<Usuario> usuarios;
@@ -76,8 +76,8 @@ namespace seguridad_barrios_privados.Presentacion
         private void CargarTargetas()
         {
 
-            var cantidadDePropietarios = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 1 && u.Estado != 1).Count();
-            tgUsuarios.Text = cantidadDePropietarios.ToString() + "\r\nPROPIETARIOS";
+         var cantidadDePropietarios = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 1 && u.Estado != 1).Count();
+           tgUsuarios.Text = cantidadDePropietarios.ToString() + "\r\nPROPIETARIOS";
 
             var catidadDeGuardias = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 3 && u.Estado != 1).Count();
             tgVisitantes.Text = catidadDeGuardias.ToString() + "\r\nGUARDIAS";

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Properties;
 using seguridad_barrios_privados.Util;
 

@@ -1,5 +1,5 @@
 ﻿using seguridad_barrios_privados.Logica;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -25,9 +25,9 @@ namespace seguridad_barrios_privados.Presentacion
         //private List<Ingreso> ingresos;
         //private List<Solicitude> solicitudes;
         //private List<Egreso> egresos;
-        private List<Solicitude> Solicitudes;
-        private List<Solicitude> ListaSolicitudes;
-        private List<Solicitude> solicitudesBackUp;
+        private List<Solicitud> Solicitudes;
+        private List<Solicitud> ListaSolicitudes;
+        private List<Solicitud> solicitudesBackUp;
         private string orden;
         public FormMisSolicitudes()
         {
@@ -50,13 +50,13 @@ namespace seguridad_barrios_privados.Presentacion
         {
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
-            foreach (Solicitude solicitud in ListaSolicitudes)
+            foreach (Solicitud solicitud in ListaSolicitudes)
             {
 
-                if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Baja != true)
+                if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Estado != 3)
                 {
                     string estadoSolicitud;
-                    int estado = solicitud.Estado ?? 0;
+                    int estado = solicitud.Estado;
 
                     switch (estado)
                     {
@@ -124,7 +124,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void cbFiltrarSolicitudes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Solicitude>? SolicitudesFiltrar = solicitudesBackUp;
+            List<Solicitud>? SolicitudesFiltrar = solicitudesBackUp;
             int estadoSeleccionado = cbFiltraSolicitudes.SelectedIndex;
             if (estadoSeleccionado != -1)
             {

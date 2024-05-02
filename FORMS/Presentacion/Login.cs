@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using seguridad_barrios_privados.Logica;
-using seguridad_barrios_privados.Models;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
 using System.Security.Cryptography;
 using seguridad_barrios_privados.Properties;

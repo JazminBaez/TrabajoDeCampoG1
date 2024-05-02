@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="conexion" xml:space="preserve">
-    <value>Server=LAPTOP-27C43Q6P;Database=db_barrios_privados;Integrated Security=True;Trust server certificate=True</value>
+    <value>Server=LAPTOP-27C43Q6P;Database=barrios_privados_db;Integrated Security=True;Trust server certificate=True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="loader" type="System.Resources.ResXFileRef, System.Windows.Forms">

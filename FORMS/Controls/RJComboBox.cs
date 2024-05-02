@@ -171,8 +171,7 @@ namespace seguridad_barrios_privados.Controls
         public override Font Font
         {
             get { return base.Font; }
-            set
-            {
+            set  {
                 base.Font = value;
                 lblText.Font = value;
                 cmbList.Font = value;//Optional

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj": {}
+    "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj": {
+    "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+        "projectUniqueName": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
         "projectName": "seguridad_barrios_privados",
-        "projectPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+        "projectPath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
         "packagesPath": "C:\\Users\\baezd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baezd\\Documents\\FaCENA\\TALLER DE PROGRAMACION II\\seguridad_barrios_privados\\FORMS\\obj\\",
+        "outputPath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\baezd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -51,6 +56,12 @@
             "FontAwesome.Sharp": {
               "target": "Package",
               "version": "[6.3.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "WinForms.DataVisualization": {
               "target": "Package",
@@ -82,6 +93,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.18, 7.0.18]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -90,7 +119,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace seguridad_barrios_privados.Models
+namespace seguridad_barrios_privados.Modelos
 {
     public class Movimiento
     {

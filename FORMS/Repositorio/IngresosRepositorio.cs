@@ -1,4 +1,4 @@
-﻿using seguridad_barrios_privados.Models;
+﻿using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace seguridad_barrios_privados.Repositorio
             return barriosPrivadosContext.Visitantes.ToList();
         }
 
-        public List<Solicitude> pruebaDos()
+        public List<Solicitud> pruebaDos()
         {
             return barriosPrivadosContext.Solicitudes.ToList();
         }
@@ -52,7 +52,7 @@ namespace seguridad_barrios_privados.Repositorio
             var ingresos = barriosPrivadosContext.Ingresos.Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation).ToList();
             foreach (Ingreso ingreso in ingresos)
             {
-                foreach (Solicitude solicitud in solicitudes)
+                foreach (Solicitud solicitud in solicitudes)
                 {
                         if (ingreso.IdSolicitud == solicitud.IdSolicitud)
                         {
