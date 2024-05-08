@@ -9,7 +9,7 @@ namespace seguridad_barrios_privados
 {
     public static class AppState
     {
-        public static Usuario UsuarioActual { get; set; }
+        public static Usuario? UsuarioActual { get; set; }
        
     }
 

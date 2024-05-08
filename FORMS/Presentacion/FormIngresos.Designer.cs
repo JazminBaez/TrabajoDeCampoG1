@@ -226,7 +226,6 @@ namespace seguridad_barrios_privados.Presentacion
             tbApellido.TabIndex = 24;
             tbApellido.Texts = "";
             tbApellido.UnderlinedStyle = false;
-            tbApellido._TextChanged += tbApellido__TextChanged;
             tbApellido.KeyPress += tbApellido_KeyPress;
             // 
             // tbDni
@@ -251,7 +250,6 @@ namespace seguridad_barrios_privados.Presentacion
             tbDni.TabIndex = 25;
             tbDni.Texts = "";
             tbDni.UnderlinedStyle = false;
-            tbDni._TextChanged += TBDireccion__TextChanged;
             tbDni.KeyPress += number_KeyPress;
             // 
             // tbNombre
@@ -276,7 +274,6 @@ namespace seguridad_barrios_privados.Presentacion
             tbNombre.TabIndex = 23;
             tbNombre.Texts = "";
             tbNombre.UnderlinedStyle = false;
-            tbNombre._TextChanged += tbNombre__TextChanged;
             tbNombre.KeyPress += tbNombre_KeyPress;
             // 
             // usuariosRepositorioBindingSource
@@ -295,7 +292,6 @@ namespace seguridad_barrios_privados.Presentacion
             panel3.Name = "panel3";
             panel3.Size = new Size(580, 482);
             panel3.TabIndex = 5;
-            panel3.Paint += panel3_Paint;
             // 
             // panel2
             // 

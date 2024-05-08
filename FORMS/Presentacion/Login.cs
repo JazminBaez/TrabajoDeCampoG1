@@ -48,12 +48,12 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
-        private void btIniciarSesion_Click(object sender, EventArgs e)
+        private async void btIniciarSesion_Click(object sender, EventArgs e)
         {
             if (!(Validaciones.CamposCompletos(tbCorreo, tbContrasena)))
             {
-                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
-                Validaciones.MostrarError("Complete todos los campos", lbError, ErrorIcon);
+                Validaciones.MostrarError("Complete todos los campos", lbError);
+                Validaciones.MostrarError("Complete todos los campos", lbError);
                 return;
             }
             else
@@ -90,7 +90,7 @@ namespace seguridad_barrios_privados.Presentacion
                 else
                 {
                   
-                    this.msgError("Usuario no registrado");
+                    this.msgError("Contraseña incorrecta");
                 }
             }
 

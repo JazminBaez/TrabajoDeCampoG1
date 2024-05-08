@@ -52,6 +52,7 @@ namespace seguridad_barrios_privados.Presentacion
             ListaSolicitudes = new List<Solicitud>();
             ListaBackup = new List<Solicitud>();
             Solicitudes = new List<Solicitud>();
+
             Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             ListaSolicitudes = Solicitudes;
             ListaBackup = ListaSolicitudes;
@@ -64,6 +65,10 @@ namespace seguridad_barrios_privados.Presentacion
         {
 
         }
+
+
+
+        //------------------------------------------------------------------------------------------------------------------------------
         private void CargarSolicitudes()
         {
 
@@ -78,24 +83,14 @@ namespace seguridad_barrios_privados.Presentacion
                 }
             }
         }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------
+       
+        
+        
+       
 
-        private void number_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) && e.KeyChar != '\b')
-            {
 
-                e.Handled = true;
-            }
-        }
-
-        private void lbFiltrarUsuarios_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dtFechaMovimeintos_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
+        //------------------------------------------------------------------------------------------------------------------
         private void btRegistrar_Click(object sender, EventArgs e)
         {
             var visitante = new Visitante()
@@ -107,36 +102,67 @@ namespace seguridad_barrios_privados.Presentacion
 
             var fechaHoy = DateTime.Today;
 
-            if (validaciones.RegistrarSolicitud(visitante, fechaHoy, cbPropietarios, lbError, ErrorIcon, dgSolicitudes))
+            if (validaciones.RegistrarSolicitud(visitante, fechaHoy, cbPropietarios, lbError))
             {
 
-                MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
                 ActualizarSolicitudes();
                 CargarSolicitudes();
                 RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
                 cbPropietarios.SelectedIndex = -1;
             }
-
-
-
+    
         }
+
+        //---------------------------------------------------------------------------------------------------------------------------------------
+
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------------
+        private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
+
+            //Acepta la solicitud
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CAceptarSolicitud"].Index)
+            {
+
+                validaciones.AceptarSolicitud(solicitud);
+                CargarSolicitudes();
+            }
+
+            //rechaza la solicitud
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CRechazar"].Index)
+            {
+                validaciones.RechazarSolicitud(solicitud);
+                CargarSolicitudes();
+
+            }
+
+
+            //cancelar solicitud
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
+            {
+
+              
+                CargarSolicitudes();
+            }
+        }
+
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
         private void ActualizarSolicitudes()
         {
             Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             ListaSolicitudes = Solicitudes;
             ListaBackup = ListaSolicitudes;
         }
-        private void tbApellido__TextChanged(object sender, EventArgs e)
-        {
-        }
 
-        private void TBDireccion__TextChanged(object sender, EventArgs e)
-        {
-        }
 
-        private void tbNombre__TextChanged(object sender, EventArgs e)
-        {
-        }
 
         private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -156,15 +182,7 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
-        private void TBDireccion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -173,43 +191,7 @@ namespace seguridad_barrios_privados.Presentacion
             }
         }
 
-        private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CAceptarSolicitud"].Index)
-            {
-
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Estado = 1;
-                if (ingresosRepositorio.RegistrarIngreso(solicitud.IdSolicitud))
-                {
-                    solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                    MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-
-                CargarSolicitudes();
-            }
-
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CRechazar"].Index)
-            {
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Estado = 2;
-                solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarSolicitudes();
-
-            }
-
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
-            {
-
-                var solicitud = solicitudesRepositorio.ObtenerSolicitud(Convert.ToInt32(dgSolicitudes.Rows[e.RowIndex].Cells[0].Value));
-                solicitud.Estado = 3;
-                solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarSolicitudes();
-            }
-        }
+        
 
 
         private static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
@@ -250,6 +232,26 @@ namespace seguridad_barrios_privados.Presentacion
         private void lbSolicitudesRealizadas_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+
+
+        private void number_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && e.KeyChar != '\b')
+            {
+
+                e.Handled = true;
+            }
+        }
+
+        private void lbFiltrarUsuarios_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void dtFechaMovimeintos_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

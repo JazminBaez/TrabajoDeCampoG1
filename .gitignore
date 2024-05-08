@@ -1,0 +1,9 @@
+# Ignorar el directorio .vs y su contenido
+.vs/
+
+# Ignorar archivos de respaldo generados por Visual Studio
+*.bak
+
+# Ignorar archivos de compilación
+*.obj
+*.exe

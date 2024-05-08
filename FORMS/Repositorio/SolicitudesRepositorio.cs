@@ -55,18 +55,10 @@ namespace seguridad_barrios_privados.Repositorio
             return solicitudes;
         }
 
-        public void RegistrarSolicitud(int visitante, int usuario, DateTime fecha)
+        public void RegistrarSolicitud(Solicitud solicitud)
         {
-            try
-            {
-                var solicitud = new Solicitud()
-                {
-                    IdUsuario = usuario,
-                    IdVisitante = visitante,
-                    Estado = 0,
-                    Fecha = fecha
-                };
-
+            try { 
+             
                 barriosPrivadosContext.Solicitudes.Add(solicitud);
                 barriosPrivadosContext.SaveChanges();
 

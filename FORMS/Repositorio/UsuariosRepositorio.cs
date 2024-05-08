@@ -100,7 +100,15 @@ namespace seguridad_barrios_privados.Repositorio
 
         public Usuario getUsuarioByEmail(string email)
         {
-            return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.Email == email);
+            try
+            {
+                return barriosPrivadosContext.Usuarios.FirstOrDefault(u => u.Email == email);
+
+            }
+            catch(Exception ex) {
+                Console.Write(ex.Message);
+                return null;
+            }
         }
 
         public Usuario ObtenerUsuarioPorId(int id)

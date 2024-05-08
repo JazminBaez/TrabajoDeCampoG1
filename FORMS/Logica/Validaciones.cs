@@ -26,6 +26,16 @@ namespace seguridad_barrios_privados.Logica
         private SolicitudesRepositorio? solicitudesRepositorio;
         private IngresosRepositorio? ingresosRepositorio;
         private DireccionRepositorio? direccionRepositorio;
+
+        public Validaciones()
+        {
+            visitantesRepositorio = new VisitantesRepositorio();
+            solicitudesRepositorio = new SolicitudesRepositorio();
+            usuariosRepositorio = new UsuariosRepositorio();
+            ingresosRepositorio = new IngresosRepositorio();
+        }
+      
+
         public static bool IsNumber(char caracter)
         {
             return char.IsDigit(caracter);
@@ -56,7 +66,11 @@ namespace seguridad_barrios_privados.Logica
 
                 return false;
             }
-            return true;
+            else
+            {
+                return true;
+            }
+            
         }
 
         public static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)
@@ -71,41 +85,44 @@ namespace seguridad_barrios_privados.Logica
 
         }
 
-        public static void MostrarError(System.String mensaje, Label error, IconPictureBox errorIcon)
+        public static void MostrarError(System.String mensaje, Label error)
         {
             error.Text = mensaje;
-            errorIcon.Visible = true;
+           
             error.Visible = true;
         }
        
      
 
-        public bool RegistrarUsuario(Usuario usuario, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+        public bool RegistrarUsuario(Usuario usuario,Direccion direccion, string repetirContrasena, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
         {
             var validator = new UsuarioValidators();
             var result = validator.Validate(usuario);
-            usuariosRepositorio = new UsuariosRepositorio();
+           
 
             if (!result.IsValid)
             {
                 if (usuario.Contrasena != repetirContrasena || repetirContrasena == null)
                 {
-                    Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg, errorIcon);
+                    Validaciones.MostrarError("Las contraseñas no coinciden", errorMsg);
 
                 }
                 else
                 {
-                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                    Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg);
                 }
 
                 return false;
             }
             else
             {
-               
+               if(RegistrarDireccion(direccion, errorMsg)!= null)
+                {
+                    usuario.IdDireccion = RegistrarDireccion(direccion, errorMsg).IdDireccion;
+                    this.usuariosRepositorio.InsertarUsuario(usuario);
+                }
 
                 return true;
-
 
             }
         }
@@ -118,7 +135,7 @@ namespace seguridad_barrios_privados.Logica
 
             if (!result.IsValid)
             {
-                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg);
                 return false;
             }
             else
@@ -130,7 +147,7 @@ namespace seguridad_barrios_privados.Logica
                 {
                     if (usuariosRepositorio.ExisteUsuario(usuario.Email))
                     {
-                        Validaciones.MostrarError("Correo ya registrado", errorMsg, errorIcon);
+                        Validaciones.MostrarError("Correo ya registrado", errorMsg);
                         return false;
                     }
                     return true;
@@ -140,7 +157,7 @@ namespace seguridad_barrios_privados.Logica
                 {
                     if (usuariosRepositorio.ObtenerUsuariosPorDni(dniNuevo) != null)
                     {
-                        Validaciones.MostrarError("Dni ya registrado", errorMsg, errorIcon);
+                        Validaciones.MostrarError("Dni ya registrado", errorMsg);
                         return false;
                     }
                     return true;
@@ -150,73 +167,146 @@ namespace seguridad_barrios_privados.Logica
         }
 
 
-        public bool RegistrarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+
+
+        //----------------------------------------------------------------------------------------------------------------------
+        public bool RegistrarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg)
         {
             var validator = new VisitanteValidators();
             var result = validator.Validate(visitante);
-            visitantesRepositorio = new VisitantesRepositorio();
-            solicitudesRepositorio = new SolicitudesRepositorio();
-            int IdVisitante;
-            int IdPropietario;
+      
+            int idVisitante;
+            int idPropietario;
 
+            //Verifica que si el que esta registrando la solicitud es un guardia entonces debio haber soleccionado un propietario responsable
+            if (AppState.UsuarioActual.IdRol == 3 && (propietario == null || propietario.SelectedIndex == -1))
+            {
+                MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg);
+                return false;
+            }
+
+            //valida que esten correctos los datos de visitante
             if (!result.IsValid)
             {
-
-
-                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
-
-
+                MostrarError(result.Errors[0].ErrorMessage, errorMsg);
                 return false;
             }
             else
             {
-                if (AppState.UsuarioActual.IdRol == 3 && (propietario == null || propietario.SelectedIndex == -1))
+                //registra el visitante
+                RegistrarVisitante(visitante);
+                idVisitante = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni).IdVisitante;
+
+
+               
+
+
+                //Setea como responsable el porpietario seleccionado por el guardia
+                if(AppState.UsuarioActual.IdRol == 3)
                 {
-                    Validaciones.MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg, errorIcon);
+                    idPropietario = (int)propietario.SelectedValue;
+                }
+                else
+                {
+                    //Setea como responsable al propietario que creo la solicitud
+                    idPropietario = AppState.UsuarioActual.IdUsuario;
+                }
+
+                var solicitud = new Solicitud()
+                {
+                    IdUsuario =idPropietario,
+                    IdVisitante = idVisitante,
+                    Estado = 0,
+                    Fecha = fecha
+                };
+
+
+                //Registra la solicitud
+
+                try
+                {
+                    solicitudesRepositorio.RegistrarSolicitud(solicitud);
+                    MessageBox.Show("Solicitud Registrada con exito");
+                    return true;
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
-                if (visitantesRepositorio.ExisteVisitante(visitante.Dni))
-                {
 
-                    var visitanteEncontrado = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni);
-                    string mensaje = $"Visitante encontrado: {visitanteEncontrado.NombreCompleto}, DNI: {visitanteEncontrado.Dni}";
-                    DialogResult resultado = MessageBox.Show(mensaje, "Mensaje de Visitante", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
-                    if (resultado == DialogResult.OK)
-                    {
-                        IdVisitante = visitanteEncontrado.IdVisitante;
-
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                    
-                }
-                else
-                {
-                    IdVisitante = visitantesRepositorio.RegistrarVisitante(visitante);
-                }
-
-
-                if(AppState.UsuarioActual.IdRol == 3)
-                {
-                    IdPropietario = (int)propietario.SelectedValue;
-                }
-                else
-                {
-                    IdPropietario = AppState.UsuarioActual.IdUsuario;
-                }
-                
-                solicitudesRepositorio.RegistrarSolicitud(IdVisitante, IdPropietario, fecha);
-
-                return true;
             }
         }
 
 
-        public Direccion RegistrarDireccion(Direccion direccion, Label errorMsg, IconPictureBox errorIcon, DataGridView usuarios)
+
+
+
+        //----------------------------------------------------------------------------------------------------------------------------------------------
+
+        public void RegistrarVisitante(Visitante visitante)
+        {
+            int idVisitante;
+            //verifica si ya existe ese visitante registrado
+            if (visitantesRepositorio.ExisteVisitante(visitante.Dni))
+            {
+
+                var visitanteEncontrado = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni);
+
+                //pide confirmar al guardia si el visitante que se encontro registrado es el que se pretendia seleccionar
+                string mensaje = $"Visitante encontrado: {visitanteEncontrado.NombreCompleto}, DNI: {visitanteEncontrado.Dni}";
+                DialogResult resultado = MessageBox.Show(mensaje, "Mensaje de Visitante", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+                if (resultado == DialogResult.OK)
+                {
+                   idVisitante = visitanteEncontrado.IdVisitante;
+                 
+                }
+
+            }
+            else
+            {
+                visitantesRepositorio.RegistrarVisitante(visitante);
+                idVisitante =  visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni).IdVisitante;
+            }
+        }
+
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------
+
+        public void AceptarSolicitud(Solicitud solicitud)
+        {
+            solicitud.Estado = 1;
+            if (ingresosRepositorio.RegistrarIngreso(solicitud.IdSolicitud))
+            {
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        public void RechazarSolicitud(Solicitud solicitud)
+        {
+            solicitud.Estado = 2;
+            solicitudesRepositorio.ActualizarSolicitud(solicitud);
+            MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        public void cancelarSolicitud(Solicitud solicitud)
+        {
+            solicitud.Estado = 3;
+            solicitudesRepositorio.ActualizarSolicitud(solicitud);
+            MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+        public Direccion RegistrarDireccion(Direccion direccion, Label errorMsg)
         {
             var validator = new DireccionValidator();
             var result = validator.Validate(direccion);
@@ -224,7 +314,7 @@ namespace seguridad_barrios_privados.Logica
             if (!result.IsValid)
             {
 
-                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg, errorIcon);
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg);
                 return null;
             }
             else

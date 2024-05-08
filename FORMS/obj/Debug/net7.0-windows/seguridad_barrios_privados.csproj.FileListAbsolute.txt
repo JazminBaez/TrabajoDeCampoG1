@@ -204,9 +204,6 @@ J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegra
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.AssemblyInfo.cs
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.csproj.CoreCompileInputs.cache
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.sourcelink.json
-J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.dll
-J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\refint\seguridad_barrios_privados.dll
-J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.pdb
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\seguridad_barrios_privados.exe
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\seguridad_barrios_privados.deps.json
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\seguridad_barrios_privados.runtimeconfig.json
@@ -265,5 +262,8 @@ J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegra
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\bin\Debug\net7.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\segurida.E4D26D7D.Up2Date
+J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.dll
+J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\refint\seguridad_barrios_privados.dll
+J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.pdb
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\seguridad_barrios_privados.genruntimeconfig.cache
 J:\Usuarios\baezd\Documents\FaCENA\INGENIERIA II\Trabajo de campo\TrabajoIntegrador-Grupo12\seguridad_barrios_privados\FORMS\obj\Debug\net7.0-windows\ref\seguridad_barrios_privados.dll

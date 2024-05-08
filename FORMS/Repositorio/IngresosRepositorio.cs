@@ -21,15 +21,27 @@ namespace seguridad_barrios_privados.Repositorio
 
         public bool RegistrarIngreso(int solicitud)
         {
+            //crea el ingreso y lo vincula con la solicitud correspondiente
             var ingreso = new Ingreso()
             {
                 IdSolicitud = solicitud,
                 Fecha = DateTime.Today
             };
 
-            barriosPrivadosContext.Ingresos.Add(ingreso);
-            barriosPrivadosContext.SaveChanges();
-            return true;
+            //lo registra
+            try
+            {
+                barriosPrivadosContext.Ingresos.Add(ingreso);
+                barriosPrivadosContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+           
         }
 
         public List<Visitante> prueba()

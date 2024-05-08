@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\FORMS",
-    "\\FORMS\\Presentacion"
+    "\\FORMS\\Modelos",
+    "\\FORMS\\Properties",
+    "\\FORMS\\Resources",
+    "\\FORMS\\Util"
   ],
-  "SelectedNode": "\\FORMS\\Presentacion\\FormGestionarUsuarios.cs",
+  "SelectedNode": "\\FORMS\\Properties\\Resources.resx",
   "PreviewInSolutionExplorer": false
 }

@@ -136,7 +136,7 @@ namespace seguridad_barrios_privados.Presentacion
 
             var fechaProgramada = dtFechaMovimeintos.Value;
 
-            if (validaciones.RegistrarSolicitud(visitante, fechaProgramada, null, lbError, ErrorIcon, dgSolicitudes))
+            if (validaciones.RegistrarSolicitud(visitante, fechaProgramada, null, lbError))
             {
                 MessageBox.Show("Solicitud realizada con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarSolicitudes();

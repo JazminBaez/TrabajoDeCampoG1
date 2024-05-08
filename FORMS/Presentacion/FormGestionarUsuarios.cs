@@ -61,6 +61,7 @@ namespace seguridad_barrios_privados.Presentacion
             ListaUsuarios = Usuarios;
             ListaBackup = ListaUsuarios;
             busquedaPrevia = string.Empty;
+            
             CargarUsuarios();
 
 
@@ -117,31 +118,33 @@ namespace seguridad_barrios_privados.Presentacion
         private void btRegistrar_Click(object sender, EventArgs e)
         {
 
+            
+          Rol rol = (Rol)cbRol.SelectedItem;
 
-            Rol rol = (Rol)cbRol.SelectedItem;
             var direccion = new Direccion()
             {
                 Calle = tbCalle.Texts,
                 Altura = tbAltura.Texts,
             };
+
+           
             var usuario = new Usuario()
             {
                 Nombre = tbNombre.Texts,
                 Apellido = tbApellido.Texts,
                 Telefono = tbTelefono.Texts,
-                IdDireccion = validaciones.RegistrarDireccion(direccion,lbError, ErrorIcon, dgUsuarios).IdDireccion,
+                IdDireccion = direccion.IdDireccion == null ? 0 : direccion.IdDireccion,
                 Dni = tbDNI.Texts,
                 Email = tbCorreo.Texts,
                 Contrasena = tbContrasena.Texts,
                 Estado = 0,
-                IdRol = rol.IdRol,
+                IdRol = 0,
 
             };
 
-            if (validaciones.RegistrarUsuario(usuario, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
+            if (validaciones.RegistrarUsuario(usuario, direccion, tbRepetirContrasena.Texts, lbError, ErrorIcon, dgUsuarios))
             {
                 usuario.Contrasena = HashPasswordSHA256(tbContrasena.Texts);
-                this.usuariosRepositorio.InsertarUsuario(usuario);
                 MessageBox.Show("Usuario registrado con exito", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 RestablecerFormulario(lbError, ErrorIcon, tbNombre, tbApellido, tbDNI, tbTelefono, tbCalle, tbContrasena, tbRepetirContrasena, tbCorreo);

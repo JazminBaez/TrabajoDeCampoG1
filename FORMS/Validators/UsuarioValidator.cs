@@ -38,8 +38,7 @@ namespace seguridad_barrios_privados.Validators
                ;
             RuleFor(x => x.IdRol)
                 .GreaterThan(-1)
-                .NotNull()
-                .WithMessage("Selecciona un rol")
+                .NotNull().WithMessage("Selecciona un rol")
                ;
         }
 

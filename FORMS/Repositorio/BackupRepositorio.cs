@@ -25,13 +25,13 @@ namespace seguridad_barrios_privados.Repositorio
         {
             try
             {
-                string backupFileName = $"db_barrios_privados-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.bak";
+                string backupFileName = $"barrios_privados_db-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.bak";
                 string backupFilePath = Path.Combine(path, backupFileName);
 
                 // imprime la ubicación del archivo
                 Console.WriteLine(backupFilePath);
 
-                string query = $"BACKUP DATABASE [db_barrios_privados] TO DISK = '{backupFilePath}'";
+                string query = $"BACKUP DATABASE [barrios_privados_db] TO DISK = '{backupFilePath}'";
                 await _context.Database.ExecuteSqlRawAsync(query);
                 MessageBox.Show("Backup realizado con éxito", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -50,15 +50,15 @@ namespace seguridad_barrios_privados.Repositorio
             try
             {
                 // Cambiar la base de datos a modo de usuario único antes de la restauración
-                await _context.Database.ExecuteSqlRawAsync("USE MASTER ALTER DATABASE [db_barrios_privados] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                await _context.Database.ExecuteSqlRawAsync("USE MASTER ALTER DATABASE [barrios_privados_db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
 
                 // Realizar la restauración
-                string restoreQuery = "USE MASTER RESTORE DATABASE [db_barrios_privados] FROM DISK = @path WITH REPLACE";
+                string restoreQuery = "USE MASTER RESTORE DATABASE [barrios_privados_db] FROM DISK = @path WITH REPLACE";
                 SqlParameter[] restoreParameters = new SqlParameter[] { new("@path", path) };
                 await _context.Database.ExecuteSqlRawAsync(restoreQuery, restoreParameters);
 
                 // Cambiar la base de datos de vuelta a modo multiusuario
-                await _context.Database.ExecuteSqlRawAsync("USE MASTER ALTER DATABASE [db_barrios_privados] SET MULTI_USER");
+                await _context.Database.ExecuteSqlRawAsync("USE MASTER ALTER DATABASE [barrios_privados_db] SET MULTI_USER");
 
                 // Migrar la base de datos si es necesario
                 await _context.Database.MigrateAsync();

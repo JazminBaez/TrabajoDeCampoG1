@@ -33,12 +33,31 @@ namespace seguridad_barrios_privados.Repositorio
             return visitante; 
         }
 
-        public int RegistrarVisitante(Visitante visitante)
+
+
+
+
+        //----------------------------------------------------------------------------------------------------------------------------------------
+        public void RegistrarVisitante(Visitante visitante)
         {
-            barriosPrivadosContext.Visitantes.Add(visitante);
-            barriosPrivadosContext.SaveChanges();
-            return visitante.IdVisitante;
+            try
+            {
+                barriosPrivadosContext.Visitantes.Add(visitante);
+                barriosPrivadosContext.SaveChanges();
+               
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("Error al insertar visitante", ex);
+            }
         }
+        //-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
         public bool ExisteVisitante(string dni)
         {
@@ -54,7 +73,6 @@ namespace seguridad_barrios_privados.Repositorio
             return visitante;
         }
 
-
-
+        
     }
 }
