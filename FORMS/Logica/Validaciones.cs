@@ -170,7 +170,7 @@ namespace seguridad_barrios_privados.Logica
 
 
         //----------------------------------------------------------------------------------------------------------------------
-        public bool RegistrarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg)
+        public void VerificarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg)
         {
             var validator = new VisitanteValidators();
             var result = validator.Validate(visitante);
@@ -182,23 +182,18 @@ namespace seguridad_barrios_privados.Logica
             if (AppState.UsuarioActual.IdRol == 3 && (propietario == null || propietario.SelectedIndex == -1))
             {
                 MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg);
-                return false;
             }
 
             //valida que esten correctos los datos de visitante
             if (!result.IsValid)
             {
                 MostrarError(result.Errors[0].ErrorMessage, errorMsg);
-                return false;
             }
             else
             {
                 //registra el visitante
                 RegistrarVisitante(visitante);
                 idVisitante = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni).IdVisitante;
-
-
-               
 
 
                 //Setea como responsable el porpietario seleccionado por el guardia
@@ -227,11 +222,10 @@ namespace seguridad_barrios_privados.Logica
                 {
                     solicitudesRepositorio.RegistrarSolicitud(solicitud);
                     MessageBox.Show("Solicitud Registrada con exito");
-                    return true;
+           
                 }catch(Exception ex)
                 {
-                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    MessageBox.Show("No fue posible registrar la solicitud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 
@@ -277,26 +271,47 @@ namespace seguridad_barrios_privados.Logica
         public void AceptarSolicitud(Solicitud solicitud)
         {
             solicitud.Estado = 1;
-            if (ingresosRepositorio.RegistrarIngreso(solicitud.IdSolicitud))
+
+            try
             {
+                ingresosRepositorio.RegistrarIngreso(solicitud.IdSolicitud);
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
                 MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("No fue posible registrar el ingreso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void RechazarSolicitud(Solicitud solicitud)
         {
             solicitud.Estado = 2;
-            solicitudesRepositorio.ActualizarSolicitud(solicitud);
-            MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("No fue posible rechazar la solicitud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
         
         public void cancelarSolicitud(Solicitud solicitud)
         {
             solicitud.Estado = 3;
-            solicitudesRepositorio.ActualizarSolicitud(solicitud);
-            MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+
+                solicitudesRepositorio.ActualizarSolicitud(solicitud);
+                MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible cancelar la solicitud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 

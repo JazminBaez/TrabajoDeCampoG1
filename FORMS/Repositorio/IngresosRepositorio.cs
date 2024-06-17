@@ -19,7 +19,7 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
-        public bool RegistrarIngreso(int solicitud)
+        public void RegistrarIngreso(int solicitud)
         {
             //crea el ingreso y lo vincula con la solicitud correspondiente
             var ingreso = new Ingreso()
@@ -33,13 +33,11 @@ namespace seguridad_barrios_privados.Repositorio
             {
                 barriosPrivadosContext.Ingresos.Add(ingreso);
                 barriosPrivadosContext.SaveChanges();
-                return true;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.Write(ex.Message);
 
-                return false;
             }
            
         }

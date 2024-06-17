@@ -95,7 +95,7 @@
             tbBuscarUsuario.TabIndex = 24;
             tbBuscarUsuario.Texts = "";
             tbBuscarUsuario.UnderlinedStyle = false;
-            tbBuscarUsuario._TextChanged += tbBuscarUsuario__TextChanged;
+            tbBuscarUsuario._TextChanged += FiltrarPorUsuario;
             // 
             // dtFechaHasta
             // 
@@ -123,7 +123,7 @@
             iconPictureBox2.Size = new Size(40, 44);
             iconPictureBox2.TabIndex = 16;
             iconPictureBox2.TabStop = false;
-            iconPictureBox2.Click += iconPictureBox2_Click;
+            iconPictureBox2.Click += OrdenarPorFecha;
             // 
             // dtFechaDesde
             // 
@@ -174,7 +174,7 @@
             iconPictureBox1.Size = new Size(40, 44);
             iconPictureBox1.TabIndex = 14;
             iconPictureBox1.TabStop = false;
-            iconPictureBox1.Click += iconPictureBox1_Click;
+            iconPictureBox1.Click += ReestablecerFiltros;
             // 
             // cbFiltraSolicitudes
             // 
@@ -186,7 +186,7 @@
             cbFiltraSolicitudes.Size = new Size(123, 28);
             cbFiltraSolicitudes.TabIndex = 0;
             cbFiltraSolicitudes.Text = "Estado";
-            cbFiltraSolicitudes.SelectedIndexChanged += cbFiltrarSolicitudes_SelectedIndexChanged;
+            cbFiltraSolicitudes.SelectedIndexChanged += FiltrarPorEstado;
             // 
             // panel2
             // 

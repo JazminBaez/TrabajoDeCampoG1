@@ -1,5 +1,6 @@
 ﻿using seguridad_barrios_privados.Logica;
 using seguridad_barrios_privados.Modelos;
+using seguridad_barrios_privados.Presentacion;
 using seguridad_barrios_privados.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace seguridad_barrios_privados.Presentacion
 {
@@ -41,56 +43,24 @@ namespace seguridad_barrios_privados.Presentacion
             ListaSolicitudes = Solicitudes;
             solicitudesBackUp = ListaSolicitudes;
             orden = "descendente";
-            CargarSolicitudes();
+            MostarSolicitudes();
         }
 
 
 
-        private void CargarSolicitudes()
+        private void MostarSolicitudes()
         {
-            dgSolicitudes.Rows.Clear();
-            dgSolicitudes.Refresh();
-            foreach (SolicitudConDetalle solicitud in ListaSolicitudes)
-            {
-
-                if (solicitud.solicitud_estado != 4)
-                {
-                    string estadoSolicitud;
-                    int estado = solicitud.solicitud_estado;
-
-                    switch (estado)
-                    {
-                        default:
-                            estadoSolicitud = "pendiente";
-                            break;
-                        case 1:
-                            estadoSolicitud = "aceptado";
-                            break;
-                        case 2:
-                            estadoSolicitud = "rechazado";
-                            dgSolicitudes.Rows.Add(solicitud.id_solicitud, estadoSolicitud, solicitud.NombreCompletoUsuario,solicitud.usuario_dni ,solicitud.NombreCompletoVisitante, solicitud.visitante_dni, solicitud.solicitud_fecha);
-
-                            Color colorOscuro = Color.FromArgb(25, 46, 71);
-                            Color colorTexto = Color.FromArgb(45, 66, 91);
-                            dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
-                            dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
-
-                            continue;
-
-                      }
-                    dgSolicitudes.Rows.Add(solicitud.id_solicitud, estadoSolicitud, solicitud.NombreCompletoUsuario, solicitud.usuario_dni, solicitud.NombreCompletoVisitante, solicitud.visitante_dni, solicitud.solicitud_fecha);
-
-                }
-
-            }
+            SolicitudHelper.CargarSolicitudes(dgSolicitudes, Solicitudes);
         }
+
+
 
         private void dtFechaMovimeintos_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void iconPictureBox1_Click(object sender, EventArgs e)
+        private void ReestablecerFiltro(object sender, EventArgs e)
         {
             dtFechaHasta.Value = DateTime.Now;
             dtFechaDesde.Value = DateTime.Now;
@@ -100,61 +70,62 @@ namespace seguridad_barrios_privados.Presentacion
             solicitudesBackUp = ListaSolicitudes;
             cbFiltraSolicitudes.SelectedIndex = -1;
             cbFiltraSolicitudes.Text = "Estado";
-            CargarSolicitudes();
+            MostarSolicitudes();
         }
 
-        private void iconPictureBox2_Click(object sender, EventArgs e)
+        private void OrdenarPorFecha(object sender, EventArgs e)
         {
 
-            //if (orden == "descendente")
-            //{
-            //    orden = "ascendente";
-            //    ListaSolicitudes = ListaSolicitudes.OrderBy(m => m.Fecha).ToList();
-            //    iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowUpWideShort;
-            //}
-            //else
-            //{
-            //    orden = "descendente";
-            //    ListaSolicitudes = ListaSolicitudes.OrderByDescending(m => m.Fecha).ToList();
-            //    iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowDownWideShort;
-            //}
+            if (orden == "descendente")
+            {
+                orden = "ascendente";
+                ListaSolicitudes = ListaSolicitudes.OrderBy(m => m.solicitud_fecha).ToList();
+                iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowUpWideShort;
+            }
+            else
+            {
+                orden = "descendente";
+                ListaSolicitudes = ListaSolicitudes.OrderByDescending(m => m.solicitud_fecha).ToList();
+                iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowDownWideShort;
+            }
 
-            //CargarSolicitudes();
+            MostarSolicitudes();
         }
 
-        private void cbFiltrarSolicitudes_SelectedIndexChanged(object sender, EventArgs e)
+        private void FiltrarPorEstado(object sender, EventArgs e)
         {
-            //List<Solicitud>? SolicitudesFiltrar = solicitudesBackUp;
-            //int estadoSeleccionado = cbFiltraSolicitudes.SelectedIndex;
-            //if (estadoSeleccionado != -1)
-            //{
-            //    SolicitudesFiltrar = SolicitudesFiltrar?.Where(s => s.Estado == estadoSeleccionado).ToList();
-            //}
+            var solicitudesFiltrar = solicitudesBackUp;
+            int estadoSeleccionado = cbFiltraSolicitudes.SelectedIndex;
+            if (estadoSeleccionado != -1)
+            {
+                solicitudesFiltrar = solicitudesFiltrar?.Where(s => s.solicitud_estado == estadoSeleccionado).ToList();
+            }
 
-            //ListaSolicitudes = SolicitudesFiltrar;
-            //Solicitudes = SolicitudesFiltrar;
-            //CargarSolicitudes();
+            ListaSolicitudes = solicitudesFiltrar;
+            Solicitudes = solicitudesFiltrar;
+            MostarSolicitudes();
         }
 
-        private void tbBuscarUsuario__TextChanged(object sender, EventArgs e)
+        private void FiltrarPorUsuario(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrEmpty(tbBuscarUsuario.Texts))
-            //{
-            //    if (Regex.IsMatch(tbBuscarUsuario.Texts, @"^\d+$"))
-            //    {
-            //        ListaSolicitudes = Solicitudes?.Where(s => s.IdUsuarioNavigation.Dni.Contains(tbBuscarUsuario.Texts!)).ToList();
-            //    }
-            //    else
-            //    {
-            //        ListaSolicitudes = Solicitudes?.Where(s => s.IdUsuarioNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) || s.IdUsuarioNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
+            if (!string.IsNullOrEmpty(tbBuscarUsuario.Texts))
+            {
+                if (Regex.IsMatch(tbBuscarUsuario.Texts, @"^\d+$"))
+                {
+                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_dni.Contains(tbBuscarUsuario.Texts!)).ToList();
+                }
+                else
+                {
+                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) ||
+                    s.usuario_apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
 
-            //    }
-            //}
-            //else
-            //{
-            //    ListaSolicitudes = Solicitudes;
-            //}
-            //this.CargarSolicitudes();
+                }
+            }
+            else
+            {
+                ListaSolicitudes = Solicitudes;
+            }
+            this.MostarSolicitudes();
         }
 
         private void dtFechaDesde_ValueChanged(object sender, EventArgs e)
@@ -169,18 +140,18 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void FiltrarSolicitudesPorFecha()
         {
-            //DateTime fechaDesde = dtFechaDesde.Value.Date;
-            //DateTime fechaHasta = dtFechaHasta.Value.Date;
+            DateTime fechaDesde = dtFechaDesde.Value.Date;
+            DateTime fechaHasta = dtFechaHasta.Value.Date;
 
-            //if (fechaDesde > fechaHasta)
-            //{
-            //    MessageBox.Show("La fecha de inicio debe ser anterior o igual a la fecha de fin.", "Error de rango de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (fechaDesde > fechaHasta)
+            {
+                MessageBox.Show("La fecha de inicio debe ser anterior o igual a la fecha de fin.", "Error de rango de fechas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            //ListaSolicitudes = Solicitudes?.Where(s => s.Fecha >= fechaDesde && s.Fecha <= fechaHasta).ToList();
+            ListaSolicitudes = Solicitudes?.Where(s => s.solicitud_fecha >= fechaDesde && s.solicitud_fecha <= fechaHasta).ToList();
 
-            //CargarSolicitudes();
+            MostarSolicitudes();
         }
     }
 }

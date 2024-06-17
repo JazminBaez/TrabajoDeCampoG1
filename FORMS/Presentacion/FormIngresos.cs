@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 using FontAwesome.Sharp;
 using seguridad_barrios_privados.Controls;
 using seguridad_barrios_privados.Logica;
@@ -25,11 +26,12 @@ namespace seguridad_barrios_privados.Presentacion
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
         private IngresosRepositorio ingresosRepositorio;
-        private List<Solicitud> Solicitudes;
-        private List<Solicitud> ListaBackup;
-        private List<Solicitud> ListaSolicitudes;
+        private List<SolicitudConDetalle> Solicitudes;
+        private List<SolicitudConDetalle> ListaBackup;
+        private List<SolicitudConDetalle> ListaSolicitudes;
         private string busquedaPrevia;
         private List<Usuario> propietarios;
+        private DateTime fechaHoy;
 
         public FormIngresos()
         {
@@ -47,17 +49,18 @@ namespace seguridad_barrios_privados.Presentacion
             cbPropietarios.DisplayMember = "Datos";
             cbPropietarios.ValueMember = "IdUsuario";
 
+            
+
+            fechaHoy = DateTime.Today;
+
+        
 
 
-            ListaSolicitudes = new List<Solicitud>();
-            ListaBackup = new List<Solicitud>();
-            Solicitudes = new List<Solicitud>();
-
-          //  Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             ListaSolicitudes = Solicitudes;
             ListaBackup = ListaSolicitudes;
             busquedaPrevia = string.Empty;
-            CargarSolicitudes();
+            MostrarSolicitudes();
             cbPropietarios.SelectedIndex = -1;
         }
 
@@ -69,19 +72,11 @@ namespace seguridad_barrios_privados.Presentacion
 
 
         //------------------------------------------------------------------------------------------------------------------------------
-        private void CargarSolicitudes()
+        private void MostrarSolicitudes()
         {
+            List<SolicitudConDetalle> solicitudesPendientes = Solicitudes.Where(s => s.solicitud_fecha == fechaHoy).ToList();
+            SolicitudHelper.CargarSolicitudes(dgSolicitudes, solicitudesPendientes);
 
-            dgSolicitudes.Rows.Clear();
-            dgSolicitudes.Refresh();
-            var fechaHoy = DateTime.Today;
-            foreach (Solicitud solicitud in ListaSolicitudes)
-            {
-                if (solicitud.Estado != 3 && solicitud.Fecha == fechaHoy && solicitud.Estado == 0)
-                {
-                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, solicitud.IdUsuarioNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.NombreCompleto, solicitud.IdVisitanteNavigation.Dni, "Aceptar", "Rechazar", "Cancelar");
-                }
-            }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------
        
@@ -100,18 +95,12 @@ namespace seguridad_barrios_privados.Presentacion
                 Dni = tbDni.Texts
             };
 
-            var fechaHoy = DateTime.Today;
 
-            if (validaciones.RegistrarSolicitud(visitante, fechaHoy, cbPropietarios, lbError))
-            {
-
-               
-                ActualizarSolicitudes();
-                CargarSolicitudes();
-                RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
-                cbPropietarios.SelectedIndex = -1;
-            }
-    
+           validaciones.VerificarSolicitud(visitante, fechaHoy, cbPropietarios, lbError);
+           ActualizarSolicitudes();
+           MostrarSolicitudes();
+           RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
+           cbPropietarios.SelectedIndex = -1;
         }
 
         //---------------------------------------------------------------------------------------------------------------------------------------
@@ -128,14 +117,14 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 validaciones.AceptarSolicitud(solicitud);
-                CargarSolicitudes();
+                MostrarSolicitudes();
             }
 
             //rechaza la solicitud
             if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CRechazar"].Index)
             {
                 validaciones.RechazarSolicitud(solicitud);
-                CargarSolicitudes();
+                MostrarSolicitudes();
 
             }
 
@@ -144,8 +133,8 @@ namespace seguridad_barrios_privados.Presentacion
             if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CCancelar"].Index)
             {
 
-              
-                CargarSolicitudes();
+              validaciones.cancelarSolicitud(solicitud);
+                MostrarSolicitudes();
             }
         }
 
@@ -157,9 +146,9 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void ActualizarSolicitudes()
         {
-            //Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
-            //ListaSolicitudes = Solicitudes;
-            //ListaBackup = ListaSolicitudes;
+            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            ListaSolicitudes = Solicitudes;
+            ListaBackup = ListaSolicitudes;
         }
 
 
@@ -212,11 +201,12 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (Regex.IsMatch(tbBuscarSolicitud.Texts, @"^\d+$"))
                 {
-                    ListaSolicitudes = Solicitudes?.Where(s => s.IdVisitanteNavigation.Dni.Contains(tbBuscarSolicitud.Texts!)).ToList();
+                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_dni.Contains(tbBuscarSolicitud.Texts!)).ToList();
                 }
                 else
                 {
-                    ListaSolicitudes = Solicitudes?.Where(s => s.IdVisitanteNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant()) || s.IdVisitanteNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant())).ToList();
+                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_nombre.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant()) ||
+                    s.usuario_apellido.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant())).ToList();
 
                 }
             }
@@ -225,7 +215,7 @@ namespace seguridad_barrios_privados.Presentacion
                 ListaSolicitudes = Solicitudes;
             }
 
-            this.CargarSolicitudes();
+            this.MostrarSolicitudes();
 
         }
 

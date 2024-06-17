@@ -34,7 +34,7 @@ namespace seguridad_barrios_privados.Repositorio
             catch (Exception ex)
             {
                 Console.Write(ex.Message);
-                return new List<SolicitudConDetalle>(); // Devolver una lista vacía en caso de error
+                return new List<SolicitudConDetalle>(); 
             }
 
 
@@ -49,7 +49,7 @@ namespace seguridad_barrios_privados.Repositorio
 
             } catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                Console.Write(e.Message);
             }
 
 
@@ -68,8 +68,15 @@ namespace seguridad_barrios_privados.Repositorio
      
         public void ActualizarSolicitud(Solicitud solicitud)
         {
-            barriosPrivadosContext.Solicitudes.Update(solicitud);
-            barriosPrivadosContext.SaveChanges();
+            try
+            {
+                barriosPrivadosContext.Solicitudes.Update(solicitud);
+                barriosPrivadosContext.SaveChanges();
+            }catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+           
         }
     }
 }
