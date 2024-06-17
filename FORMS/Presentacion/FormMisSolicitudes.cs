@@ -31,17 +31,17 @@ namespace seguridad_barrios_privados.Presentacion
         private string orden;
         public FormMisSolicitudes()
         {
-            InitializeComponent();
-            solicitudesRepositorio = new SolicitudesRepositorio();
-            egresosRepositorio = new EgresosRepositorio();
-            ingresosRepositorio = new IngresosRepositorio();
+            //InitializeComponent();
+            //solicitudesRepositorio = new SolicitudesRepositorio();
+            //egresosRepositorio = new EgresosRepositorio();
+            //ingresosRepositorio = new IngresosRepositorio();
 
 
-            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
-            ListaSolicitudes = Solicitudes;
-            solicitudesBackUp = ListaSolicitudes;
-            orden = "descendente";
-            CargarSolicitudes();
+            //Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            //ListaSolicitudes = Solicitudes;
+            //solicitudesBackUp = ListaSolicitudes;
+            //orden = "descendente";
+            //CargarSolicitudes();
         }
 
 
@@ -93,14 +93,14 @@ namespace seguridad_barrios_privados.Presentacion
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
 
-            dtFechaHasta.Value = DateTime.Now;
-            dtFechaDesde.Value = DateTime.Now;
-            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
-            ListaSolicitudes = Solicitudes;
-            solicitudesBackUp = ListaSolicitudes;
-            cbFiltraSolicitudes.SelectedIndex = -1;
-            cbFiltraSolicitudes.Text = "Estado";
-            CargarSolicitudes();
+            //dtFechaHasta.Value = DateTime.Now;
+            //dtFechaDesde.Value = DateTime.Now;
+            //Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            //ListaSolicitudes = Solicitudes;
+            //solicitudesBackUp = ListaSolicitudes;
+            //cbFiltraSolicitudes.SelectedIndex = -1;
+            //cbFiltraSolicitudes.Text = "Estado";
+            //CargarSolicitudes();
         }
 
         private void iconPictureBox2_Click(object sender, EventArgs e)

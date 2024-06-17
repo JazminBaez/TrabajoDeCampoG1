@@ -59,7 +59,7 @@ namespace seguridad_barrios_privados.Presentacion
             ListaBackup = ListaIngresos;
             busquedaPrevia = string.Empty;
             usuarios = usuariosRepositorio.ObtenerUsuarios();
-            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+           // Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             Egresos = egresosRepositorio.ObtenerEgresos();
             movimientos = new List<Movimiento>();
             movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();

@@ -37,46 +37,46 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void CargarSolicitudes()
         {
-            List<Solicitud> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
-            dgSolicitudes.Rows.Clear();
-            dgSolicitudes.Refresh();
+            //List<Solicitud> solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            //dgSolicitudes.Rows.Clear();
+            //dgSolicitudes.Refresh();
 
-            if (solicitudes != null)
-            {
+            //if (solicitudes != null)
+            //{
 
-                foreach (Solicitud solicitud in solicitudes)
-                {
+            //    foreach (Solicitud solicitud in solicitudes)
+            //    {
 
-                    if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Estado != 3 && solicitud.Estado == 0)
-                    {
-                        string estadoSolicitud;
-                        int estado = solicitud.Estado;
+            //        if (solicitud.IdUsuario == AppState.UsuarioActual.IdUsuario && solicitud.Estado != 3 && solicitud.Estado == 0)
+            //        {
+            //            string estadoSolicitud;
+            //            int estado = solicitud.Estado;
 
-                        switch (estado)
-                        {
-                            default:
-                                estadoSolicitud = "pendiente";
-                                break;
-                            case 1:
-                                estadoSolicitud = "aceptado";
-                                break;
-                            case 2:
-                                estadoSolicitud = "rechazado";
-                                dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Eliminar");
+            //            switch (estado)
+            //            {
+            //                default:
+            //                    estadoSolicitud = "pendiente";
+            //                    break;
+            //                case 1:
+            //                    estadoSolicitud = "aceptado";
+            //                    break;
+            //                case 2:
+            //                    estadoSolicitud = "rechazado";
+            //                    dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Eliminar");
 
-                                Color colorOscuro = Color.FromArgb(25, 46, 71);
-                                Color colorTexto = Color.FromArgb(45, 66, 91);
-                                dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
-                                dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
+            //                    Color colorOscuro = Color.FromArgb(25, 46, 71);
+            //                    Color colorTexto = Color.FromArgb(45, 66, 91);
+            //                    dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.LightGray; // Configura el color del texto
+            //                    dgSolicitudes.Rows[dgSolicitudes.Rows.Count - 1].DefaultCellStyle.BackColor = colorOscuro;
 
-                                continue;
+            //                    continue;
 
-                        }
-                        dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Cancelar");
+            //            }
+            //            dgSolicitudes.Rows.Add(solicitud.IdSolicitud, estadoSolicitud, solicitud.IdVisitanteNavigation.Nombre, solicitud.IdVisitanteNavigation.Apellido, solicitud.IdVisitanteNavigation.Dni, solicitud.Fecha, "Cancelar");
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
 
         private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)

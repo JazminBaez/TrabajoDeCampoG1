@@ -53,7 +53,7 @@ namespace seguridad_barrios_privados.Presentacion
             ListaBackup = new List<Solicitud>();
             Solicitudes = new List<Solicitud>();
 
-            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+          //  Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             ListaSolicitudes = Solicitudes;
             ListaBackup = ListaSolicitudes;
             busquedaPrevia = string.Empty;
@@ -157,9 +157,9 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void ActualizarSolicitudes()
         {
-            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
-            ListaSolicitudes = Solicitudes;
-            ListaBackup = ListaSolicitudes;
+            //Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            //ListaSolicitudes = Solicitudes;
+            //ListaBackup = ListaSolicitudes;
         }
 
 

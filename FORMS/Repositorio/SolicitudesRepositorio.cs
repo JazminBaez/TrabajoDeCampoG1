@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace seguridad_barrios_privados.Repositorio
 {
@@ -18,41 +20,24 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
-        public List<Visitante> prueba() {
 
-           
-            return barriosPrivadosContext.Visitantes.ToList();
-        }
-
-        public List<Usuario> pruebaDos()
+        public List<SolicitudConDetalle> ObtenerSolicitudes()
         {
-            return barriosPrivadosContext.Usuarios.ToList();
-        }
-
-        public List<Solicitud> ObtenerSolicitudes()
-        {
-            var usuarios = pruebaDos();
-            var visitantes = prueba();
-            var solicitudes =  barriosPrivadosContext.Solicitudes.Include(s => s.IdUsuarioNavigation).Include(s => s.IdVisitanteNavigation).ToList();
-            foreach(Solicitud solicitud in solicitudes)
+            try
             {
-                foreach (Visitante visitante in visitantes)
-                {
-                    if(solicitud.IdVisitante == visitante.IdVisitante)
-                    {
-                        solicitud.IdVisitanteNavigation = visitante;
-                    }
-                }
+                var solicitudes = barriosPrivadosContext.SolicitudConDetalle
+                    .FromSqlRaw("exec sp_ListarSolicitudesConDetalles")
+                    .ToList();
 
-                foreach (Usuario usuario in usuarios)
-                {
-                    if (solicitud.IdUsuario == usuario.IdUsuario)
-                    {
-                        solicitud.IdUsuarioNavigation = usuario;
-                    }
-                }
+                return solicitudes;
             }
-            return solicitudes;
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return new List<SolicitudConDetalle>(); // Devolver una lista vacía en caso de error
+            }
+
+
         }
 
         public void RegistrarSolicitud(Solicitud solicitud)
