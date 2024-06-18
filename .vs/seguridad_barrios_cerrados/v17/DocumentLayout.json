@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\presentacion\\solicitudhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\solicitudhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\repositorio\\solicitudesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\repositorio\\solicitudesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formsolicitudes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formsolicitudes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\modelos\\solicitudcondetalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\modelos\\solicitudcondetalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formingresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formingresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formmissolicitudes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formmissolicitudes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formreportesadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formreportesadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|j:\\usuarios\\baezd\\documents\\facena\\ingenieria ii\\trabajo de campo\\trabajointegrador-grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formingresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formingresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\forms\\repositorio\\egresosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\repositorio\\egresosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\forms\\presentacion\\formegresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\formegresos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\forms\\presentacion\\movimientohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1201459D-BE7F-477C-94EF-C9FD401ABDF5}|FORMS\\seguridad_barrios_privados.csproj|solutionrelative:forms\\presentacion\\movimientohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,67 +54,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormMisSolicitudes.cs",
-              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormMisSolicitudes.cs",
-              "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormMisSolicitudes.cs",
-              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormMisSolicitudes.cs",
-              "RelativeToolTip": "FORMS\\Presentacion\\FormMisSolicitudes.cs",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Program.cs",
+              "RelativeDocumentMoniker": "FORMS\\Program.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Program.cs",
+              "RelativeToolTip": "FORMS\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T18:44:27.289Z",
+              "WhenOpened": "2024-06-18T12:44:08.308Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormSolicitudes.cs",
-              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormSolicitudes.cs",
-              "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormSolicitudes.cs",
-              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormSolicitudes.cs",
-              "RelativeToolTip": "FORMS\\Presentacion\\FormSolicitudes.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAADgvywAAABSAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T18:43:20.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormIngresos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormIngresos.cs",
-              "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormIngresos.cs",
-              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormIngresos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "FORMS\\Presentacion\\FormIngresos.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T18:40:19.274Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SolicitudHelper.cs",
-              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\SolicitudHelper.cs",
-              "RelativeDocumentMoniker": "FORMS\\Presentacion\\SolicitudHelper.cs",
-              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\SolicitudHelper.cs",
-              "RelativeToolTip": "FORMS\\Presentacion\\SolicitudHelper.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAADgv0cAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T18:34:52.393Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FormIngresos.cs",
               "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormIngresos.cs",
               "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormIngresos.cs",
               "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormIngresos.cs",
               "RelativeToolTip": "FORMS\\Presentacion\\FormIngresos.cs",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAiwE0AAABSAAAA",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAuwHUAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T21:25:19.29Z",
+              "WhenOpened": "2024-06-18T02:27:20.851Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SolicitudesRepositorio.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Repositorio\\SolicitudesRepositorio.cs",
+              "RelativeDocumentMoniker": "FORMS\\Repositorio\\SolicitudesRepositorio.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Repositorio\\SolicitudesRepositorio.cs*",
+              "RelativeToolTip": "FORMS\\Repositorio\\SolicitudesRepositorio.cs*",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowBsAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:26:53.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EgresosRepositorio.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Repositorio\\EgresosRepositorio.cs",
+              "RelativeDocumentMoniker": "FORMS\\Repositorio\\EgresosRepositorio.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Repositorio\\EgresosRepositorio.cs",
+              "RelativeToolTip": "FORMS\\Repositorio\\EgresosRepositorio.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAowDEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T03:05:26.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SolicitudConDetalle.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Modelos\\SolicitudConDetalle.cs",
+              "RelativeDocumentMoniker": "FORMS\\Modelos\\SolicitudConDetalle.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Modelos\\SolicitudConDetalle.cs",
+              "RelativeToolTip": "FORMS\\Modelos\\SolicitudConDetalle.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAgwBoAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:23:59.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormReportesAdmin.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormReportesAdmin.cs",
+              "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormReportesAdmin.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormReportesAdmin.cs",
+              "RelativeToolTip": "FORMS\\Presentacion\\FormReportesAdmin.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAqwDsAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:07:53.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MovimientoHelper.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\MovimientoHelper.cs",
+              "RelativeDocumentMoniker": "FORMS\\Presentacion\\MovimientoHelper.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\MovimientoHelper.cs",
+              "RelativeToolTip": "FORMS\\Presentacion\\MovimientoHelper.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAcwCgAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:07:46.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormEgresos.cs",
+              "DocumentMoniker": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormEgresos.cs",
+              "RelativeDocumentMoniker": "FORMS\\Presentacion\\FormEgresos.cs",
+              "ToolTip": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\Presentacion\\FormEgresos.cs",
+              "RelativeToolTip": "FORMS\\Presentacion\\FormEgresos.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAswEIAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:07:32.583Z"
             }
           ]
         }

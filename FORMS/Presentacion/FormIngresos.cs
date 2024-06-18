@@ -26,6 +26,7 @@ namespace seguridad_barrios_privados.Presentacion
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
         private IngresosRepositorio ingresosRepositorio;
+        
         private List<SolicitudConDetalle> Solicitudes;
         private List<SolicitudConDetalle> ListaBackup;
         private List<SolicitudConDetalle> ListaSolicitudes;
@@ -39,6 +40,7 @@ namespace seguridad_barrios_privados.Presentacion
             usuariosRepositorio = new UsuariosRepositorio();
             solicitudesRepositorio = new SolicitudesRepositorio();
             ingresosRepositorio = new IngresosRepositorio();
+            visitantesRepositorio = new VisitantesRepositorio();
             validaciones = new Validaciones();
             propietarios = new List<Usuario>();
 
@@ -74,7 +76,8 @@ namespace seguridad_barrios_privados.Presentacion
         //------------------------------------------------------------------------------------------------------------------------------
         private void MostrarSolicitudes()
         {
-            List<SolicitudConDetalle> solicitudesPendientes = Solicitudes.Where(s => s.solicitud_fecha == fechaHoy).ToList();
+            //crea lista de solicitudes que sean de hoy y tengan de estado 3
+            var solicitudesPendientes = ListaSolicitudes.Where(s => s.solicitud_fecha.Date == fechaHoy.Date && s.solicitud_estado == 0).ToList();
             SolicitudHelper.CargarSolicitudes(dgSolicitudes, solicitudesPendientes);
 
         }
@@ -88,13 +91,9 @@ namespace seguridad_barrios_privados.Presentacion
         //------------------------------------------------------------------------------------------------------------------
         private void btRegistrar_Click(object sender, EventArgs e)
         {
-            var visitante = new Visitante()
-            {
-                Nombre = tbNombre.Texts,
-                Apellido = tbApellido.Texts,
-                Dni = tbDni.Texts
-            };
 
+           
+           var visitante = visitantesRepositorio.CrearVisitante(tbNombre.Texts, tbApellido.Texts, tbDni.Texts); ;
 
            validaciones.VerificarSolicitud(visitante, fechaHoy, cbPropietarios, lbError);
            ActualizarSolicitudes();
@@ -117,15 +116,13 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
                 validaciones.AceptarSolicitud(solicitud);
-                MostrarSolicitudes();
+               
             }
 
             //rechaza la solicitud
             if (e.RowIndex >= 0 && e.ColumnIndex == dgSolicitudes.Columns["CRechazar"].Index)
             {
                 validaciones.RechazarSolicitud(solicitud);
-                MostrarSolicitudes();
-
             }
 
 
@@ -134,8 +131,11 @@ namespace seguridad_barrios_privados.Presentacion
             {
 
               validaciones.cancelarSolicitud(solicitud);
-                MostrarSolicitudes();
+               
             }
+
+            ActualizarSolicitudes();
+            MostrarSolicitudes();
         }
 
 

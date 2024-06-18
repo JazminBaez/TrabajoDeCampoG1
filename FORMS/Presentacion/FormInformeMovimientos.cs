@@ -28,6 +28,8 @@ namespace seguridad_barrios_privados.Presentacion
         private List<Movimiento> movimientos;
         private List<Movimiento> ListaMovimientos;
         private List<Movimiento> movimeintosBackUp;
+
+        private MovimientoHelper movimientoHelper;
         private string orden;
         public FormInformeMovimientos()
         {
@@ -35,9 +37,9 @@ namespace seguridad_barrios_privados.Presentacion
             solicitudesRepositorio = new SolicitudesRepositorio();
             egresosRepositorio = new EgresosRepositorio();
             ingresosRepositorio = new IngresosRepositorio();
+            movimientoHelper = new MovimientoHelper();
 
-
-            movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
+            movimientos = movimientoHelper.ObtenerMovimientos();
             ListaMovimientos = movimientos;
             movimeintosBackUp = ListaMovimientos;
             orden = "descendente";
@@ -100,8 +102,8 @@ namespace seguridad_barrios_privados.Presentacion
         {
             dtFechaHasta.Value = DateTime.Now;
             dtFechaDesde.Value = DateTime.Now;
-           
-            movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
+
+            movimientos = movimientoHelper.ObtenerMovimientos();
             ListaMovimientos = movimientos;
             movimeintosBackUp = ListaMovimientos;
             cbFiltrarMovimientos.SelectedIndex = -1;

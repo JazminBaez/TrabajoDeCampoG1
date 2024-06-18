@@ -25,19 +25,20 @@ namespace seguridad_barrios_privados.Repositorio
         {
             try
             {
-                var solicitudes = barriosPrivadosContext.SolicitudConDetalle
-                    .FromSqlRaw("exec sp_ListarSolicitudesConDetalles")
-                    .ToList();
+                using (var context = new  DbBarriosPrivadosContext())
+                {
+                    var solicitudes = context.SolicitudConDetalle
+                        .FromSqlRaw("EXEC sp_ListarSolicitudesConDetalles")
+                        .ToList();
 
-                return solicitudes;
+                    return solicitudes;
+                }
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
-                return new List<SolicitudConDetalle>(); 
+                Console.WriteLine(ex.Message);
+                return new List<SolicitudConDetalle>();
             }
-
-
         }
 
         public void RegistrarSolicitud(Solicitud solicitud)
@@ -72,7 +73,8 @@ namespace seguridad_barrios_privados.Repositorio
             {
                 barriosPrivadosContext.Solicitudes.Update(solicitud);
                 barriosPrivadosContext.SaveChanges();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.Write(ex.Message);
             }

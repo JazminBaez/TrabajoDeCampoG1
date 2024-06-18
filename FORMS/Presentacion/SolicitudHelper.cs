@@ -13,7 +13,7 @@ public class SolicitudHelper
 
         foreach (SolicitudConDetalle solicitud in listaSolicitudes)
         {
-            if (solicitud.solicitud_estado == 4)
+            if (solicitud.solicitud_estado == 3)
             {
                 continue;
             }
@@ -44,9 +44,10 @@ public class SolicitudHelper
     {
         return estado switch
         {
+            0 => "pendiente",
             1 => "aceptado",
             2 => "rechazado",
-            _ => "pendiente"
+            _ => "cancelada"
         };
     }
 
@@ -69,7 +70,7 @@ public class SolicitudHelper
             solicitud.id_solicitud,
             estadoSolicitud,
             solicitud.visitante_nombre,
-            solicitud.usuario_apellido,
+            solicitud.visitante_apellido,
             solicitud.visitante_dni,
             solicitud.solicitud_fecha,
             "cancelar"

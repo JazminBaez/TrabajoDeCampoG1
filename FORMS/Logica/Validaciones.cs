@@ -290,7 +290,7 @@ namespace seguridad_barrios_privados.Logica
             try
             {
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
-                MessageBox.Show("Solicitud aceptada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Solicitud rechazada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {

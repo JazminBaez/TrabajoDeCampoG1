@@ -1,4 +1,5 @@
-﻿using seguridad_barrios_privados.Modelos;
+﻿using Microsoft.EntityFrameworkCore;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -35,33 +36,25 @@ namespace seguridad_barrios_privados.Repositorio
             return true;
         }
 
-        //listar todos los egresos de la tabla egresos
-        public List<Movimiento> ObtenerMovimientos()
+      
+
+        public List<EgresoConDetalle> ObtenerEgresos()
         {
-           
-            var egresos = barriosPrivadosContext.Egresos
-            .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation)
-            .Include(e => e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation)
-            .Where(e => e.Fecha != null)
-            .Select(e => new Movimiento
+            try
             {
-                TipoMovimiento = "Egreso",
-                NombreUsuario = e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
-                DniUsuario = e.IdIngresoNavigation.IdSolicitudNavigation.IdUsuarioNavigation.Dni,
-                NombreVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
-                DniVisitante = e.IdIngresoNavigation.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
-                Fecha = e.Fecha,
-                Observaciones = e.Observaciones,
-
-            }).ToList();
-          
-            return egresos;
-        }
-
-        //funcion para obtener todos los egresos
-        public List<Egreso> ObtenerEgresos()
-        {
-            return barriosPrivadosContext.Egresos.ToList();
+                using (var context = new DbBarriosPrivadosContext())
+                {
+                    var egresos = context.EgresoConDetalle
+                    .FromSqlRaw("exec sp_ListarEgresosConDetalles")
+                    .ToList();
+                    return egresos;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return new List<EgresoConDetalle>();
+            }
         }
     }
 }

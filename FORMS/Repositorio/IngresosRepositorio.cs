@@ -1,4 +1,5 @@
-﻿using seguridad_barrios_privados.Modelos;
+﻿using Microsoft.EntityFrameworkCore;
+using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Util;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace seguridad_barrios_privados.Repositorio
             barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
         }
 
+      
         public void RegistrarIngreso(int solicitud)
         {
             //crea el ingreso y lo vincula con la solicitud correspondiente
@@ -42,69 +44,33 @@ namespace seguridad_barrios_privados.Repositorio
            
         }
 
-        public List<Visitante> prueba()
+        public List<IngresoConDetalle> ObtenerIngresos()
         {
-
-
-            return barriosPrivadosContext.Visitantes.ToList();
-        }
-
-        public List<Solicitud> pruebaDos()
-        {
-            return barriosPrivadosContext.Solicitudes.ToList();
-        }
-
-        public List<Ingreso> ObtenerIngresos()
-        {
-            var solicitudes = pruebaDos();
-            var visitantes = prueba();
-            var usuarios = barriosPrivadosContext.Usuarios.ToList();
-            var ingresos = barriosPrivadosContext.Ingresos.Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation).ToList();
-            foreach (Ingreso ingreso in ingresos)
+            try
             {
-                foreach (Solicitud solicitud in solicitudes)
+                using (var context = new DbBarriosPrivadosContext())
                 {
-                        if (ingreso.IdSolicitud == solicitud.IdSolicitud)
-                        {
-                            foreach (Usuario usuario in usuarios)
-                            {
-                                if (usuario.IdUsuario == solicitud.IdUsuario)
-                                {
-                                    solicitud.IdUsuarioNavigation = usuario;
-                                }
-                            }
-                        ingreso.IdSolicitudNavigation = solicitud;
-                        }
+                    var ingresos = barriosPrivadosContext.IngresoConDetalle
+                    .FromSqlRaw("exec sp_ListarIngresosConDetalles")
+                    .ToList();
+
+                    return ingresos;
                 }
-
             }
-            return ingresos;
-        }
-
-        public List<Movimiento> ObtenerMovimientos()
-        {
-            var ingresos = barriosPrivadosContext.Ingresos
-            .Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation)
-            .Include(i => i.IdSolicitudNavigation.IdVisitanteNavigation)
-            .Where(i => i.Fecha != null)
-            .Select(i => new Movimiento
+            catch (Exception ex)
             {
-                TipoMovimiento = "Ingreso",
-                NombreUsuario = i.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto,
-                DniUsuario = i.IdSolicitudNavigation.IdUsuarioNavigation.Dni,
-                NombreVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto,
-                DniVisitante = i.IdSolicitudNavigation.IdVisitanteNavigation.Dni,
-                Fecha = i.Fecha,
-                Observaciones = "-",
-            }).ToList();
-
-            return ingresos;
+                Console.Write(ex.Message);
+                return new List<IngresoConDetalle>();
+            }
         }
 
-        //obtenerIngresoPorId
+       
         public Ingreso ObtenerIngreso(int id)
         {
-            var ingreso = barriosPrivadosContext.Ingresos.Include(i => i.IdSolicitudNavigation.IdUsuarioNavigation).FirstOrDefault(i => i.IdIngreso == id);
+           
+            var ingreso = barriosPrivadosContext.Ingresos
+                .Where(i => i.IdIngreso == id)
+                .FirstOrDefault();
             return ingreso;
         }
 

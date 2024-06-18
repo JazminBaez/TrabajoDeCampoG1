@@ -24,7 +24,7 @@ namespace seguridad_barrios_privados.Modelos
         public string visitante_apellido { get; set; }
         public string visitante_dni { get; set; }
 
-        public string NombreCompletoUsuario => $"{usuario_nombre} {usuario_nombre}";
+        public string NombreCompletoUsuario => $"{usuario_nombre} {usuario_apellido}";
         public string NombreCompletoVisitante => $"{visitante_nombre} {visitante_apellido}";
     }
 

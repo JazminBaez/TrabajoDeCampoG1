@@ -34,7 +34,18 @@ namespace seguridad_barrios_privados.Repositorio
         }
 
 
+        public Visitante CrearVisitante(string nombre, string apellido, string dni)
+        {
+            var visitante = new Visitante()
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+                Dni = dni,
 
+            };
+
+            return visitante;
+        }
 
 
         //----------------------------------------------------------------------------------------------------------------------------------------

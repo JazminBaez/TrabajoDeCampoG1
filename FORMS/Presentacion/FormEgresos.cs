@@ -18,17 +18,16 @@ namespace seguridad_barrios_privados.Presentacion
 
     public partial class FormEgresos : Form
     {
-        private UsuariosRepositorio usuariosRepositorio;
         private Validaciones validaciones;
         private SolicitudesRepositorio solicitudesRepositorio;
         private VisitantesRepositorio visitantesRepositorio;
         private EgresosRepositorio egresosRepositorio;
         private IngresosRepositorio ingresosRepositorio;
         private Ingreso ingreso;
-        private List<Ingreso> ListaIngresos;
-        private List<Ingreso> ListaBackup;
-        private List<Ingreso> Ingresos;
-        private List<Egreso> Egresos;
+        private List<IngresoConDetalle> ListaIngresos;
+        private List<IngresoConDetalle> ListaBackup;
+        private List<IngresoConDetalle> Ingresos;
+        private List<EgresoConDetalle> Egresos;
         private string busquedaPrevia;
         public FormEgresos()
         {
@@ -38,10 +37,12 @@ namespace seguridad_barrios_privados.Presentacion
             ingresosRepositorio = new IngresosRepositorio();
 
 
-            ListaIngresos = new List<Ingreso>();
-            ListaBackup = new List<Ingreso>();
-            Ingresos = new List<Ingreso>();
-            Egresos = new List<Egreso>();
+            ListaIngresos = new List<IngresoConDetalle>();
+            ListaBackup = new List<IngresoConDetalle>();
+            Ingresos = new List<IngresoConDetalle>();
+            Egresos = new List<EgresoConDetalle>();
+
+
             Ingresos = ingresosRepositorio.ObtenerIngresos();
             ListaIngresos = Ingresos;
             ListaBackup = ListaIngresos;
@@ -53,18 +54,18 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void CargarIngresos()
         {
-            List<Egreso> egresos = egresosRepositorio.ObtenerEgresos();
+            List<EgresoConDetalle> egresos = egresosRepositorio.ObtenerEgresos();
 
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
             var fechaHoy = DateTime.Today;
 
-            foreach (Ingreso ingreso in ListaIngresos)
+            foreach (IngresoConDetalle ingreso in ListaIngresos)
             {
-                if (!(egresos.Any(egreso => egreso.IdIngreso == ingreso.IdIngreso)))
+                if (!(egresos.Any(egreso => egreso.id_ingreso == ingreso.id_ingreso)))
                 {
                     //agregelo al datagridview
-                    dgSolicitudes.Rows.Add(ingreso.IdIngreso, ingreso.IdSolicitudNavigation.IdUsuarioNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.NombreCompleto, ingreso.IdSolicitudNavigation.IdVisitanteNavigation.Dni, ingreso.Fecha);
+                    dgSolicitudes.Rows.Add(ingreso.id_ingreso, ingreso.NombreCompletoUsuario, ingreso.NombreCompletoVisitante, ingreso.visitante_dni, ingreso.ingreso_fecha);
                     continue;
                 }
             }
@@ -83,8 +84,9 @@ namespace seguridad_barrios_privados.Presentacion
             if (dgSolicitudes.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgSolicitudes.SelectedRows[0];
+                
                 ingreso = ingresosRepositorio.ObtenerIngreso(Convert.ToInt32(selectedRow.Cells[0].Value));
-
+       
             }
         }
 
@@ -93,6 +95,7 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrarEgreso_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(ingreso.IdIngreso);
             if (egresosRepositorio.RegistrarEgreso(ingreso.IdIngreso, tbObservaciones.Texts))
             {
                 MessageBox.Show("Egreso Registrado exitosamente", "Egreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -118,11 +121,12 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (Regex.IsMatch(tbBuscarUsuario.Texts, @"^\d+$"))
                 {
-                    ListaIngresos = Ingresos?.Where(u => u.IdSolicitudNavigation.IdVisitanteNavigation.Dni.Contains(tbBuscarUsuario.Texts!)).ToList();
+                    ListaIngresos = Ingresos?.Where(u => u.visitante_dni.Contains(tbBuscarUsuario.Texts!)).ToList();
                 }
                 else
                 {
-                    ListaIngresos = Ingresos?.Where(u => u.IdSolicitudNavigation.IdVisitanteNavigation.Nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) || u.IdSolicitudNavigation.IdVisitanteNavigation.Apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
+                    ListaIngresos = Ingresos?.Where(u => u.visitante_nombre.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant()) ||
+                    u.visitante_apellido.ToLowerInvariant().Contains(tbBuscarUsuario.Texts!.ToLowerInvariant())).ToList();
 
                 }
             }
@@ -141,14 +145,14 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void ckbFiltrarVisitas_CheckedChanged(object sender, EventArgs e)
         {
-            List<Ingreso>? ingresosFiltrar = ListaBackup;
+            List<IngresoConDetalle>? ingresosFiltrar = ListaBackup;
             tbBuscarUsuario.Texts = string.Empty;
-            List<Ingreso> ListaIngresosSinEgreso = new List<Ingreso>();
-            List<Ingreso> Listafiltrada = new List<Ingreso>();
+            List<IngresoConDetalle> ListaIngresosSinEgreso = new List<IngresoConDetalle>();
+            List<IngresoConDetalle> Listafiltrada = new List<IngresoConDetalle>();
 
-            foreach (Ingreso ingreso in ingresosFiltrar)
+            foreach (IngresoConDetalle ingreso in ingresosFiltrar)
             {
-                if (!(Egresos.Any(egreso => egreso.IdIngreso == ingreso.IdIngreso)))
+                if (!(Egresos.Any(egreso => egreso.id_ingreso == ingreso.id_ingreso)))
                 {
                     ListaIngresosSinEgreso.Add(ingreso);
                     continue;
@@ -158,7 +162,7 @@ namespace seguridad_barrios_privados.Presentacion
             if (ckbFiltrarVisitas.Checked)
             {
 
-                ingresosFiltrar = ListaIngresosSinEgreso?.Where(i => i.Fecha.AddDays(3) < DateTime.Today).ToList();
+                ingresosFiltrar = ListaIngresosSinEgreso?.Where(i => i.ingreso_fecha.AddDays(3) < DateTime.Today).ToList();
 
             }
 

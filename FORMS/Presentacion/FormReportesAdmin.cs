@@ -1,6 +1,7 @@
 ﻿using seguridad_barrios_privados.Logica;
 using seguridad_barrios_privados.Modelos;
 using seguridad_barrios_privados.Repositorio;
+using seguridad_barrios_privados.Presentacion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,14 +32,16 @@ namespace seguridad_barrios_privados.Presentacion
         private IngresosRepositorio ingresosRepositorio;
         private BackupRepositorio backupRepositorio;
         private Ingreso ingreso;
-        private List<Ingreso> ListaIngresos;
-        private List<Ingreso> ListaBackup;
-        private List<Ingreso> Ingresos;
-        private List<Egreso> Egresos;
-        private List<Solicitud> Solicitudes;
+        private List<IngresoConDetalle> ListaIngresos;
+        private List<IngresoConDetalle> ListaBackup;
+        private List<IngresoConDetalle> Ingresos;
+        private List<EgresoConDetalle> Egresos;
+        private List<SolicitudConDetalle> Solicitudes;
         private string busquedaPrevia;
         private List<Movimiento> movimientos;
         private List<Usuario> usuarios;
+
+        private MovimientoHelper movimientoHelper;
         public FormReportesAdmin()
         {
             InitializeComponent();
@@ -49,21 +52,24 @@ namespace seguridad_barrios_privados.Presentacion
             backupRepositorio = new BackupRepositorio();
 
 
-            ListaIngresos = new List<Ingreso>();
-            ListaBackup = new List<Ingreso>();
-            Ingresos = new List<Ingreso>();
-            Egresos = new List<Egreso>();
+            ListaIngresos = new List<IngresoConDetalle>();
+            ListaBackup = new List<IngresoConDetalle>();
+            Ingresos = new List<IngresoConDetalle>();
+            Egresos = new List<EgresoConDetalle>();
             usuarios = new List<Usuario>();
+            movimientoHelper = new MovimientoHelper();
+
             Ingresos = ingresosRepositorio.ObtenerIngresos();
             ListaIngresos = Ingresos;
             ListaBackup = ListaIngresos;
             busquedaPrevia = string.Empty;
             usuarios = usuariosRepositorio.ObtenerUsuarios();
-           // Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+
+
+           Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             Egresos = egresosRepositorio.ObtenerEgresos();
             movimientos = new List<Movimiento>();
-            movimientos = egresosRepositorio.ObtenerMovimientos().Union(ingresosRepositorio.ObtenerMovimientos()).OrderByDescending(m => m.Fecha).ToList();
-
+            movimientos = movimientoHelper.ObtenerMovimientos();
             MovimientosPorDia();
             TopPropietariosPorSemana();
             CargarTargetas();
@@ -82,11 +88,11 @@ namespace seguridad_barrios_privados.Presentacion
             var catidadDeGuardias = usuariosRepositorio.ObtenerUsuarios().Where(u => u.IdRol == 3 && u.Estado != 1).Count();
             tgVisitantes.Text = catidadDeGuardias.ToString() + "\r\nGUARDIAS";
 
-           var promedioIngresosPorDia = ingresosRepositorio.ObtenerIngresos().GroupBy(i => i.Fecha.Date).Select(g => new { Fecha = g.Key, Cantidad = g.Count() }).Average(i => i.Cantidad);
+           var promedioIngresosPorDia = ingresosRepositorio.ObtenerIngresos().GroupBy(i => i.ingreso_fecha.Date).Select(g => new { Fecha = g.Key, Cantidad = g.Count() }).Average(i => i.Cantidad);
             promedioIngresosPorDia = Math.Round(promedioIngresosPorDia, 1);
             tgPromedioDiario.Text = "PROMEDIO DIARIO DE INGRESOS: " + promedioIngresosPorDia.ToString();
 
-            var ingresosDeHoy = ingresosRepositorio.ObtenerIngresos().Where(i => i.Fecha.Date == DateTime.Today).Count();
+            var ingresosDeHoy = ingresosRepositorio.ObtenerIngresos().Where(i => i.ingreso_fecha.Date == DateTime.Today).Count();
             tgIngresosHoy.Text = ingresosDeHoy.ToString() + " INGRESOS REGISTRADOS";
 
 
