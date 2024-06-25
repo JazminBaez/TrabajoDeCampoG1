@@ -87,6 +87,8 @@ namespace seguridad_barrios_privados.Logica
 
         public static void MostrarError(System.String mensaje, Label error)
         {
+
+            error.ForeColor = System.Drawing.Color.DarkRed;
             error.Text = mensaje;
            
             error.Visible = true;
@@ -119,7 +121,7 @@ namespace seguridad_barrios_privados.Logica
                if(RegistrarDireccion(direccion, errorMsg)!= null)
                 {
                     usuario.IdDireccion = RegistrarDireccion(direccion, errorMsg).IdDireccion;
-                    this.usuariosRepositorio.InsertarUsuario(usuario);
+                    this.usuariosRepositorio?.InsertarUsuario(usuario);
                 }
 
                 return true;
@@ -169,8 +171,7 @@ namespace seguridad_barrios_privados.Logica
 
 
 
-        //----------------------------------------------------------------------------------------------------------------------
-        public void VerificarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg)
+        public bool VerificarSolicitud(Visitante visitante, DateTime fecha, ComboBox propietario, Label errorMsg)
         {
             var validator = new VisitanteValidators();
             var result = validator.Validate(visitante);
@@ -181,23 +182,29 @@ namespace seguridad_barrios_privados.Logica
             //Verifica que si el que esta registrando la solicitud es un guardia entonces debio haber soleccionado un propietario responsable
             if (AppState.UsuarioActual.IdRol == 3 && (propietario == null || propietario.SelectedIndex == -1))
             {
-                MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg);
+                Validaciones.MostrarError("Seleccione propietario" + Environment.NewLine + " responsable", errorMsg);
+                return false;
             }
 
             //valida que esten correctos los datos de visitante
             if (!result.IsValid)
             {
-                MostrarError(result.Errors[0].ErrorMessage, errorMsg);
+                Validaciones.MostrarError(result.Errors[0].ErrorMessage, errorMsg);
+                return false;
             }
             else
             {
                 //registra el visitante
-                RegistrarVisitante(visitante);
+               if(!RegistrarVisitante(visitante))
+                {
+                    return false;
+                }
+
+
                 idVisitante = visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni).IdVisitante;
 
-
                 //Setea como responsable el porpietario seleccionado por el guardia
-                if(AppState.UsuarioActual.IdRol == 3)
+                if (AppState.UsuarioActual.IdRol == 3)
                 {
                     idPropietario = (int)propietario.SelectedValue;
                 }
@@ -222,13 +229,16 @@ namespace seguridad_barrios_privados.Logica
                 {
                     solicitudesRepositorio.RegistrarSolicitud(solicitud);
                     MessageBox.Show("Solicitud Registrada con exito");
-           
-                }catch(Exception ex)
+                    return true;
+
+                }
+                catch(Exception ex)
                 {
                     MessageBox.Show("No fue posible registrar la solicitud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
 
-
+                return true;
             }
         }
 
@@ -236,9 +246,7 @@ namespace seguridad_barrios_privados.Logica
 
 
 
-        //----------------------------------------------------------------------------------------------------------------------------------------------
-
-        public void RegistrarVisitante(Visitante visitante)
+        public bool RegistrarVisitante(Visitante visitante)
         {
             int idVisitante;
             //verifica si ya existe ese visitante registrado
@@ -254,7 +262,11 @@ namespace seguridad_barrios_privados.Logica
                 if (resultado == DialogResult.OK)
                 {
                    idVisitante = visitanteEncontrado.IdVisitante;
-                 
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
 
             }
@@ -262,11 +274,11 @@ namespace seguridad_barrios_privados.Logica
             {
                 visitantesRepositorio.RegistrarVisitante(visitante);
                 idVisitante =  visitantesRepositorio.ObtenerVisitanteDni(visitante.Dni).IdVisitante;
+                return true;
             }
         }
 
 
-        //--------------------------------------------------------------------------------------------------------------------------------------------
 
         public void AceptarSolicitud(Solicitud solicitud)
         {
@@ -304,7 +316,6 @@ namespace seguridad_barrios_privados.Logica
             solicitud.Estado = 3;
             try
             {
-
                 solicitudesRepositorio.ActualizarSolicitud(solicitud);
                 MessageBox.Show("Solicitud cancelada", "Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }catch (Exception ex)
@@ -313,7 +324,6 @@ namespace seguridad_barrios_privados.Logica
             }
            
         }
-    //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

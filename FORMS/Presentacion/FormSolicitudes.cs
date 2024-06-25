@@ -37,11 +37,13 @@ namespace seguridad_barrios_privados.Presentacion
         
             dtFechaMovimeintos.MinDate = DateTime.Today;
 
+
         }
 
         private void MostarSolicitudes()
         {
-            List<SolicitudConDetalle> solicitudesPendientes = Solicitudes.Where(s => s.solicitud_estado == 0).ToList();
+            Solicitudes = solicitudesRepositorio.ObtenerSolicitudes();
+            List<SolicitudConDetalle> solicitudesPendientes = Solicitudes.Where(s => s.solicitud_estado == 0 && s.id_usuario == AppState.UsuarioActual.IdUsuario).ToList();
             SolicitudHelper.CargarSolicitudes(dgSolicitudes, solicitudesPendientes);
 
         }
@@ -103,11 +105,14 @@ namespace seguridad_barrios_privados.Presentacion
 
             var fechaProgramada = dtFechaMovimeintos.Value;
 
-            validaciones.VerificarSolicitud(visitante, fechaProgramada, null, lbError);
+            if(validaciones.VerificarSolicitud(visitante, fechaProgramada, null, ErrorMsg))
+            {
+                MostarSolicitudes();
+                RestablecerFormulario(ErrorMsg, ErrorIcon, tbApellido, tbNombre, tbDni);
+                dtFechaMovimeintos.DataContext = DateTime.Today;
+            }
             
-            MostarSolicitudes();
-            RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
-            dtFechaMovimeintos.DataContext = DateTime.Today;
+          
 
         }
         private static void RestablecerFormulario(Label error, IconPictureBox errorIcon, params RJTextBox[] campos)

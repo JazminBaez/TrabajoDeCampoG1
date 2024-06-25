@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("seguridad_barrios_privados")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59b7e696ba294ef4bf4dad7bd7c3d823ee56ad79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c679ad674da6f404027d2655cc519ce3b6e70c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("seguridad_barrios_privados")]
 [assembly: System.Reflection.AssemblyTitleAttribute("seguridad_barrios_privados")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

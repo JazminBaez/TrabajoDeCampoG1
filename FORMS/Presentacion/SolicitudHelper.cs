@@ -13,10 +13,10 @@ public class SolicitudHelper
 
         foreach (SolicitudConDetalle solicitud in listaSolicitudes)
         {
-            if (solicitud.solicitud_estado == 3)
-            {
-                continue;
-            }
+            //if (solicitud.solicitud_estado == 3)
+            //{
+            //    continue;
+            //}
 
             string estadoSolicitud = ObtenerEstadoSolicitud(solicitud.solicitud_estado);
 

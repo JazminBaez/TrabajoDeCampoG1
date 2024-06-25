@@ -50,11 +50,15 @@ namespace seguridad_barrios_privados.Presentacion
 
             Egresos = egresosRepositorio.ObtenerEgresos();
             CargarIngresos();
+
+            
         }
 
         private void CargarIngresos()
         {
             List<EgresoConDetalle> egresos = egresosRepositorio.ObtenerEgresos();
+
+            List<IngresoConDetalle> ingresosSinEgreso = new List<IngresoConDetalle>();
 
             dgSolicitudes.Rows.Clear();
             dgSolicitudes.Refresh();
@@ -64,12 +68,40 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (!(egresos.Any(egreso => egreso.id_ingreso == ingreso.id_ingreso)))
                 {
-                    //agregelo al datagridview
-                    dgSolicitudes.Rows.Add(ingreso.id_ingreso, ingreso.NombreCompletoUsuario, ingreso.NombreCompletoVisitante, ingreso.visitante_dni, ingreso.ingreso_fecha);
+                 
+                    ingresosSinEgreso.Add(ingreso);
                     continue;
                 }
             }
+
+            ActualizarAspectoBotones(ingresosSinEgreso);
+
+            foreach (IngresoConDetalle ingreso in ingresosSinEgreso)
+            {
+                dgSolicitudes.Rows.Add(ingreso.id_ingreso, ingreso.NombreCompletoUsuario, ingreso.NombreCompletoVisitante, ingreso.visitante_dni, ingreso.ingreso_fecha);
+            }
+            
         }
+
+        private void ActualizarAspectoBotones(List<IngresoConDetalle> ingresosSinEgreso)
+        {
+            if (ingresosSinEgreso.Count == 0)
+            {
+                btRegistrarEgreso.Enabled = false;
+                tbObservaciones.Enabled = false;
+                btRegistrarEgreso.BackColor = Color.Gray;
+                tbObservaciones.BackColor = Color.Gray;
+
+            }
+            else
+            {
+                btRegistrarEgreso.Enabled = true;
+                tbObservaciones.Enabled = true;
+                btRegistrarEgreso.BackColor = SystemColors.Window;
+                tbObservaciones.BackColor = SystemColors.Window;
+            }
+        }
+
         private void dgSolicitudes_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewRow row in dgSolicitudes.Rows)
@@ -95,7 +127,13 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void btRegistrarEgreso_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(ingreso.IdIngreso);
+            if(ingreso == null)
+            {
+                MessageBox.Show("Seleccione un visitante a egresar", "Egreso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
             if (egresosRepositorio.RegistrarEgreso(ingreso.IdIngreso, tbObservaciones.Texts))
             {
                 MessageBox.Show("Egreso Registrado exitosamente", "Egreso", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -21,6 +21,7 @@ namespace seguridad_barrios_privados.Repositorio
         }
 
 
+        //procedimiento almacenado
         public List<SolicitudConDetalle> ObtenerSolicitudes()
         {
             try

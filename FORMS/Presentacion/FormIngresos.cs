@@ -72,40 +72,31 @@ namespace seguridad_barrios_privados.Presentacion
         }
 
 
-
-        //------------------------------------------------------------------------------------------------------------------------------
         private void MostrarSolicitudes()
         {
-            //crea lista de solicitudes que sean de hoy y tengan de estado 3
+            ListaSolicitudes = solicitudesRepositorio.ObtenerSolicitudes();
             var solicitudesPendientes = ListaSolicitudes.Where(s => s.solicitud_fecha.Date == fechaHoy.Date && s.solicitud_estado == 0).ToList();
             SolicitudHelper.CargarSolicitudes(dgSolicitudes, solicitudesPendientes);
 
         }
-        //-------------------------------------------------------------------------------------------------------------------------------------------------
-       
-        
-        
-       
 
-
-        //------------------------------------------------------------------------------------------------------------------
         private void btRegistrar_Click(object sender, EventArgs e)
         {
 
            
            var visitante = visitantesRepositorio.CrearVisitante(tbNombre.Texts, tbApellido.Texts, tbDni.Texts); ;
 
-           validaciones.VerificarSolicitud(visitante, fechaHoy, cbPropietarios, lbError);
-           ActualizarSolicitudes();
-           MostrarSolicitudes();
-           RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
-           cbPropietarios.SelectedIndex = -1;
+           if(validaciones.VerificarSolicitud(visitante, fechaHoy, cbPropietarios, lbError))
+            {
+                ActualizarSolicitudes();
+                MostrarSolicitudes();
+                RestablecerFormulario(lbError, ErrorIcon, tbApellido, tbNombre, tbDni);
+                cbPropietarios.SelectedIndex = -1;
+            }
+         
         }
 
-        //---------------------------------------------------------------------------------------------------------------------------------------
 
-
-        //---------------------------------------------------------------------------------------------------------------------------------------------------
         private void dgSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -137,9 +128,6 @@ namespace seguridad_barrios_privados.Presentacion
             ActualizarSolicitudes();
             MostrarSolicitudes();
         }
-
-
-        //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -201,11 +189,11 @@ namespace seguridad_barrios_privados.Presentacion
             {
                 if (Regex.IsMatch(tbBuscarSolicitud.Texts, @"^\d+$"))
                 {
-                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_dni.Contains(tbBuscarSolicitud.Texts!)).ToList();
+                    ListaSolicitudes = Solicitudes.Where(s => s.usuario_dni.Contains(tbBuscarSolicitud.Texts!)).ToList();
                 }
                 else
                 {
-                    ListaSolicitudes = Solicitudes?.Where(s => s.usuario_nombre.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant()) ||
+                    ListaSolicitudes = Solicitudes.Where(s => s.usuario_nombre.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant()) ||
                     s.usuario_apellido.ToLowerInvariant().Contains(tbBuscarSolicitud.Texts!.ToLowerInvariant())).ToList();
 
                 }

@@ -50,6 +50,8 @@ namespace seguridad_barrios_privados.Presentacion
 
         private void MostarSolicitudes()
         {
+            Solicitudes = Solicitudes.Where(s => s.id_usuario == AppState.UsuarioActual.IdUsuario).ToList();
+
             SolicitudHelper.CargarSolicitudes(dgSolicitudes, Solicitudes);
         }
 
@@ -80,13 +82,13 @@ namespace seguridad_barrios_privados.Presentacion
             if (orden == "descendente")
             {
                 orden = "ascendente";
-                ListaSolicitudes = ListaSolicitudes.OrderBy(m => m.solicitud_fecha).ToList();
+                Solicitudes = Solicitudes.OrderBy(m => m.solicitud_fecha).ToList();
                 iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowUpWideShort;
             }
             else
             {
                 orden = "descendente";
-                ListaSolicitudes = ListaSolicitudes.OrderByDescending(m => m.solicitud_fecha).ToList();
+                Solicitudes = Solicitudes.OrderByDescending(m => m.solicitud_fecha).ToList();
                 iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ArrowDownWideShort;
             }
 
