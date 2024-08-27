@@ -1,0 +1,228 @@
+[33mcommit da7e0973fc52ec4c18b7e946d99c071ce52e15e8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mjazmin[m[33m, [m[1;31morigin/jazmin[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Tue Jun 25 00:21:38 2024 -0300
+
+    ERS segunda entrega
+
+[33mcommit 28b849a2b3728cd86ab31b0540a265b74ad047b9[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Tue Jun 25 00:18:50 2024 -0300
+
+    Elimina comentarios
+
+[33mcommit 5c679ad674da6f404027d2655cc519ce3b6e70c9[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Tue Jun 18 11:21:32 2024 -0300
+
+    agrega procediento almacenado p_ListarIngresosConDetalles y p_ListarEgresosConDetalles
+
+[33mcommit 59b7e696ba294ef4bf4dad7bd7c3d823ee56ad79[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Mon Jun 17 15:53:19 2024 -0300
+
+    arregla vista de solicitudes
+
+[33mcommit bbd8c87f30b5e22b45abc6b57551e90032d2822c[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Sun Jun 16 22:29:18 2024 -0300
+
+    agrega procedimiento almacenado sp_ListarSolicitudesConDetalles
+
+[33mcommit d83115e3a041d9e37afc5df203ffb20769766671[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Wed May 8 04:20:25 2024 -0300
+
+    db actualizada
+
+[33mcommit b32a3e90408c08498830e0e8503da3806b876b47[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Wed May 8 04:14:10 2024 -0300
+
+    arreglo registro ingreso
+
+[33mcommit cdeae2ef114247f3578782a4818b1d241d3cd6a1[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Thu May 2 02:48:48 2024 -0300
+
+    ERS
+
+[33mcommit 842a6e56e4d57b57216d8cca95f7c43805eb9016[m
+Author: JazminBaez <baezdjazmin@email.com>
+Date:   Thu May 2 02:46:56 2024 -0300
+
+    actualizacion base de datos
+
+[33mcommit f6c971a0ad51f4d363c72a3702efa4f139be7472[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Thu Nov 16 01:34:59 2023 -0300
+
+    roles y contraseñas
+
+[33mcommit 8a6d44e9fee2e00068cba245cf4fa4fcf1fdc314[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Thu Nov 16 01:29:34 2023 -0300
+
+    manual de usuario y backup
+
+[33mcommit d9d4b5860c8038c41827f5ebf9efe0a961696b29[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 15 13:42:45 2023 -0300
+
+    arregla vistas
+
+[33mcommit 0880ffec2e6bd69302b5b4806d43767c622c0d5e[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 15 12:24:19 2023 -0300
+
+    termina admin
+
+[33mcommit 9ae7f15c6c385525ceea03f8f269ba239e510193[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 15 09:32:32 2023 -0300
+
+    agrega restore
+
+[33mcommit f91bda4e1977e080d8c9700cec251aaa60a33442[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Tue Nov 14 22:32:09 2023 -0300
+
+    agrega graficos
+
+[33mcommit eb404d2238285787d0fede06e14b3c73275ae3c0[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Sat Nov 11 17:17:31 2023 -0300
+
+    termina filtros
+
+[33mcommit c5de7a46918cda85f68db3dae627c3f22138edfe[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 8 21:34:53 2023 -0300
+
+    agrega filtro egresos
+
+[33mcommit 07a140543d1596edc3adfab7889df80254109f8c[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 8 19:17:42 2023 -0300
+
+    agrega filtro movimientos
+
+[33mcommit 4a72bfbf7fc11de55981af1b94612679af713ff0[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Nov 8 15:19:48 2023 -0300
+
+    agrega filtro usuarios
+
+[33mcommit c5fa4d5153b4e74c0563e320d4ec715ba329b393[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Nov 6 13:40:19 2023 -0300
+
+    agrega filtro
+
+[33mcommit 8d147fa7442f885379adb8ee5bbe177590a99cc5[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Sat Oct 28 00:44:31 2023 -0300
+
+    arregla db
+
+[33mcommit f00d1861c3792986017b1efa62b13863859a174b[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Sat Oct 28 00:28:38 2023 -0300
+
+    agrega registro de egresos :D
+
+[33mcommit fa644fce98ce2e3806bda5f291a88984968c9400[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Fri Oct 27 19:52:46 2023 -0300
+
+    arregla programacion de solicitudes
+
+[33mcommit 47d419487298e180c93b7607f847d088b6326710[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Fri Oct 27 01:00:09 2023 -0300
+
+    arregla, asi, en gral
+
+[33mcommit b9f231916ed924c404e5c793ed49d024ad68769b[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Oct 25 22:05:15 2023 -0300
+
+    arregla registro de ingresos
+
+[33mcommit a36f0b7d25a31b9e465ff538bdfed62894cb5407[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Wed Oct 25 21:04:10 2023 -0300
+
+    arregla alta,baja y modificacion
+
+[33mcommit 3bbe9d268ff9e137cc6366b393a2cd23cd217803[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Oct 2 23:12:32 2023 -0300
+
+    Arregla pantallas
+
+[33mcommit fe97543914a16c82145332cd8143d15179dec9d0[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Oct 2 16:29:33 2023 -0300
+
+    Arregla tablas movimientos
+
+[33mcommit 7b7f5fa8efeeacf4e3b2094cf6efd43b8742e841[m
+Merge: 16c960f a1258e3
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Oct 2 02:52:18 2023 -0300
+
+    Termina registrar ingreso
+
+[33mcommit 16c960f1089bef7868184679fb729cf45e980eb1[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Sun Oct 1 14:21:06 2023 -0300
+
+    Agrega validaciones registro ingreso
+
+[33mcommit a1258e311800c760608850067f9bed4e5a8d8a9b[m
+Author: Alejandro Chicala <chicalaale6@gmail.com>
+Date:   Sun Oct 1 13:21:36 2023 -0300
+
+    obtener label completo para combobox
+
+[33mcommit fd891cc39a65fd9aba214f1680897444d0f88aa2[m
+Author: Alejandro Chicala <chicalaale6@gmail.com>
+Date:   Sun Oct 1 12:56:14 2023 -0300
+
+    registro funcionando
+
+[33mcommit 370867714dce59c3b48b33e43c30d4e0680b174c[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Thu Sep 28 22:11:02 2023 -0300
+
+    Arregla validacion registrar usuarios
+
+[33mcommit 278e567433ad90e445f909390c5fd9350ea1031f[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Thu Sep 28 10:01:29 2023 -0300
+
+    FluentValidation
+
+[33mcommit 6c1e81e5a48c3a44ad491e7aa8cc1b9f0acdb794[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Sep 25 18:59:18 2023 -0300
+
+    Agrega validacion de campos en registro de usuarios
+
+[33mcommit 69054f876b2ce9bc272d574e9d106e4477417254[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Tue Sep 19 22:43:42 2023 -0300
+
+    form propietario terminado
+
+[33mcommit 7cff3f500151e7342d52ba373bf779a199ed064b[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Tue Sep 19 19:24:11 2023 -0300
+
+    Forms admin terminados
+
+[33mcommit 471ecd67fcaa00ad010a5c0b85a81a32ca796105[m
+Author: Jazmin <baezdjazmin@gmail.com>
+Date:   Mon Sep 18 22:57:30 2023 -0300
+
+    Formulario sin data grid

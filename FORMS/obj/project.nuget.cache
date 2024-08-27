@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fU7GyUl3z7pB9prLbMvrH+a6N6euWH5PmeroRoyV7OvnQEifC2+yZsfHfTmSOAgj6T6IeTIeeI+ZYelMU9XDfA==",
+  "dgSpecHash": "RnoFblzcOyeCxn53+FnsB7tJB/bb4QXM59JFb6lhMaJq0zfHX1mwWhVP8bIuv17RCkqQ4B1or7ZLKAUzsw9ukw==",
   "success": true,
-  "projectFilePath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\INGENIERIA II\\Trabajo de campo\\TrabajoIntegrador-Grupo12\\seguridad_barrios_privados\\FORMS\\seguridad_barrios_privados.csproj",
+  "projectFilePath": "J:\\Usuarios\\baezd\\Documents\\FaCENA\\proyect\\FORMS\\seguridad_barrios_privados.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\baezd\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\baezd\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -21,7 +21,18 @@ namespace seguridad_barrios_privados.Repositorio
 
         public UsuariosRepositorio()
         {
-            barriosPrivadosContext = Contexto.dbBarriosPrivadosContext!;
+            try
+            {
+                barriosPrivadosContext = Contexto.dbBarriosPrivadosContext;
+                Console.WriteLine("en usuarios repositorio" + Contexto.dbBarriosPrivadosContext.Database.GetDbConnection().ConnectionString);
+
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }   
+        
+
         }
 
         public void InsertarUsuario(Usuario user)
@@ -99,7 +110,8 @@ namespace seguridad_barrios_privados.Repositorio
 
             }
             catch(Exception ex) {
-                Console.Write(ex.Message);
+                Console.WriteLine("Exception Message: " + ex.Message);
+                Console.WriteLine("Stack Trace: " + ex.StackTrace);
                 return null;
             }
         }

@@ -17,7 +17,11 @@ namespace seguridad_barrios_privados.Presentacion
             string stringConection = Resources.conexion;
             DbContextOptionsBuilder<DbBarriosPrivadosContext> optionsBuilder = new();
             DbBarriosPrivadosContext dbBarriosPrivadosContext = new(optionsBuilder.UseSqlServer(stringConection).Options);
+
             Contexto.dbBarriosPrivadosContext = dbBarriosPrivadosContext;
+            Console.WriteLine("en program" + Contexto.dbBarriosPrivadosContext.Database.GetDbConnection().ConnectionString);
+
+
             Application.Run(new Login());
         }
     }

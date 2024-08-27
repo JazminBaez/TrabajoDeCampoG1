@@ -58,8 +58,9 @@ namespace seguridad_barrios_privados.Presentacion
             }
             else
             {
-                
-                var usuario = usuariosRepositorio.getUsuarioByEmail(tbCorreo.Texts);
+
+                    var usuario = usuariosRepositorio.getUsuarioByEmail(tbCorreo.Texts);
+              
 
                 if (usuario != null)
                 {
@@ -81,7 +82,7 @@ namespace seguridad_barrios_privados.Presentacion
                     }
                     else
                     {
-                        this.msgError("Contraseña incorrecta.");
+                        this.msgError("usuario y/o con");
                      
                     }
 
